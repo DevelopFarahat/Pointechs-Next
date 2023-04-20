@@ -34,12 +34,13 @@
 }
 */
 .media {
+    /*
     border-radius: 30px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     -ms-border-radius: 30px;
     -o-border-radius: 30px;
-    height: 300px;
+   /* height: 300px;*/
     position: relative;
 }
 
@@ -94,4 +95,9 @@
         flex-direction: column;
         max-width: 84%;
     }
+    .media-play-btn{
+        top: 48%;
+    left: 41%;
+    }
 }
+
