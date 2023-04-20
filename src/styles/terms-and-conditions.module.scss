@@ -62,3 +62,13 @@
 .highlighted-terms > li{
     @include headlineAndParagraph(true,1rem,normal,#5E5E5E);
 }
+
+
+@media screen and (max-width:768px){
+    .terms-main-section{
+        height: 250px;
+    }
+    .terms-main-section + div > div{
+        width: 100%;
+    }
+}

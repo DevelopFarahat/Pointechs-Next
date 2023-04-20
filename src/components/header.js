@@ -7,6 +7,7 @@ import Logo from "../assets/images/logo.png";
 import NavbarStyles from "../styles/navbar.module.scss";
 import Signup from "./signup";
 import Login from "./login";
+
 function Header() {
   const [selectedLink, setSelectedLink] = useState(0);
   const [signupModalShow, setSignupModalShow] = React.useState(false);
@@ -35,20 +36,33 @@ function Header() {
   const handleSelectLink = (event) => {
     setSelectedLink(event.currentTarget.id);
   };
+  const handleToogle = (isNavbarExpanded)=>{
+    if(isNavbarExpanded){
+      navbarRef.current.style.cssText =`-webkit-backdrop-filter: blur(35px);
+      backdrop-filter: blur(35px);`;
+    }else{
+      navbarRef.current.style = "";
+    }
 
+  }
+  const handleSelect = (x)=>{
+    console.log(x)
+  }
   return (
     <>
       <Navbar
         ref={navbarRef}
         expand={"xl"}
         className={NavbarStyles["pointechs-navbar"]}
+        onToggle={handleToogle}
+        collapseOnSelect={handleSelect}
       >
         <Container className={NavbarStyles['navbar-container']}>
           <Navbar.Brand href="#home">
             <Image src={Logo} className={NavbarStyles.logo} alt="logo" priority={true} placeholder={true}/>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" aria-expanded="false"/>
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse   id="basic-navbar-nav">
             <Nav className={NavbarStyles.nav}>
               {linksArr.map((link) => (
                 <Nav.Link

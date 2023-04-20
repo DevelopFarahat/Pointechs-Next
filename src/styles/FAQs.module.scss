@@ -60,3 +60,13 @@
         border: none !important;
      }
 }
+
+
+@media screen and (max-width:768px) {
+    .faqs-img{
+        height: 250px;
+    }
+    .faqs-img + div > div{
+        width: 100%;
+    }
+}
