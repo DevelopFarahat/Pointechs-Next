@@ -1,0 +1,141 @@
+@use "partial/variables";
+@use "partial/classes" as *;
+@use "partial/mixins";
+.how-pointechs-works {
+    width: 100%;
+    background-color: #FCFCFC;
+    margin-top: -49px;
+    padding: 20px;
+}
+
+.how-pointechs-works>main {
+    width: 92%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+
+}
+
+.how-pointechs-works>main>div {
+    flex: 0 0 35%;
+    border-radius: 24px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    -o-border-radius: 24px;
+    width: 90%;
+}
+
+.how-pointechs-works>main>div>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    border-radius: 24px;
+}
+
+.how-pointechs-works > main>div:nth-of-type(2) {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 10px;
+    width: 90%;
+}
+
+.how-pointechs-works> main>div:nth-of-type(2)>section:nth-child(1) {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.how-pointechs-works> main>div:nth-of-type(2)>section:nth-child(1)>span {
+    /*
+    width: 8px;
+    height: 52px;
+
+    background: transparent linear-gradient(9deg, variables.$color1 0%, variables.$color1 51%, #E23D43 100%) 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    */
+    @extend %headerSide;
+}
+
+.how-pointechs-works> main>div:nth-of-type(2)>section:nth-child(1)>h1 {
+    /*
+    text-align: left;
+    font-weight: 600;
+    font-family: Poppins;
+    color: variables.$color2;
+    */
+    @include mixins.headlineAndParagraph(false,1rem,600,variables.$color2);
+}
+
+.how-pointechs-works> main>div:nth-of-type(2)>section:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.how-pointechs-works> main>div:nth-of-type(2)>section:nth-child(2)>div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.how-pointechs-works> main>div:nth-of-type(2)>section:nth-child(2)>div>div {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    aspect-ratio: 1/1;
+    background-color: variables.$color1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.how-pointechs-works> main>div:nth-of-type(2)>section:nth-child(2)>div>p {
+    /*
+    text-align: left;
+    font-family: Poppins;
+    letter-spacing: 0px;
+    color: #5E5E5E;
+    font-size: 20px;
+    */
+    @include mixins.headlineAndParagraph(true,20px,normal,#5E5E5E);
+}
+@media screen and (max-width:768px) {
+    .how-pointechs-works{
+        padding: 0;
+    }
+    .how-pointechs-works > main{
+        padding: 0;
+    }
+    .how-pointechs-works > main{
+        flex-direction: column;
+    }
+    .how-pointechs-works > main>div:nth-child(1){
+        order: 2;
+    }
+    .how-pointechs-works > main>div:nth-child(2){
+        order: 1;
+    }
+}

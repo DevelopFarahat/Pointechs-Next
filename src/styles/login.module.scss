@@ -1,0 +1,152 @@
+@use "partial/variables" as *;
+@use "partial/mixins" as *;
+@use "partial/classes" as *;
+.login-body-modal{
+    @extend %signup_login_modal;
+    min-height: 505px;
+}
+.login-img-section{
+    flex: 0 0 50%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    position: absolute;
+    height: 100%;
+    width: 50%;
+}
+.login-img-section>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.login-form-container{
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 20px;
+    position: relative;
+    left: 50%;
+}
+.login-form-container > div:nth-child(1){
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+.login-form-container > div:nth-child(1) > span{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    aspect-ratio: 1/1;
+    background-color: #5E5E5E40;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.login-form-container > div:nth-child(2){
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+.login-form-container > div:nth-child(2) > h1{
+    @include headlineAndParagraph(true, 24px, 600, #27323C);
+}
+.login-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+.login-form > div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px
+}
+.login-form > div > label{
+    @include headlineAndParagraph(true, 12px, normal, #5E5E5E80);
+}
+.login-form > div > input{
+    @include formInput();
+}
+.login-form > button{
+    @include button($color2,$color1,center,18px);
+    width: 100%;
+    min-height: 45px;
+    border-radius:20px !important;
+    -webkit-border-radius:20px !important;
+    -moz-border-radius:20px !important;
+    -ms-border-radius:20px !important;
+    -o-border-radius:20px !important;
+}
+.forget-password-link{
+    margin-top: -5px;
+   @include links(#5E5E5E80,12px);
+   text-align: left
+}
+.register-now-link{
+    @include links(#5E5E5E80,12px);
+   
+}
+.register-now-link > span{
+    color: $color2;
+}
+.separator{
+    width: 100%;
+    min-height: 50px;
+}
+.login-form > div:nth-child(2) > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    background: #FCFCFC;
+    border: 1px solid #5E5E5E1A;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+
+}
+.login-form > div:nth-child(2) > div > input{
+    @include formInput();
+    border: none;
+    width: 91%;
+    &:focus{
+        outline: none;
+    }
+}
+
+
+@media screen  and (max-width:997px){
+    .login-img-section{
+        display: none;
+    }
+    .login-form-container{
+        left: 0;
+        flex: 0 0 100%;
+    }
+}

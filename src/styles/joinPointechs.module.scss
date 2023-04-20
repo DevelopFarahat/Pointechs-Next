@@ -1,0 +1,53 @@
+@use "partial/variables";
+@use "partial/mixins";
+.join-section {
+    width: 100%;
+    background-color: variables.$color2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.join-section > div{
+    width: 43%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.join-section> div >p {
+    /*
+    text-align: center;
+    font-family: Poppins;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-weight: 600;
+    color: #FFFFFF;
+    */
+    @include mixins.headlineAndParagraph(true,1.5rem,600,#FFFFFF);
+    text-align: center;
+}
+
+.join-section > div>button {
+    /*
+    width: 165px;
+    height: 48px;
+    background: #FEB247;
+    border-radius: 30px;
+    text-align: left;
+    font-family: Poppins;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #27323C;
+    */
+    @include mixins.button(variables.$color2,variables.$color1,center,1rem);
+}
+
+
+@media screen and (max-width:768px) {
+    .join-section > div{
+        width: 100%;
+    }
+}

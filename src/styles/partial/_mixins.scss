@@ -1,0 +1,72 @@
+@mixin button($color, $background, $alignSelef, $fontSize) {
+    width: 170px;
+    min-height: 50px;
+    background: $background !important;
+    align-self: $alignSelef !important;
+    color: $color !important;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    text-align: center;
+    font-family: Poppins;
+    font-size: $fontSize;
+    line-height: 1.5;
+    --bs-btn-border-color: none !important;
+
+    &:focus,
+    &:hover,
+    &:active {
+        background-color: $background !important;
+        color: $color !important;
+        border: none !important;
+        outline: none !important;
+
+    }
+}
+
+@mixin headlineAndParagraph($fontSizeCondition, $fontSize, $fontWeight, $color) {
+    text-align: left;
+    font-family: Poppins;
+    line-height: 1.5;
+    font-size: if($fontSizeCondition, $fontSize, null);
+    font-weight: $fontWeight;
+    color: $color;
+    @media screen and (max-width:768px) {
+        font-size: if($fontSizeCondition, 1rem, null);
+    }
+}
+
+@mixin formInput() {
+    width: 100%;
+    background: #FCFCFC;
+    border: 1px solid #5E5E5E1A;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    outline: none;
+    padding: 7px;
+
+    &:focus {
+        outline: 1px solid #FEB247;
+    }
+}
+
+@mixin links($color,$fontSize){
+    text-align: left;
+    font-family: Poppins;
+    line-height: 1.5;
+    font-size: $fontSize;
+    font-weight:normal;
+    color:$color;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    &:hover{
+        color: $color;
+    }
+}
+

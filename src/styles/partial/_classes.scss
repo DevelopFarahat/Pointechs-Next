@@ -1,0 +1,17 @@
+%headerSide{
+    width: 8px;
+    height: 52px;
+    background: transparent linear-gradient(9deg, #FEB247 0%, #FEB247 51%, #E23D43 100%) 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+}
+
+%signup_login_modal{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    --bs-modal-padding: 0 !important;
+    --bs-modal-border-width: 0 !important;
+    --bs-modal-border-radius: 0 !important;
+}

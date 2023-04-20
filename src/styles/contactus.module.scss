@@ -1,0 +1,175 @@
+@use "partial/variables";
+@use "partial/mixins";
+@use "partial/classes" as *;
+.pointechs-contactus {
+    width: 100%;
+
+
+}
+
+.pointechs-contactus>main {
+    width: 94%;
+    float: right;
+    clear: both;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pointechs-contactus>main>section {
+    flex: 0 0 45%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.contact-us-header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.contact-us-header>section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.contact-us-header>section>span {
+    /*
+    width: 8px;
+    height: 52px;
+    background: transparent linear-gradient(9deg, variables.$color1 0%, variables.$color1 51%, #E23D43 100%) 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    */
+    @extend %headerSide;
+}
+
+.contact-us-header>section>h1 {
+    /*
+    text-align: left;
+    line-height: 1.5;
+    font-family: Poppins;
+    font-weight: 600;
+    color: variables.$color2;
+    */
+    @include mixins.headlineAndParagraph(false,1rem,600,variables.$color2);
+}
+
+.contact-us-header>section>p {
+    /*
+    text-align: left;
+    font-family: Poppins;
+    line-height: 1.5;
+    font-size: 20px;
+    color: #5E5E5E;
+    */
+    @include mixins.headlineAndParagraph(true,20px,normal,#5E5E5E);
+}
+
+.contactus-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.contactus-form>div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+.contactus-form > div:last-of-type{
+    margin-top: 10px
+}
+.contactus-form>div>label {
+    /*
+    text-align: left;
+    font-family: Poppins;
+    font-size: 1rem;
+    color: #5E5E5E80;
+    */
+    @include mixins.headlineAndParagraph(true,1rem,normal,#5E5E5E80);
+    order: 1;
+}
+
+.contactus-form>div>input {
+    width: 90%;
+    padding: 5px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #5E5E5E80;
+    order: 2;
+}
+.contactus-form>div>input:focus{
+    border-bottom: 1px solid variables.$color1;
+}
+.contactus-form>div>input:focus +  label{
+    color: variables.$color1;
+}
+.contactus-form>div:last-of-type>button {
+    /*
+    width: 165px;
+    height: 48px;
+    background: variables.$color1;
+    border-radius: 30px;
+    text-align: left;
+    font-family: Poppins;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #FFFFFF;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    */
+    @include mixins.button(#FFFFFF,variables.$color1,baseline,1rem);
+}
+
+.pointechs-contactus>main>section:nth-child(2) {
+    flex: 0 0 50%;
+    padding: 0;
+}
+
+.pointechs-contactus>main>section:nth-child(2)>img {
+    max-height: 500px;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+@media screen  and (max-width:768px){
+    
+    .pointechs-contactus > main{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .pointechs-contactus > main{
+        width: 96%;
+        padding: 20px;
+        gap: 20px;
+    }
+    .pointechs-contactus > main > section:nth-child(2){
+        display: none;
+    }
+    
+}

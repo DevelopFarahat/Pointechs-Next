@@ -1,0 +1,155 @@
+@use "partial/variables";
+@use "partial/classes" as *;
+@use "partial/mixins";
+.pointechs-app {
+    width: 100%;
+    padding: 20px;
+    background-color: #F9F6F6;
+    margin-top: -50px;
+}
+
+.pointechs-app>main {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.pointechs-app>main>div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex: 1 0 50%;
+    
+}
+
+.pointechs-app>main>div:nth-child(1) {
+    flex: 1 0 42%;
+    gap: 20px;
+}
+
+.pointechs-app>main>div:nth-child(1)>section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.pointechs-app>main>div:nth-child(1)>section:nth-child(1)>span {
+    /*
+    width: 8px;
+    height: 52px;
+    background: transparent linear-gradient(9deg, variables.$color1 0%, variables.$color1 51%, #E23D43 100%) 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    */
+    @extend %headerSide;
+}
+
+.pointechs-app>main>div:nth-child(1)>section:nth-child(1)>h1 {
+    /*
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: variables.$color2;
+    */
+    @include mixins.headlineAndParagraph(false,1rem,600,variables.$color2);
+}
+
+.pointechs-app>main>div:nth-child(1)>section:nth-child(2) {
+    flex-direction: column;
+    gap: 0;
+}
+
+.pointechs-app>main>div:nth-child(1)>section:nth-child(2)>p,
+.pointechs-app>main>div:nth-child(1)>section:nth-child(2)>span {
+    /*
+    text-align: left;
+    font-family: Poppins;
+    line-height: 1.5;
+    color: #5E5E5E;
+    font-size: 20px;
+    */
+    @include mixins.headlineAndParagraph(true,20px,normal,#5E5E5E);
+}
+
+.pointechs-app>main>div:nth-child(1)>section:nth-child(3) {
+    justify-content: flex-start;
+    gap: 30px;
+}
+
+.pointechs-app>main>div:nth-child(1)>section:nth-child(3)>button {
+    background-color: #082E3A;
+    color: #FFFFFF;
+    border-radius: 46px;
+    -webkit-border-radius: 46px;
+    -moz-border-radius: 46px;
+    -ms-border-radius: 46px;
+    -o-border-radius: 46px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    width: 216px;
+    height: 65px;
+}
+
+.pointechs-app>main>div:nth-child(1)>section:nth-child(3)>button>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 65%;
+}
+
+.pointechs-app>main>div:nth-child(1)>section:nth-child(3)>button>div>span {
+    
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-family: Poppins;
+    
+    
+}
+
+.pointechs-app>main>div:nth-child(1)>section:nth-child(3)>button>div>span:nth-of-type(2) {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.pointechs-app>main>div:nth-child(2)>img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+@media screen and (max-width:500px){
+    .pointechs-app>main>div{
+        order: 1;
+    }
+    .pointechs-app>main>div:nth-child(1){
+        order: 2;
+    }
+    /*
+    .pointechs-app > main{
+        flex-direction: column;
+    }
+    /*
+    .pointechs-app > main > div:nth-child(1){
+        order:2;
+    }
+    .pointechs-app > main > div:nth-child(2){
+        order:1;
+    }
+    */
+}

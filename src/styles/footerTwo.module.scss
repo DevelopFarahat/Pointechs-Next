@@ -1,0 +1,29 @@
+@use "partial/variables";
+.pointechs-footer-extra-details {
+    width: 100%;
+    background-color: variables.$color2;
+    padding: 20px;
+}
+
+.pointechs-footer-extra-details>div {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.pointechs-footer-extra-details>div>span {
+    text-align: left;
+    font-size: 1rem;
+    font-family: Poppins;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width:768px) {
+    .pointechs-footer-extra-details > div{
+        flex-direction: column;
+    }
+}

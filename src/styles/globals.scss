@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 50px;
+}
+
+*::selection {
+    background-color: #FEB247 !important;
+    color: #FFFFFF !important;
+}
+
+.modal-content {
+    border: 0 !important;
+    border-radius: 5px !important;
+    -webkit-border-radius: 5px !important;
+    -moz-border-radius: 5px !important;
+    -ms-border-radius: 5px !important;
+    -o-border-radius: 5px !important;
+}
+
+.basic-select-phone-code {
+    width: 120px;
+    border: 1px solid #5E5E5E1A;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    text-align: left;
+    padding-left: 10px;
+
+}
+
+.basic-categories-select-names,
+.basic-select-countries-names {
+    width: 100%;
+    border: 1px solid #5E5E5E1A;
+    border-radius: 5px;
+    padding: 7px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 5px;
+    font-size: 1rem;
+    background-color: #FCFCFC;
+}
+
+.country-flag {
+    width: 20px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.accordion-button {
+    color: #27323C !important;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #FFFFFF !important;
+    color: #27323C !important;
+}
+.accordion-button:focus{
+    box-shadow: none !important;
+}
+.form-check-input{
+
+    &:checked{
+        background-color: #FEB247 !important;
+        border-color: #FEB247 !important;
+    }
+    &:focus{
+        outline: none !important;
+        box-shadow: none !important;
+        border-color: #00000040 !important;
+    }
+}

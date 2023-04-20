@@ -9,8 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vidstack/react": "^0.4.4",
+    "axios": "^1.3.5",
+    "bootstrap": "^5.2.3",
     "next": "13.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-bootstrap": "^2.7.4",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.8.0",
+    "react-select": "^5.7.2",
+    "sass": "^1.62.0",
+    "vidstack": "^0.4.4"
   }
 }

@@ -1,0 +1,64 @@
+@use "partial/variables" as *;
+@use "partial/classes" as *;
+@use "partial/mixins" as * ;
+.terms-main-section{
+    width: 100%;
+    height: 540px;
+    background: url("../assets/images/terms-and-conditions.png");
+    background-position: 50% 50%;
+    background-size: cover;
+    background-color: #FCFCFC;
+    background-repeat: no-repeat;
+  
+}
+.terms-main-section + div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px;
+  
+}
+.terms-main-section + div > div{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+}
+.terms-main-section + div > div > section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.terms-main-section + div > div > section:nth-child(1){
+    gap: 10px;
+}
+.terms-main-section + div > div > section:nth-child(1) > span{
+    @extend %headerSide;
+}
+.terms-main-section + div > div > section:nth-child(1) > h1{
+    @include headlineAndParagraph(false,1rem,600,$color2);
+}
+.terms-main-section + div > div > section:nth-child(2){
+    flex-direction: column;
+    gap: 30px;
+}
+.terms-main-section + div > div > section:nth-child(2) > p{
+    @include headlineAndParagraph(true,1.2rem,normal,#5E5E5E);
+}
+.highlighted-terms{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+.highlighted-terms > li{
+    @include headlineAndParagraph(true,1rem,normal,#5E5E5E);
+}
