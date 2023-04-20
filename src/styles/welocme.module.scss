@@ -89,7 +89,7 @@
     @include mixins.headlineAndParagraph(true,1rem,normal,#5E5E5E);
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:1199px) {
     .pointechs-welcome{
         flex-direction: column;
         max-width: 84%;

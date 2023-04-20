@@ -122,7 +122,7 @@
     */
     @include mixins.headlineAndParagraph(true,20px,normal,#5E5E5E);
 }
-@media screen and (max-width:768px) {
+@media screen and (max-width:1199px) {
     .how-pointechs-works{
         padding: 0;
     }

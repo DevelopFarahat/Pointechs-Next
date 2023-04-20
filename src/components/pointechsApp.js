@@ -23,22 +23,24 @@ function PointechsApp() {
             <span>Download Our App:</span>
           </section>
           <section>
-            <button type="button" className={`btn`}>
+            <a rol="button" href="https://apps.apple.com/us/app/id1504083441" target="_blank" className={`btn`}>
                 <BsApple style={{fontSize:'32px'}}/>
                 <div>
                 <span>Download on the</span>
                 <span> App Store</span>
                 </div>
            
-            </button>
-            <button type="button" className={`btn`}>
-              
-                <Image src={GooglePlayIcon} alt="google-play-icon"/>
+            </a>
+            <a role="button" href="https://play.google.com/store/apps/details?id=com.accuragroup.pointechs" target="_blank" className={`btn`}>
+             
+              <Image src={GooglePlayIcon} alt="google-play-icon"/>
                <div>
                <span>Git it on</span>
                 <span>   Google Play</span>
                </div>
-            </button>
+              
+
+            </a>
           </section>
         </div>
         <div>

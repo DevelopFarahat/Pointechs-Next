@@ -7,6 +7,8 @@ import Logo from "../assets/images/logo.png";
 import NavbarStyles from "../styles/navbar.module.scss";
 import Signup from "./signup";
 import Login from "./login";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 function Header() {
   const [selectedLink, setSelectedLink] = useState(0);
@@ -48,6 +50,10 @@ function Header() {
   const handleSelect = (x)=>{
     console.log(x)
   }
+  const navigateToHome = ()=>{
+    const router = useRouter();
+    router.push("/index")
+  }
   return (
     <>
       <Navbar
@@ -58,8 +64,10 @@ function Header() {
         collapseOnSelect={handleSelect}
       >
         <Container className={NavbarStyles['navbar-container']}>
-          <Navbar.Brand href="#home">
-            <Image src={Logo} className={NavbarStyles.logo} alt="logo" priority={true} placeholder={true}/>
+          <Navbar.Brand >
+            <Link href={"/"}>
+            <Image src={Logo} className={NavbarStyles.logo}  alt="logo" priority={true} placeholder={true}/>
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" aria-expanded="false"/>
           <Navbar.Collapse   id="basic-navbar-nav">

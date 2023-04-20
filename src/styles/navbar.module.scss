@@ -121,13 +121,14 @@
 }
 
 .activated-link {
-    background: transparent linear-gradient(9deg, #FEB247 0%, #FEB247 51%, #E23D43 100%) 0% 0% no-repeat padding-box;
+    background:#feb247;
     color: #FFFFFF !important;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+    text-align: center;
 }
 
 @media screen and (max-width:425px) {

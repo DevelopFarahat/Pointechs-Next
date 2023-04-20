@@ -24,6 +24,9 @@
         outline: none !important;
 
     }
+    @media screen and (max-width:1199px) {
+        font-size: 1rem;
+    }
 }
 
 @mixin headlineAndParagraph($fontSizeCondition, $fontSize, $fontWeight, $color) {
@@ -33,7 +36,7 @@
     font-size: if($fontSizeCondition, $fontSize, null);
     font-weight: $fontWeight;
     color: $color;
-    @media screen and (max-width:768px) {
+    @media screen and (max-width:1199px) {
         font-size: if($fontSizeCondition, 1rem, null);
     }
 }
