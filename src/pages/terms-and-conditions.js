@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import TermsAndConditionsImg from "../assets/images/terms-and-conditions.png";
+import TermsAndConditionsImg from "../assets/images/terms-and-conditions.webp";
 import TermsStyles from "../styles/terms-and-conditions.module.scss";
 function TermsAndConditions() {
   const highlightTermsArr = [

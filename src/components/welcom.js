@@ -9,8 +9,10 @@ import {
   MediaPlayButton,
 } from "@vidstack/react";
 import Image from "next/image";
-import { MediaLoadedMetadataEvent } from "vidstack";
+import { useTranslation } from 'next-i18next'
+
 function Welcome() {
+
   const [isCustomePlayVideoVisible, setIsCustomePlayVideoVisible] =
     useState(true);
   const mediaRef = useRef();
@@ -21,6 +23,7 @@ function Welcome() {
   }
   return (
     <div className={WelcomeStyles["pointechs-welcome"]} id="about-us">
+      <div>
       <div>
         <MediaPlayer
           src="/videos/Pointechs.mp4"
@@ -68,6 +71,7 @@ function Welcome() {
             growth.
           </p>
         </section>
+      </div>
       </div>
     </div>
   );

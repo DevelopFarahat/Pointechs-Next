@@ -3,19 +3,24 @@
 @use "partial/classes" as *;
 .pointechs-contactus {
     width: 100%;
-
-
+    background-color: #FFFFFF !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+   
 }
 
 .pointechs-contactus>main {
-    width: 94%;
-    float: right;
-    clear: both;
+    width: 95.3%;   
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+   /* padding: 10px;*/
+   
+   
 }
 
 .pointechs-contactus>main>section {
@@ -163,10 +168,10 @@
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
+        padding-top: 20px;
     }
     .pointechs-contactus > main{
         width: 96%;
-        padding: 20px;
         gap: 20px;
     }
     .pointechs-contactus > main > section:nth-child(2){

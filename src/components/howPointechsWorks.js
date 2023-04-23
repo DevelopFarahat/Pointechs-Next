@@ -1,12 +1,13 @@
 import React from "react";
 import HowPointechsStyles from "../styles/howPointehcsWorks.module.scss";
 import Image from "next/image";
-import HowPointechsWorksImg from "../assets/images/how-pointechs-works.png";
+import HowPointechsWorksImg from "../assets/images/how-pointechs-works.webp";
 import {BsPersonGear} from "react-icons/bs";
 import {MdAddLocationAlt} from "react-icons/md";
 import {MdPhoneIphone} from "react-icons/md";
 import {BsUpcScan} from "react-icons/bs";
 import {ImStatsBars} from "react-icons/im";
+import {motion} from "framer-motion";
 
 function HowPointechsWorks() {
   const howPointechsWorksStepsArr = [
@@ -40,7 +41,7 @@ function HowPointechsWorks() {
     <div className={HowPointechsStyles["how-pointechs-works"]} id="how-it-works">
       <main>
         <div>
-          <Image src={HowPointechsWorksImg} alt="how-pointechs-works" />
+          <Image src={HowPointechsWorksImg} loading="lazy" alt="how-pointechs-works" />
         </div>
         <div>
           <section>
@@ -49,10 +50,10 @@ function HowPointechsWorks() {
           </section>
           <section>
             {howPointechsWorksStepsArr.map((step)=>(
-                <div key={step.id}>
+                <motion.div key={step.id} whileHover={{color:'#FFFFFF'}} >
                     <div>{step.icon}</div>
                     <p>{step.step}</p>
-                </div>
+                </motion.div>
             ))}
           </section>
         </div>

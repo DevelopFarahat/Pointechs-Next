@@ -1,7 +1,7 @@
 import React,{useRef, useState} from 'react'
 import Modal from 'react-bootstrap/Modal';
 import LoginStyles from "../styles/login.module.scss";
-import LoginImg from "../assets/images/login.png";
+import LoginImg from "../assets/images/login.webp";
 import Image from 'next/image';
 import {GrFormClose} from "react-icons/gr";
 import Link from 'next/link';
@@ -32,7 +32,7 @@ function Login(props) {
     >
       <Modal.Body className={LoginStyles['login-body-modal']}>
         <section className={LoginStyles['login-img-section']}>
-            <Image src={LoginImg} alt='hands types on laptop'/>
+            <Image src={LoginImg} loading='lazy' alt='hands types on laptop'/>
         </section>
         <section className={LoginStyles['login-form-container']}>
             

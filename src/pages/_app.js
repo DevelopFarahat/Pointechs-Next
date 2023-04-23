@@ -5,8 +5,9 @@ import FooterTwo from "@/components/footerTwo";
 import JoinPointechs from "@/components/joinPointechs";
 import Contactus from "@/components/contactus";
 import 'bootstrap/scss/bootstrap.scss'
+import { appWithTranslation } from 'next-i18next'
 
-export default function App({ Component, pageProps }) {
+const   App = ({ Component, pageProps })=> {
   return (
     <>
       <Header />
@@ -18,3 +19,5 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
+
+export default appWithTranslation(App)

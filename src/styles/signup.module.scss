@@ -181,12 +181,11 @@
     align-items: center;
     gap: 10px; 
 }
-.account-details > div:last-of-type > p{
+.account-details > div:last-of-type > label{
     flex: 0 0 90%;
     @include headlineAndParagraph(true,12px,normal,#5E5E5E80);
-    padding-top: 15px;
 }
-.account-details > div:last-of-type > p > span{
+.account-details > div:last-of-type > label > span{
     @include headlineAndParagraph(true,12px,normal,#27323C);
 }
 .pass-section > div{
@@ -214,7 +213,10 @@
         outline: none;
     }
 }
-
+.input-is-invalid{
+    border:1px solid  #f6003c !important;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
 @media screen  and (max-width:967px){
     .signup-img-container{
         display: none;

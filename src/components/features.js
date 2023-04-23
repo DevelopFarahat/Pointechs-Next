@@ -2,6 +2,7 @@ import React from "react";
 import FeaturesStyles from "../styles/features.module.scss";
 import Image from "next/image";
 import {TiUser} from "react-icons/ti";
+import {motion} from "framer-motion";
 function Features() {
   const featuresArr = [
     {
@@ -62,13 +63,13 @@ function Features() {
       </section>
       <section>
         {featuresArr.map((feature)=>(
-        <div key={feature.id} className={FeaturesStyles['feature']}>
+        <motion.div key={feature.id} className={FeaturesStyles['feature']} whileHover={{scale:1.1}} transition={{type:'spring',stiffness:300}}>
           <div>
           <TiUser/>
           </div>
         <h6>{feature.title}</h6>
         <p>{feature.details}</p>
-      </div>
+      </motion.div>
         ))}
 
       </section>

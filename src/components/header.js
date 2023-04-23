@@ -3,14 +3,18 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Image from "next/image";
-import Logo from "../assets/images/logo.png";
+import Logo from "../assets/images/logo.webp";
 import NavbarStyles from "../styles/navbar.module.scss";
 import Signup from "./signup";
 import Login from "./login";
 import { useRouter } from "next/router";
 import Link from "next/link";
-
+import { useTranslation } from 'next-i18next';
+import {motion} from "framer-motion";
 function Header() {
+  const {t} = useTranslation('common');
+  let {locale,locales,push} = useRouter();
+  const [lang,setLang] = useState('en');
   const [selectedLink, setSelectedLink] = useState(0);
   const [signupModalShow, setSignupModalShow] = React.useState(false);
   const [loginModalShow, setLoginModalShow] = React.useState(false);
@@ -18,41 +22,49 @@ function Header() {
   useEffect(() => {
     function handleScroll() {
       if (window.scrollY >= 56) {
-        navbarRef.current.style.cssText = `-webkit-backdrop-filter: blur(35px);
-        backdrop-filter: blur(35px);`;
+        navbarRef.current.classList.add(NavbarStyles["drop-shadow"]);
       } else if (window.scrollY < 56) {
-        navbarRef.current.style = ``;
+        navbarRef.current.classList.remove(NavbarStyles["drop-shadow"]);
       }
     }
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   const linksArr = [
-    { id: 0, href: "#home", data: "Home" },
-    { id: 1, href: "#about-us", data: "About us" },
-    { id: 2, href: "#our-features", data: "Our features" },
-    { id: 3, href: "#why-us", data: "Why us?" },
-    { id: 4, href: "#how-it-works", data: "How it works" },
-    { id: 5, href: "#contact-us", data: "Contact us" },
+    { id: 0, href: "#home", data: t("Home") },
+    { id: 1, href: "#about-us", data: t("About us") },
+    { id: 2, href: "#our-features", data: t("Our features") },
+    { id: 3, href: "#why-us", data: t("Why us?") },
+    { id: 4, href: "#how-it-works", data: t("How it works") },
+    { id: 5, href: "#contact-us", data: t("Contact us") },
   ];
   const handleSelectLink = (event) => {
     setSelectedLink(event.currentTarget.id);
   };
   const handleToogle = (isNavbarExpanded)=>{
     if(isNavbarExpanded){
-      navbarRef.current.style.cssText =`-webkit-backdrop-filter: blur(35px);
-      backdrop-filter: blur(35px);`;
+      navbarRef.current.classList.add(NavbarStyles["drop-shadow"]);
+      
     }else{
-      navbarRef.current.style = "";
+      navbarRef.current.classList.remove(NavbarStyles["drop-shadow"]);
     }
 
   }
   const handleSelect = (x)=>{
     console.log(x)
   }
-  const navigateToHome = ()=>{
-    const router = useRouter();
-    router.push("/index")
+  const toogleLang = (event)=>{
+    event.stopPropagation();
+    if(lang == "en"){
+      setLang("ar");
+      locale = "ar";
+      push("/","/",{locale});
+    }else{
+      setLang("en");
+      locale = "en";
+      push("/","/",{locale});
+    }
+    
   }
   return (
     <>
@@ -62,11 +74,12 @@ function Header() {
         className={NavbarStyles["pointechs-navbar"]}
         onToggle={handleToogle}
         collapseOnSelect={handleSelect}
+        style={{direction:locale=="en"?'ltr':'rtl'}}
       >
         <Container className={NavbarStyles['navbar-container']}>
           <Navbar.Brand >
-            <Link href={"/"}>
-            <Image src={Logo} className={NavbarStyles.logo}  alt="logo" priority={true} placeholder={true}/>
+            <Link href={"/"} locale={locale}>
+            <Image src={Logo} className={NavbarStyles.logo}   alt="logo" priority={true} />
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" aria-expanded="false"/>
@@ -83,38 +96,45 @@ function Header() {
                       ? NavbarStyles["activated-link"]
                       : ""
                   }`}
+                  
                 >
                   {link.data}
                 </Nav.Link>
               ))}
             </Nav>
             <div className={NavbarStyles["btn-container"]}>
-              <button
+              <motion.button
                 type="button"
                 className={` btn ${NavbarStyles["btn-lang"]} `}
+                onClick={toogleLang}
+                whileTap={{scale:.95}}
               >
-                <span>العربية</span>
-              </button>
-              <button
+                <span>{lang == 'en'?"العربية":'En'}</span>
+              </motion.button>
+              <motion.button
                 type="button"
                 className={` btn  ${NavbarStyles["btn-login"]} `}
                 onClick={() => setLoginModalShow(true)}
+                whileHover={{scale:1.1,textShadow:'0px 0px 8px #27323C'}} 
+                transition={{type:'spring',stiffness:300}}
               >
-                Log In
-              </button>
-              <button
+                {t("Log In")}
+              </motion.button>
+              <motion.button
                 type="button"
                 className={` btn ${NavbarStyles["btn-get-started"]} `}
                 onClick={ ()=>setSignupModalShow(true)}
+                whileHover={{scale:1.1,textShadow:'0px 0px 8px #FEB247'}} 
+                transition={{type:'spring',stiffness:300}}
                 
               >
-                Get Started
-              </button>
+                {t("Get Started")}
+              </motion.button>
             </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Signup show={signupModalShow} onHide={() => setSignupModalShow(false)} />
+      <Signup show={signupModalShow} onHide={()=>setSignupModalShow(false)}/>
       <Login  show={loginModalShow} onHide={()=>setLoginModalShow(false)}/>
     </>
   );

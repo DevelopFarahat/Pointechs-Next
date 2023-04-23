@@ -102,7 +102,7 @@ input[type=number] {
 
 media-player {
     /* ... */
-    max-height: 410px;
+    max-height: 327px;
 }
 
 media-player video {
@@ -114,6 +114,4 @@ video[poster] {
     height: 100%;
     width: 100%;
 }
-media-play-button:not([data-paused]) {
-    display: none;
-}
+

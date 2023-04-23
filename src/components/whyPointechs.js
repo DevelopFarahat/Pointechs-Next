@@ -1,11 +1,15 @@
 import React from "react";
 import whyPointehsStyles from "../styles/whyPointechs.module.scss";
 import Image from "next/image";
-import whyPointechsImg from "../assets/images/why-pointechs.png";
+import whyPointechsImg from "../assets/images/why-pointechs.webp";
 import { RiArrowDropRightLine } from "react-icons/ri";
+import {useTranslation} from "next-i18next";
+import {motion} from "framer-motion";
 function WhyPointechs() {
+  const {t} = useTranslation('common');
   return (
     <div className={whyPointehsStyles["why-pointechs"]} id="why-us">
+      <main>
       <section>
         <div>
           <main>
@@ -32,20 +36,20 @@ function WhyPointechs() {
           </p>
         </div>
         <div>
-          <Image src={whyPointechsImg} alt="why-pointechs-img" />
+          <Image src={whyPointechsImg} loading="lazy" alt="why-pointechs-img" />
         </div>
       </section>
-     
+      </main>
       <section>
         <main>
         <p>
           Join Pointechs today and start seeing the benefits of a successful and
           profitable business.
         </p>
-        <button type="button" className={`btn`}>
-          Get Started Now {" "}
+        <motion.button type="button" className={`btn`} whileHover={{scale:1.1,textShadow:'0 0 8px #FEB247'}} transition={{type:'spring',stiffness:300}}>
+        {t("Get Started Now")} {" "}
           <RiArrowDropRightLine style={{ verticalAlign: "text-bottom" }} />
-        </button>
+        </motion.button>
         </main>
       </section>
     </div>

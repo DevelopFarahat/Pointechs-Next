@@ -4,16 +4,24 @@
 
 .why-pointechs {
     width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+}
+.why-pointechs > main{
+    width: 91.8%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 10px;
-
+    padding: 10px;
+ 
 }
-
-.why-pointechs>section:nth-child(1) {
-    width: 94%;
+.why-pointechs > main>section:nth-child(1) {
+    width: 95.9%;
     
     position: relative;
 
@@ -24,10 +32,10 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 10px;
+    
 }
 
-.why-pointechs>section:nth-child(1)>div:nth-child(1) {
+.why-pointechs > main>section:nth-child(1)>div:nth-child(1) {
     flex: 0 0 50%;
     display: flex;
     flex-direction: column;
@@ -37,7 +45,7 @@
     gap: 10px;
 }
 
-.why-pointechs>section:nth-child(1)>div:nth-child(1)>main {
+.why-pointechs > main>section:nth-child(1)>div:nth-child(1)>main {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -47,7 +55,7 @@
     gap: 10px;
 }
 
-.why-pointechs>section:nth-child(1)>div:nth-child(1)>main>span {
+.why-pointechs > main>section:nth-child(1)>div:nth-child(1)>main>span {
     /*
     width: 8px;
     height: 52px;
@@ -57,7 +65,7 @@
     @extend %headerSide;
 }
 
-.why-pointechs>section:nth-child(1)>div:nth-child(1)>main>h1 {
+.why-pointechs>main>section:nth-child(1)>div:nth-child(1)>main>h1 {
     /*
     text-align: left;
     font-family: Poppins;
@@ -69,7 +77,7 @@
     @include mixins.headlineAndParagraph(false, 1rem, 600, variables.$color2);
 }
 
-.why-pointechs>section:nth-child(1)>div:nth-child(1)>p {
+.why-pointechs>main>section:nth-child(1)>div:nth-child(1)>p {
     /*
     text-align: left;
     font-size: 20px;
@@ -79,7 +87,7 @@
     @include mixins.headlineAndParagraph(true, 20px, normal, #5E5E5E);
 }
 
-.why-pointechs>section:nth-child(1)>div:nth-child(2) {
+.why-pointechs>main>section:nth-child(1)>div:nth-child(2) {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -87,7 +95,7 @@
     align-items: center;
 }
 
-.why-pointechs>section:nth-child(1)>div:nth-child(2)>img {
+.why-pointechs>main>section:nth-child(1)>div:nth-child(2)>img {
     object-fit: cover;
     width: 85%;
     height: 85%;
@@ -100,17 +108,17 @@
 
 }
 
-.why-pointechs>section:nth-of-type(2) {
+.why-pointechs>main+section{
     width: 100%;
     background-color: variables.$color1;
     z-index: 0;
     max-height: 275px;
     padding: 20px;
-    margin-top: -140px;
+    margin-top: -80px;
 }
 
-.why-pointechs>section:nth-of-type(2)>main {
-    width: 91%;
+.why-pointechs>main + section>main {
+    width: 93%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
@@ -119,7 +127,7 @@
     align-items: flex-start;
 }
 
-.why-pointechs>section:nth-of-type(2)>main>p {
+.why-pointechs>main+section>main>p {
     /*
     text-align: left;
     font-family: Poppins;
@@ -133,7 +141,7 @@
     @include mixins.headlineAndParagraph(true, 30px, 600, #FFFFFF);
 }
 
-.why-pointechs>section:nth-of-type(2)>main>button {
+.why-pointechs>main+section>main>button {
     /*
     width: 165px;
     height: 48px;
@@ -148,25 +156,25 @@
     @include mixins.button(#FFFFFF, variables.$color2, baseline, 1rem);
 }
 @media screen and (max-width:1400px) {
-    .why-pointechs>section:nth-of-type(2) {
+    .why-pointechs>main+section {
         margin-top: 0;
     }
 }
 @media screen and (max-width:1199px) {
-    .why-pointechs>section:nth-child(1) {
+    .why-pointechs>main>section:nth-child(1) {
         flex-wrap: wrap;
     }
 
 
 
-    .why-pointechs>section:nth-child(1)>div:nth-child(1) {
+    .why-pointechs>main>section:nth-child(1)>div:nth-child(1) {
         flex: 0 0 100%;
     }
-    .why-pointechs>section:nth-of-type(2)>main>p{
+    .why-pointechs>main+section>main>p{
         width: 100%;
         text-align: center;
     }
-    .why-pointechs>section:nth-of-type(2)>main > button{
+    .why-pointechs>main+section>main > button{
         margin: auto;
     }
 }

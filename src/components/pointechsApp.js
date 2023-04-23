@@ -1,13 +1,14 @@
 import React from "react";
 import PointechsAppStyles from "../styles/pointechsApp.module.scss";
-import PointechsAppImg from "../assets/images/pointechs-app.png";
+import PointechsAppImg from "../assets/images/pointechs-app.webp";
 import Image from "next/image";
 import {BsApple} from "react-icons/bs";
-import GooglePlayIcon from "../assets/images/google-play.png";
+import {FaGooglePlay} from "react-icons/fa";
 
 function PointechsApp() {
+  
   return (
-    <div className={PointechsAppStyles["pointechs-app"]}>
+    <div className={PointechsAppStyles["pointechs-app"]} >
       <main>
         <div>
           <section>
@@ -23,7 +24,7 @@ function PointechsApp() {
             <span>Download Our App:</span>
           </section>
           <section>
-            <a rol="button" href="https://apps.apple.com/us/app/id1504083441" target="_blank" className={`btn`}>
+            <a rol="button" href="https://apps.apple.com/us/app/id1504083441" target="_blank" className={`btn ${PointechsAppStyles['link-btn']}`}>
                 <BsApple style={{fontSize:'32px'}}/>
                 <div>
                 <span>Download on the</span>
@@ -31,9 +32,10 @@ function PointechsApp() {
                 </div>
            
             </a>
-            <a role="button" href="https://play.google.com/store/apps/details?id=com.accuragroup.pointechs" target="_blank" className={`btn`}>
+            <a role="button" href="https://play.google.com/store/apps/details?id=com.accuragroup.pointechs" target="_blank" className={`btn ${PointechsAppStyles['link-btn']}`}>
              
-              <Image src={GooglePlayIcon} alt="google-play-icon"/>
+             {/* <Image src={GooglePlayIcon} alt="google-play-icon"/>*/}
+             <FaGooglePlay style={{fontSize:'32px'}}/>
                <div>
                <span>Git it on</span>
                 <span>   Google Play</span>
@@ -44,7 +46,7 @@ function PointechsApp() {
           </section>
         </div>
         <div>
-          <Image src={PointechsAppImg} alt="pointechs-app" />
+          <Image src={PointechsAppImg} loading="lazy" alt="pointechs-app" />
         </div>
       </main>
     </div>

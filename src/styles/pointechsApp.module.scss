@@ -1,21 +1,23 @@
 @use "partial/variables";
 @use "partial/classes" as *;
-@use "partial/mixins";
+@use "partial/mixins" ;
 .pointechs-app {
     width: 100%;
-    padding: 20px;
+  /*  padding: 20px;*/
     background-color: #F9F6F6;
     margin-top: -50px;
 }
 
 .pointechs-app>main {
-    width: 90%;
+    width: 91.8%;
     margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    padding: 10px;
+
 
 }
 
@@ -87,9 +89,8 @@
     gap: 30px;
 }
 
-.pointechs-app>main>div:nth-child(1)>section:nth-child(3)>a {
-    background-color: #082E3A;
-    color: #FFFFFF;
+.link-btn {
+    @include mixins.button(#FFFFFF,variables.$color2,'center',1rem);
     border-radius: 46px;
     -webkit-border-radius: 46px;
     -moz-border-radius: 46px;
@@ -101,9 +102,20 @@
     gap: 5px;
     width: 216px;
     height: 65px;
+    &:hover{
+        background: none !important;
+        border:1px solid variables.$color2 !important;
+        color: variables.$color2 !important;
+        transition: all .3s ease-in-out;
+        -webkit-transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
 }
 
-.pointechs-app>main>div:nth-child(1)>section:nth-child(3)>a >div {
+}
+
+.link-btn >div {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -111,7 +123,7 @@
     width: 65%;
 }
 
-.pointechs-app>main>div:nth-child(1)>section:nth-child(3)>a >div>span {
+.link-btn >div>span {
     
     text-align: left;
     font-size: 1rem;
@@ -121,13 +133,13 @@
     
 }
 
-.pointechs-app>main>div:nth-child(1)>section:nth-child(3)>a >div>span:nth-of-type(2) {
+.link-btn >div>span:nth-of-type(2) {
     font-size: 1.2rem;
     font-weight: 600;
 }
 
 .pointechs-app>main>div:nth-child(2)>img {
-    width: 100%;
+    width: 60%;
     height: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
@@ -136,6 +148,7 @@
 @media screen and (max-width:500px){
     .pointechs-app>main>div{
         order: 1;
+        align-items: center;
     }
     .pointechs-app>main>div:nth-child(1){
         order: 2;

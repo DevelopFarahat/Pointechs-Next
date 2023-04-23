@@ -1,18 +1,27 @@
 @use "partial/variables";
 @use "partial/classes" as *;
 @use "partial/mixins";
+
 .pointechs-welcome {
-    max-width: 95%;
+    max-width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     margin: auto;
     gap: 20px;
 }
-
-.pointechs-welcome>div {
+.pointechs-welcome > div{
+    width: 91.8%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    gap: 30px;
+}
+.pointechs-welcome > div>div {
     flex: 0 0 45%;
     border-radius: 30px;
     -webkit-border-radius: 30px;
@@ -24,9 +33,11 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-   /* min-height: 390px;*/
- 
+    /* min-height: 390px;*/
+
 }
+
+
 /*
 .pointechs-welcome>div:nth-child(1) {
     position: relative;
@@ -53,11 +64,11 @@
 }
 
 .welcom-pointechs {
-   border-radius: 0 !important;
-   -webkit-border-radius: 0 !important;
-   -moz-border-radius: 0 !important;
-   -ms-border-radius: 0 !important;
-   -o-border-radius: 0 !important;
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    -ms-border-radius: 0 !important;
+    -o-border-radius: 0 !important;
 }
 
 .welcom-pointechs>section:nth-child(1) {
@@ -70,12 +81,12 @@
 }
 
 .welcom-pointechs>section:nth-child(1)>span {
- @extend %headerSide;
+    @extend %headerSide;
 }
 
 .welcom-pointechs>section:nth-child(1)>h1 {
 
-    @include mixins.headlineAndParagraph(false,1rem,600,#27323C);
+    @include mixins.headlineAndParagraph(false, 1rem, 600, #27323C);
 }
 
 
@@ -87,17 +98,23 @@
     font-size: 1rem;
     color: #5E5E5E;
     */
-    @include mixins.headlineAndParagraph(true,1rem,normal,#5E5E5E);
+    @include mixins.headlineAndParagraph(true, 1.1rem, normal, #5E5E5E);
 }
 
 @media screen and (max-width:1199px) {
-    .pointechs-welcome{
+    .pointechs-welcome > div {
         flex-direction: column;
-        max-width: 84%;
+     
     }
-    .media-play-btn{
+    .pointechs-welcome > div{
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+}
+    .media-play-btn {
         top: 48%;
-    left: 41%;
+        left: 41%;
     }
 }
-

@@ -22,8 +22,10 @@
         color: $color !important;
         border: none !important;
         outline: none !important;
-
+        --bs-btn-border-width: none !important;
+        --bs-btn-border-color: transparent !important;
     }
+
     @media screen and (max-width:1199px) {
         font-size: 1rem;
     }
@@ -36,6 +38,7 @@
     font-size: if($fontSizeCondition, $fontSize, null);
     font-weight: $fontWeight;
     color: $color;
+
     @media screen and (max-width:1199px) {
         font-size: if($fontSizeCondition, 1rem, null);
     }
@@ -58,18 +61,18 @@
     }
 }
 
-@mixin links($color,$fontSize){
+@mixin links($color, $fontSize) {
     text-align: left;
     font-family: Poppins;
     line-height: 1.5;
     font-size: $fontSize;
-    font-weight:normal;
-    color:$color;
+    font-weight: normal;
+    color: $color;
     text-decoration: none;
     text-align: center;
     width: 100%;
-    &:hover{
+
+    &:hover {
         color: $color;
     }
 }
-
