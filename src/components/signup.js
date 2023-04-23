@@ -293,6 +293,10 @@ function Signup(props) {
     });
     props.onHide();
   };
+  const navigateToSignInForm = ()=>{
+    props.onHide();
+    props.setLoginModalShow(true)
+  }
   const customSelectPhoneCodeStyles = {
     option: (defaultStyles, state) => ({
       ...defaultStyles,
@@ -748,7 +752,7 @@ function Signup(props) {
               {activeTap.personalInfoTapVisible ? "Continue" : "Sign Up"}
             </button>
             <span>
-              Already have an account?<a href="#">Sign In</a>
+              Already have an account?<a href="#" onClick={navigateToSignInForm}>Sign In</a>
             </span>
           </form>
         </section>

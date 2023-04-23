@@ -106,7 +106,7 @@ function Header() {
               <motion.button
                 type="button"
                 className={` btn ${NavbarStyles["btn-lang"]} `}
-                onClick={toogleLang}
+               
                 whileTap={{scale:.95}}
               >
                 <span>{lang == 'en'?"العربية":'En'}</span>
@@ -134,8 +134,8 @@ function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Signup show={signupModalShow} onHide={()=>setSignupModalShow(false)}/>
-      <Login  show={loginModalShow} onHide={()=>setLoginModalShow(false)}/>
+      <Signup show={signupModalShow} setLoginModalShow={setLoginModalShow} onHide={()=>setSignupModalShow(false)}/>
+      <Login  show={loginModalShow} setSignupModalShow={setSignupModalShow} onHide={()=>setLoginModalShow(false)}/>
     </>
   );
 }

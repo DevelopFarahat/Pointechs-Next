@@ -1,28 +1,32 @@
-import React,{useRef, useState} from 'react'
-import Modal from 'react-bootstrap/Modal';
+import React, { useRef, useState } from "react";
+import Modal from "react-bootstrap/Modal";
 import LoginStyles from "../styles/login.module.scss";
 import LoginImg from "../assets/images/login.webp";
-import Image from 'next/image';
-import {GrFormClose} from "react-icons/gr";
-import Link from 'next/link';
+import Image from "next/image";
+import { GrFormClose } from "react-icons/gr";
+import Link from "next/link";
 function Login(props) {
-    const [tooglePassword, setTooglePassword] = useState("password");
-    const passwordRef = useRef();
-    const handleInputType = (event) => {
-            event.stopPropagation();
-          if (tooglePassword == "password") {
-            setTooglePassword("text");
-          } else {
-            setTooglePassword("password");
-          }
+  const [tooglePassword, setTooglePassword] = useState("password");
+  const passwordRef = useRef();
+  const handleInputType = (event) => {
+    event.stopPropagation();
+    if (tooglePassword == "password") {
+      setTooglePassword("text");
+    } else {
+      setTooglePassword("password");
+    }
+  };
+  const focus = () => {
+    passwordRef.current.style.cssText = "outline:1px solid #FEB247";
+  };
+  const blur = () => {
+    passwordRef.current.style.cssText = "outline:none";
+  };
+  const navigateToSignupForm = () => {
+    props.onHide();
 
-      };
-      const focus = ()=>{
-        passwordRef.current.style.cssText = "outline:1px solid #FEB247";
-      }
-      const blur = ()=>{
-        passwordRef.current.style.cssText = "outline:none";
-      }
+    props.setSignupModalShow(true);
+  };
   return (
     <Modal
       {...props}
@@ -30,32 +34,31 @@ function Login(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Body className={LoginStyles['login-body-modal']}>
-        <section className={LoginStyles['login-img-section']}>
-            <Image src={LoginImg} loading='lazy' alt='hands types on laptop'/>
+      <Modal.Body className={LoginStyles["login-body-modal"]}>
+        <section className={LoginStyles["login-img-section"]}>
+          <Image src={LoginImg} loading="lazy" alt="hands types on laptop" />
         </section>
-        <section className={LoginStyles['login-form-container']}>
-            
-            <div>
-                <span>
-                <GrFormClose
+        <section className={LoginStyles["login-form-container"]}>
+          <div>
+            <span>
+              <GrFormClose
                 style={{ color: "#27323C" }}
                 onClick={props.onHide}
               />
-                </span>
-            </div>
-            <div>
-                <h1>Log in</h1>
-                <form className={LoginStyles['login-form']}>
-                    <div>
-                        <label htmlFor='email'>Email Address</label>
-                        <input type='text' name="email" id='email'/>
-                    </div>
-                    <div>
-                    <label htmlFor='password'>Password</label>
-                        <div onFocus={focus} onBlur={blur} ref={passwordRef}>
-                        <input type={tooglePassword} name="password" id='password'/>
-                        <div onClick={handleInputType} style={{ cursor: "pointer" }}>
+            </span>
+          </div>
+          <div>
+            <h1>Log in</h1>
+            <form className={LoginStyles["login-form"]}>
+              <div>
+                <label htmlFor="email">Email Address</label>
+                <input type="text" name="email" id="email" />
+              </div>
+              <div>
+                <label htmlFor="password">Password</label>
+                <div onFocus={focus} onBlur={blur} ref={passwordRef}>
+                  <input type={tooglePassword} name="password" id="password" />
+                  <div onClick={handleInputType} style={{ cursor: "pointer" }}>
                     {tooglePassword == "password" ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -82,21 +85,28 @@ function Login(props) {
                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                       </svg>
                     )}
-                        </div>
-                        </div>
-                        <Link className={LoginStyles['forget-password-link']} href={"#"}>Forget Password?</Link>
-                    </div>
-                   <div className={LoginStyles['separator']}></div>
-                    <button type='button' className='btn'>Login</button>
-                    <Link className={LoginStyles['register-now-link']} href={"#"}>Create an account?<span>Register Now!</span></Link>
-                </form>
-            </div>
-            
-
+                  </div>
+                </div>
+                <Link
+                  className={LoginStyles["forget-password-link"]}
+                  href={"#"}
+                >
+                  Forget Password?
+                </Link>
+              </div>
+              <div className={LoginStyles["separator"]}></div>
+              <button type="button" className="btn">
+                Login
+              </button>
+              <Link className={LoginStyles["register-now-link"]} href={"#"}>
+                Create an account?<span onClick={navigateToSignupForm}>Register Now!</span>
+              </Link>
+            </form>
+          </div>
         </section>
       </Modal.Body>
     </Modal>
-  )
+  );
 }
 
-export default Login
+export default Login;
