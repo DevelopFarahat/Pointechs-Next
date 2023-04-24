@@ -61,7 +61,7 @@ function Header() {
     if(lang == "en"){
       setLang("ar");
         locale = 'en';
-      //  router.push('/',"/",{locale});
+       // router.push('/',"/",{locale});
         router.push({ pathname, query },asPath,{locale})
 
       
