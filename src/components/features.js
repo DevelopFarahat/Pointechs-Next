@@ -3,55 +3,57 @@ import FeaturesStyles from "../styles/features.module.scss";
 import Image from "next/image";
 import {TiUser} from "react-icons/ti";
 import {motion} from "framer-motion";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 function Features() {
+  const { t } = useTranslation("common");
+  const { locale } = useRouter();
   const featuresArr = [
     {
       id: 0,
-      title: "Digital Loyalty Cards",
-      details:
-        "Let customers easily create a digital loyalty card with a single click and be automatically registered in your database.",
+      title: t("Digital Loyalty Cards"),
+      details:t("feature_1"),
     },
     {
       id: 1,
-      title: "Points, Stamps, and Discount Coupons Programs",
-      details:
-        "Offer customized loyalty programs, including points for spend, stamps for repeat visits, and discount coupons for specific spend levels.",
+      title:t("Points, Stamps, and Discount Coupons Programs"),
+      details:t("feature_2")
     },
     {
       id: 2,
-      title: "Referral and New Customer Growth",
-      details:
-        "Encourage customers to refer friends and family with referral rewards, increasing your customer base and revenue.",
+      title:t("Referral and New Customer Growth"),
+      details:t("feature_3")
+        
     },
     {
       id: 3,
-      title: "Promotional Offers",
-      details:
-        "Publish your offers to all Pointechs users for maximum visibility.",
+      title:t("Promotional Offers"),
+      details:t("feature_4")
+
     },
     {
       id: 4,
-      title: "Tiers Program",
-      details:
-        "Categorize customers based on spending to better understand and retain them.",
+      title:t("Tiers Program"),
+      details:t("feature_5")
+
     },
     {
       id: 5,
-      title: "Customer Analytics",
-      details:
-        "Monitor the performance of your loyalty program and track your customer's activities and generate reports about each transaction.",
+      title:t("Tiers Program"),
+      details:t("feature_6")
+
     },
     {
       id: 6,
-      title: "Business Information",
-      details:
-        "Publish your business information, including contact numbers and location, to all app users.",
+      title:t("Business Information"),
+      details:t("feature_7")
+       
     },
     {
       id: 7,
-      title: "Customer Feedback",
-      details:
-        "Receive complaints and suggestions from customers and send notifications to keep them engaged, and let customers get notified automatically with any transaction.",
+      title:t("Customer Feedback"),
+      details:t("feature_8")
+
     },
   ];
   return (
@@ -59,7 +61,7 @@ function Features() {
       <div>
       <section>
         <span></span>
-        <h1>Features of Pointechs</h1>
+        <h1>{t("Features of Pointechs")}</h1>
       </section>
       <section>
         {featuresArr.map((feature)=>(
@@ -67,8 +69,8 @@ function Features() {
           <div>
           <TiUser/>
           </div>
-        <h6>{feature.title}</h6>
-        <p>{feature.details}</p>
+        <h6 style={{textAlign:locale == 'en'?'left':'right'}}>{feature.title}</h6>
+        <p style={{textAlign:locale == 'en'?'left':'right',fontSize:locale == 'en'?'1rem':'1.1rem'}}>{feature.details}</p>
       </motion.div>
         ))}
 

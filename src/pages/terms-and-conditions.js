@@ -2,7 +2,12 @@ import Image from "next/image";
 import React from "react";
 import TermsAndConditionsImg from "../assets/images/terms-and-conditions.webp";
 import TermsStyles from "../styles/terms-and-conditions.module.scss";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 function TermsAndConditions() {
+  const { t } = useTranslation("common");
+  const { locale,asPath } = useRouter();
   const highlightTermsArr = [
     {id:0,highlightTerm:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
     {id:1,highlightTerm:'Libero justo laoreet sit amet.'},
@@ -17,7 +22,7 @@ function TermsAndConditions() {
         <div>
           <section>
             <span></span>
-            <h1>Terms and Conditions</h1>
+            <h1>{t("Terms and Conditions")}</h1>
           </section>
           <section>
             <p>
@@ -47,5 +52,14 @@ function TermsAndConditions() {
     </>
   );
 }
-
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'common',
+      ])),
+      // Will be passed to the page component as props
+    },
+  }
+}
 export default TermsAndConditions;

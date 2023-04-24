@@ -23,6 +23,15 @@
     background-color: #F6F6F6;
 }
 
+.pointechs-home-ar {
+    background: url("../assets//images/BG-ar-img.png");
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #FCFCFC;
+    background-color: #F6F6F6;
+}
+
 .pointchs-home>div:nth-child(1) {
     flex: 0 0 100%;
     display: flex;
@@ -33,6 +42,10 @@
     height: 100%;
     padding: 0 0 0 85px;
 
+}
+
+.pointechs-home-ar>div:nth-child(1) {
+    padding: 0 85px 0 0;
 }
 
 .pointchs-home>div:nth-child(1)>div {
@@ -56,6 +69,11 @@
     text-transform: uppercase;
 }
 
+.pointechs-home-ar>div:nth-child(1)>div>p:nth-child(1) {
+    text-align: right;
+    font-size: 70px;
+}
+
 .pointchs-home>div:nth-child(1)>div>p:nth-child(1)>span {
     background-image: linear-gradient(to right top, #feb247, #ff993c, #ff7e39, #ff603c, #ff3a44);
 }
@@ -72,6 +90,13 @@
     margin-left: 1px;
 }
 
+.pointechs-home-ar>div:nth-child(1)>div>p:nth-child(2) {
+    text-align: right;
+    font-size: 40px;
+}
+.get-started-btn-container{
+    width: 100%;
+}
 .btn-get-started-now {
     /*
     width: 180px;
@@ -108,38 +133,54 @@
 @media screen and (max-width:768px) {
     .pointchs-home {
         padding: 156px 0 45px 0;
-       height: 410px;
+        height: 410px;
     }
 
     .pointchs-home>div:nth-child(1) {
         padding: 0 0 0 30px;
     }
+
+    .pointechs-home-ar>div:nth-child(1) {
+        padding: 0 30px 0 0;
+    }
+    .pointchs-home>div:nth-child(1)>div>p:nth-child(1) {
+        font-size: 63px;
+    }
 }
 
-@media screen and (max-width:740px){
-    .pointchs-home{
+@media screen and (max-width:740px) {
+
+    .pointchs-home,
+    .pointechs-home-ar {
         background: none;
         height: 374px;
-       
+
     }
-    .pointchs-home > div:nth-child(1){
+
+    .pointchs-home>div:nth-child(1) {
         padding: 0 0 0 22px;
     }
 
+    .pointechs-home-ar>div:nth-child(1) {
+        padding: 0 22px 0 0;
+    }
 }
-
+/*
 @media screen and (min-width:439px) {
     .pointchs-home>div:nth-child(1)>div>p:nth-child(1) {
         font-size: 34px;
     }
 }
-
+*/
 @media screen and (max-width:438px) {
     .pointchs-home>div:nth-child(1)>div>p:nth-child(1) {
         font-size: 24px;
     }
-
+    .pointechs-home-ar>div:nth-child(1)>div>p:nth-child(1) {
+        font-size: 43px;
+    }
     .pointchs-home>div:nth-child(1)>div>p:nth-child(2) {
         font-size: 23px;
     }
+
 }

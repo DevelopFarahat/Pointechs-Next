@@ -5,9 +5,53 @@ import LoginImg from "../assets/images/login.webp";
 import Image from "next/image";
 import { GrFormClose } from "react-icons/gr";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 function Login(props) {
+  const { t } = useTranslation("common");
+  const { locale } = useRouter();
   const [tooglePassword, setTooglePassword] = useState("password");
   const passwordRef = useRef();
+  const [userData,setUserData] = useState({
+    email:"",
+    password:""
+  });
+  const [errors,setErrors] = useState({
+    emailError:"",
+    passwordError:""
+  })
+  const handleUserData = (event)=>{
+    setUserData({
+      ...userData,
+      [event.target.name]:event.target.value
+    })
+    handleError(event.target.name,event.target.value)
+  }
+  const handleError = (field,value)=>{
+    if (field == "email") {
+      const emailRegx = /^[A-Z0-9._%+-]+@[A-Z0-9._]+\.[A-Z]{2,4}$/i;
+      setErrors({
+        ...errors,
+        emailError:
+          value.length == 0
+            ? t("email is required")
+            : emailRegx.test(value)
+            ? ""
+            : t("email address should have the format username@domain.com and should not contain any spaces or special characters other than . - _ +"),
+      });
+    }else{
+      const passwordRegx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+      setErrors({
+        ...errors,
+        passwordError:
+          value.length == 0
+            ? t("password is required")
+            : passwordRegx.test(value)
+            ? ""
+            : t("password must be a  Minimum eight characters, at least one letter and one number"),
+      });
+    }
+  }
   const handleInputType = (event) => {
     event.stopPropagation();
     if (tooglePassword == "password") {
@@ -27,6 +71,28 @@ function Login(props) {
 
     props.setSignupModalShow(true);
   };
+  const handleHideLoginForm  = ()=>{
+    setUserData({
+      email:'',
+      password:''
+    })
+    setErrors({
+      emailError:'',
+      passwordError:''
+    })
+    props.onHide();
+  }
+  const handleSubmit = (event)=>{
+    event.preventDefault();
+    for(let key in userData){
+      if(userData[key] == "")return
+    }
+    for(let key in errors){
+      if(errors[key] != "")return
+    }
+
+    console.log(userData);
+  }
   return (
     <Modal
       {...props}
@@ -38,26 +104,28 @@ function Login(props) {
         <section className={LoginStyles["login-img-section"]}>
           <Image src={LoginImg} loading="lazy" alt="hands types on laptop" />
         </section>
-        <section className={LoginStyles["login-form-container"]}>
-          <div>
-            <span>
+        <section className={LoginStyles["login-form-container"]} style={{direction:locale == 'en'?'ltr':'rtl'}}>
+          <div style={{justifyContent:locale == 'en'?'flex-end':'flex-start'}}>
+            <span >
               <GrFormClose
                 style={{ color: "#27323C" }}
-                onClick={props.onHide}
+                onClick={handleHideLoginForm}
               />
             </span>
           </div>
           <div>
-            <h1>Log in</h1>
-            <form className={LoginStyles["login-form"]}>
+            <h1>{t("Log in")}</h1>
+            <form className={LoginStyles["login-form"]} onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="email">Email Address</label>
-                <input type="text" name="email" id="email" />
+                <label htmlFor="email">{t("Email Address")}</label>
+                <input type="text" name="email" id="email" className={`${errors.emailError?'input-is-invalid':''}`} value={userData.email} onBlur={handleUserData} onChange={handleUserData}/>
+                <small  className={`text-danger errorMessage`} style={{textAlign:locale == 'en'?'left':'right'}}>{errors.emailError}</small>
               </div>
               <div>
-                <label htmlFor="password">Password</label>
-                <div onFocus={focus} onBlur={blur} ref={passwordRef}>
-                  <input type={tooglePassword} name="password" id="password" />
+                <label htmlFor="password">{t("Password")}</label>
+                <div>
+                  <div  onFocus={focus} onBlur={blur} ref={passwordRef} className={`${errors.passwordError?'input-is-invalid':''}`}>
+                  <input type={tooglePassword} name="password" id="password"  value={userData.password} onBlur={handleUserData} onChange={handleUserData}/>
                   <div onClick={handleInputType} style={{ cursor: "pointer" }}>
                     {tooglePassword == "password" ? (
                       <svg
@@ -86,20 +154,24 @@ function Login(props) {
                       </svg>
                     )}
                   </div>
+                  </div>
+                  <small  className={`text-danger errorMessage`} style={{textAlign:locale == 'en'?'left':'right'}}>{errors.passwordError}</small>
                 </div>
+                
                 <Link
                   className={LoginStyles["forget-password-link"]}
                   href={"#"}
+                  style={{textAlign:locale == 'en'?'left':'right'}}
                 >
-                  Forget Password?
+                  {t("Forget Password")}
                 </Link>
               </div>
               <div className={LoginStyles["separator"]}></div>
-              <button type="button" className="btn">
-                Login
+              <button type="submit" className="btn">
+                {t("Login")}
               </button>
               <Link className={LoginStyles["register-now-link"]} href={"#"}>
-                Create an account?<span onClick={navigateToSignupForm}>Register Now!</span>
+                {t("Create an account")}<span onClick={navigateToSignupForm}>{t("Register Now")}</span>
               </Link>
             </form>
           </div>

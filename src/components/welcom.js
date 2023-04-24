@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import WelcomeStyles from "../styles/welocme.module.scss";
 import "vidstack/styles/defaults.css";
-
 import {
   MediaOutlet,
   MediaPlayer,
@@ -10,9 +9,11 @@ import {
 } from "@vidstack/react";
 import Image from "next/image";
 import { useTranslation } from 'next-i18next'
+import { useRouter } from "next/router";
 
 function Welcome() {
-
+  const {locale} = useRouter();
+  const { t } = useTranslation("common");
   const [isCustomePlayVideoVisible, setIsCustomePlayVideoVisible] =
     useState(true);
   const mediaRef = useRef();
@@ -24,7 +25,7 @@ function Welcome() {
   return (
     <div className={WelcomeStyles["pointechs-welcome"]} id="about-us">
       <div>
-      <div>
+      <div style={{order:locale == 'en'?1:2}}>
         <MediaPlayer
           src="/videos/Pointechs.mp4"
           poster="/video-poster.png"
@@ -47,12 +48,13 @@ function Welcome() {
           <MediaOutlet />
         </MediaPlayer>
       </div>
-      <div className={WelcomeStyles['welcom-pointechs']}>
+      <div className={WelcomeStyles['welcom-pointechs']} style={{order:locale == 'en'?2:1}}>
         <section>
             <span></span>
-            <h1>Welcome to Pointechs</h1>
+            <h1>{t("Welcome to Pointechs")}</h1>
         </section>
         <section>
+          {locale == 'en'?<>
           <p>
             The ultimate loyalty program solution for businesses of all sizes.
             Our innovative platform is designed to help you build long-lasting
@@ -70,6 +72,10 @@ function Welcome() {
             track customer engagement, redemption rates, and overall business
             growth.
           </p>
+          </>:<p style={{textAlign:locale == 'en'?'left':'right',fontSize:locale == 'en'?'1.1rem':'1.3rem'}}>
+          الحل الأمثل والمتكامل لإدارة الولاء للمتاجر والشركات. تم تصميم منصتنا المبتكرة لمساعدتك فى بناء علاقات طويلة الأمد مع عملائك، وزيادة مبيعاتك، ومضاعفة ارباحك.
+            </p>}
+
         </section>
       </div>
       </div>

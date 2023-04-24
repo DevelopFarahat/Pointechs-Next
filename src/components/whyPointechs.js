@@ -1,38 +1,38 @@
-import React from "react";
+import React,{useState} from "react";
 import whyPointehsStyles from "../styles/whyPointechs.module.scss";
 import Image from "next/image";
 import whyPointechsImg from "../assets/images/why-pointechs.webp";
 import { RiArrowDropRightLine } from "react-icons/ri";
 import {useTranslation} from "next-i18next";
 import {motion} from "framer-motion";
+import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+const DynamicSignup = dynamic(()=>import('./signup'),{ssr:false});
+const DynamicLogin = dynamic(()=>import("./login"),{ssr:false});
 function WhyPointechs() {
   const {t} = useTranslation('common');
+  const { locale } = useRouter();
+  const [signupModalShow, setSignupModalShow] = useState(false);
+  const [loginModalShow, setLoginModalShow] = useState(false);
   return (
+    <>
     <div className={whyPointehsStyles["why-pointechs"]} id="why-us">
       <main>
       <section>
         <div>
           <main>
             <span></span>
-            <h1>Why Pointechs?</h1>
+            <h1>{t("Why Pointechs?")}</h1>
           </main>
 
-          <p>
-            At Pointechs, we understand the importance of building and
-            maintaining strong relationships with your customers. That's why we
-            offer a simple and effective loyalty program solution that empowers
-            businesses to increase customer retention, sales, and profitability.
+          <p style={{textAlign:locale == 'en'?'left':'right'}}>
+           {t("why_p1")}
           </p>
-          <p>
-            With Pointechs, Merchants can easily create and customize rewards
-            that best fit their business and customers' needs.
+          <p style={{textAlign:locale == 'en'?'left':'right'}}>
+          {t("why_p2")}
           </p>
-          <p>
-            Our analytics tools make it easy to measure the effectiveness of
-            your loyalty program. With Pointechs, you can keep track of
-            points/stamps issued to each customer, know when and how many
-            points/stamps are used, and analyze your customers' visit pattern to
-            gain more insights.
+          <p style={{textAlign:locale == 'en'?'left':'right'}}>
+          {t("why_p3")}
           </p>
         </div>
         <div>
@@ -42,17 +42,20 @@ function WhyPointechs() {
       </main>
       <section>
         <main>
-        <p>
-          Join Pointechs today and start seeing the benefits of a successful and
-          profitable business.
+        <p style={{textAlign:locale == 'en'?'left':'right'}}>
+          {t("join_p1")}
         </p>
-        <motion.button type="button" className={`btn`} whileHover={{scale:1.1,textShadow:'0 0 8px #FEB247'}} transition={{type:'spring',stiffness:300}}>
+        <motion.button type="button" className={`btn`} whileHover={{scale:1.1,textShadow:'0 0 8px #FEB247'}} transition={{type:'spring',stiffness:300}} style={{direction:locale == 'en'?'ltr':'ltr'}}  onClick={ ()=>setSignupModalShow(true)}>
         {t("Get Started Now")} {" "}
-          <RiArrowDropRightLine style={{ verticalAlign: "text-bottom" }} />
+          <RiArrowDropRightLine style={{ verticalAlign:locale == 'en'?"text-bottom":"text-top" }} />
         </motion.button>
         </main>
       </section>
     </div>
+    <DynamicSignup show={signupModalShow} setLoginModalShow={setLoginModalShow} onHide={()=>setSignupModalShow(false)}/>
+    <DynamicLogin show={loginModalShow} setSignupModalShow={setSignupModalShow} onHide={()=>setLoginModalShow(false)}/>
+    </>
+
   );
 }
 

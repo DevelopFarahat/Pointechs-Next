@@ -5,15 +5,17 @@ import Navbar from "react-bootstrap/Navbar";
 import Image from "next/image";
 import Logo from "../assets/images/logo.webp";
 import NavbarStyles from "../styles/navbar.module.scss";
-import Signup from "./signup";
-import Login from "./login";
+const DynamicSignup = dynamic(()=>import('./signup'),{ssr:false});
+const DynamicLogin = dynamic(()=>import("./login"),{ssr:false});
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useTranslation } from 'next-i18next';
 import {motion} from "framer-motion";
 function Header() {
   const {t} = useTranslation('common');
-  let {locale,locales,push} = useRouter();
+  const router = useRouter();
+  let {locale,locales,push,query,asPath,pathname} = router;
   const [lang,setLang] = useState('en');
   const [selectedLink, setSelectedLink] = useState(0);
   const [signupModalShow, setSignupModalShow] = React.useState(false);
@@ -30,6 +32,7 @@ function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  
   const linksArr = [
     { id: 0, href: "#home", data: t("Home") },
     { id: 1, href: "#about-us", data: t("About us") },
@@ -57,12 +60,19 @@ function Header() {
     event.stopPropagation();
     if(lang == "en"){
       setLang("ar");
-      locale = "ar";
-      push("/","/",{locale});
+        locale = 'en';
+      //  router.push('/',"/",{locale});
+        router.push({ pathname, query },asPath,{locale})
+
+      
+        
     }else{
       setLang("en");
-      locale = "en";
-      push("/","/",{locale});
+      locale = 'ar';
+   //   router.push("/","/",{locale});
+   router.push({ pathname, query },asPath,{locale})
+  
+
     }
     
   }
@@ -87,6 +97,7 @@ function Header() {
             <Nav className={NavbarStyles.nav}>
               {linksArr.map((link) => (
                 <Nav.Link
+                style={{textAlign:locale == 'en'?'left':'right'}}
                   key={link.id}
                   href={link.href}
                   id={link.id}
@@ -108,8 +119,9 @@ function Header() {
                 className={` btn ${NavbarStyles["btn-lang"]} `}
                
                 whileTap={{scale:.95}}
+                
               >
-                <span>{lang == 'en'?"العربية":'En'}</span>
+                <span onClick={toogleLang}>{lang == 'en'?"العربية":'En'}</span>
               </motion.button>
               <motion.button
                 type="button"
@@ -134,8 +146,8 @@ function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Signup show={signupModalShow} setLoginModalShow={setLoginModalShow} onHide={()=>setSignupModalShow(false)}/>
-      <Login  show={loginModalShow} setSignupModalShow={setSignupModalShow} onHide={()=>setLoginModalShow(false)}/>
+      <DynamicSignup show={signupModalShow} setLoginModalShow={setLoginModalShow} onHide={()=>setSignupModalShow(false)}/>
+    <DynamicLogin show={loginModalShow} setLoginModalShow={setSignupModalShow} onHide={()=>setLoginModalShow(false)}/>
     </>
   );
 }

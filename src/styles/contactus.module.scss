@@ -117,20 +117,22 @@
     order: 1;
 }
 
-.contactus-form>div>input {
+.contactus-form>div>input ,.contactus-form>div>textarea  {
     width: 90%;
     padding: 5px;
     outline: none;
     border: none;
     border-bottom: 1px solid #5E5E5E80;
     order: 2;
+    &:focus{
+        border-bottom: 1px solid variables.$color1;
+    }
+    &:focus + label{
+        color: variables.$color1;
+    }
 }
-.contactus-form>div>input:focus{
-    border-bottom: 1px solid variables.$color1;
-}
-.contactus-form>div>input:focus +  label{
-    color: variables.$color1;
-}
+
+
 .contactus-form>div:last-of-type>button {
     /*
     width: 165px;
@@ -161,7 +163,10 @@
     aspect-ratio: 1;
     object-fit: cover;
 }
-
+.input-is-invalid{
+    border-bottom:1px solid  #f6003c !important;
+   
+}
 @media screen  and (max-width:1199px){
     
     .pointechs-contactus > main{

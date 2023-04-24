@@ -10,8 +10,11 @@ import axios from "axios";
 import { Form } from "react-bootstrap";
 import { MdConveyorBelt } from "react-icons/md";
 import Link from "next/link";
-
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 function Signup(props) {
+  const { t } = useTranslation("common");
+  const { locale } = useRouter();
   const [activeTap, setActiveTap] = useState({
     personalInfoTapVisible: true,
     accountDetailsTapVisible: false,
@@ -50,11 +53,8 @@ function Signup(props) {
     termsOfServiceStatus: false,
   });
 
-  const [isClearable, setIsClearable] = useState(true);
-  const [isSearchable, setIsSearchable] = useState(true);
-  const [isDisabled, setIsDisabled] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [isRtl, setIsRtl] = useState(false);
+  
   const handleSignupTapsVisibility = (event) => {
     for (let key of Object.keys(userData).splice(0, 6)) {
       if (userData[key] == "") return;
@@ -74,20 +74,25 @@ function Signup(props) {
         });
   };
   const categoryArr = [{ id: 0, categoryName: "Restaurant" }];
+  const COUNTRIES_EN = "/json/countries_en.json";
+  const COUNTRIES_AR = "/json/countries_ar.json";
   useEffect(() => {
     let featch = true;
     (async () => {
       axios
-        .get(`/json/countries_en.json`)
+        .get(`${locale == 'en'?COUNTRIES_EN:COUNTRIES_AR}`)
         .then((res) => {
           setCountriesArr(res.data);
         })
         .catch((error) => {
           console.log(error);
         });
+        if(locale == 'en')
+        setIsRtl(false);
+        else setIsRtl(true);
     })();
-    return () => (featch = false);
-  }, []);
+    return () => featch = false;
+  }, [locale]);
   const focus = (element) => {
     if (element.target.id == "password") {
       passwordRef.current.style.cssText = "outline:1px solid #FEB247";
@@ -167,10 +172,10 @@ function Signup(props) {
         ...errors,
         fullnameError:
           value.length == 0
-            ? "fullname is required"
+            ? t("fullname is required")
             : fullnameRegx.test(value)
             ? ""
-            : "Name must consist of only uppercase or lowercase letters",
+            : t("Name must consist of only uppercase or lowercase letters"),
       });
     } else if (field == "email") {
       const emailRegx = /^[A-Z0-9._%+-]+@[A-Z0-9._]+\.[A-Z]{2,4}$/i;
@@ -178,19 +183,19 @@ function Signup(props) {
         ...errors,
         emailError:
           value.length == 0
-            ? "email is required"
+            ? t("email is required")
             : emailRegx.test(value)
             ? ""
-            : "email address should have the format username@domain.com and should not contain any spaces or special characters other than . - _ +",
+            : t("email address should have the format username@domain.com and should not contain any spaces or special characters other than . - _ +"),
       });
     } else if (field == "phone") {
       setErrors({
         ...errors,
         phoneError:
           value.length == 0
-            ? "phone number is required"
+            ? t("phone number is required")
             : value.length == 0 && userData.dialCode == ""
-            ? "phone number with dial code is required"
+            ? t("phone number with dial code is required")
             : "",
       });
     } else if (field == "password") {
@@ -199,10 +204,10 @@ function Signup(props) {
         ...errors,
         passwordError:
           value.length == 0
-            ? "password is required"
+            ? t("password is required")
             : passwordRegx.test(value)
             ? ""
-            : "password must be a  Minimum eight characters, at least one letter and one number",
+            : t("password must be a  Minimum eight characters, at least one letter and one number"),
       });
     } else if (field == "confirmPassword") {
       const confirmPasswordRegx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -210,9 +215,9 @@ function Signup(props) {
         ...errors,
         confirmPasswordError:
           value.length == 0
-            ? "confirm password is required"
+            ? t("confirm password is required")
             : value != userData.password
-            ? "confirm password must equale to password"
+            ? t("confirm password must equale to password")
             : "",
       });
     } else if (field == "storeNameEn") {
@@ -221,10 +226,10 @@ function Signup(props) {
         ...errors,
         storeNameEnError:
           value.length == 0
-            ? "store name is required in english"
+            ? t("store name is required in english")
             : storeNameEnRegx.test(value)
             ? ""
-            : "store name  must consist of only uppercase or lowercase letters",
+            : t("store name  must consist of only uppercase or lowercase letters"),
       });
     } else if (field == "storeNameAr") {
       const storeNameArRegx = /[\u0600-\u06FF\u0750-\u077F]/;
@@ -232,10 +237,10 @@ function Signup(props) {
         ...errors,
         storeNameArError:
           value.length == 0
-            ? "store name is required with arabic"
+            ? t("store name is required with arabic")
             : storeNameArRegx.test(value)
             ? ""
-            : "store name must be arabic",
+            : t("store name must be arabic"),
       });
     }
   };
@@ -245,7 +250,7 @@ function Signup(props) {
 
     if (activeTap.personalInfoTapVisible) {
       for (let key of Object.keys(userData).splice(0, 6)) {
-        if (userData[key] == "") return;
+        if (userData[key] == "")return;
       }
       for (let key of Object.keys(errors).slice(0, 6)) {
         if (errors[key] != "") return;
@@ -295,14 +300,16 @@ function Signup(props) {
   };
   const navigateToSignInForm = ()=>{
     props.onHide();
-    props.setLoginModalShow(true)
+    props.setLoginModalShow(true);
   }
   const customSelectPhoneCodeStyles = {
+
     option: (defaultStyles, state) => ({
       ...defaultStyles,
-      color: state.isSelected ? "#212529" : "#FFFFFF",
+      color: state.isSelected ? "#212529" : "#212529",
       backgroundColor: state.isSelected ? "#FFFFFF" : "#FFFFFF",
       padding: state.isSelected ? "10px" : "10px",
+      
       "&:hover": {
         backgroundColor: "#FEB247",
         color: "#FFFFFF",
@@ -332,13 +339,14 @@ function Signup(props) {
       textAlign: "start",
       fontFamily: "Poppins",
       fontSize: "1rem",
+      boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
     }),
   };
 
   const customStyles = {
     option: (defaultStyles, state) => ({
       ...defaultStyles,
-      color: state.isSelected ? "#212529" : "#FFFFFF",
+      color: state.isSelected ? "#212529" : "#212529",
       backgroundColor: state.isSelected ? "#FFFFFF" : "#FFFFFF",
       padding: state.isSelected ? "10px" : "10px",
       "&:hover": {
@@ -353,14 +361,12 @@ function Signup(props) {
       fontSize: "1rem",
       fontFamily: "Poppins",
     }),
-    /*
+    
     menu: (base) => ({
       ...base,
-      width: "max-content",
-      minWidth: "100%",
-      textAlign:'start'
+      boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
  }),
- */
+ 
   };
 
   return (
@@ -378,8 +384,8 @@ function Signup(props) {
             alt="person with laptop setting on desk"
           />
         </section>
-        <section className={SignupStyles["signup-form-container"]}>
-          <div>
+        <section className={SignupStyles["signup-form-container"]} style={{direction:locale == 'en'?'ltr':'rtl'}}>
+          <div style={{justifyContent:locale == 'en'?'flex-end':'flex-start'}}>
             <span>
               <GrFormClose
                 style={{ color: "#27323C" }}
@@ -388,7 +394,7 @@ function Signup(props) {
             </span>
           </div>
           <form className={SignupStyles["signup-form"]} onSubmit={handleSubmit}>
-            <h1>Sign up</h1>
+            <h1>{t("Sign up")}</h1>
             <section className={SignupStyles["signup-settings-header"]}>
               <span
                 id="personalInfo"
@@ -398,8 +404,9 @@ function Signup(props) {
                     : ""
                 }`}
                 onClick={handleSignupTapsVisibility}
+                style={{textAlign:locale == 'en'?'left':'right'}}
               >
-                Personal Info
+                {t("Personal Info")}
               </span>
               <span
                 id="accountDetails"
@@ -423,15 +430,16 @@ function Signup(props) {
                     errors.confirmPasswordError != ""
                       ? "not-allowed"
                       : "text",
+                      textAlign:locale == 'en'?'left':'right'
                 }}
               >
-                Account Details
+                {t("Account Details")}
               </span>
             </section>
             {activeTap.personalInfoTapVisible ? (
               <div className={SignupStyles["personal-info"]}>
                 <div>
-                  <label htmlFor="fullname">Full Name</label>
+                  <label htmlFor="fullname">{t("Full Name")}</label>
                   <input
                     type="text"
                     name="fullname"
@@ -450,7 +458,7 @@ function Signup(props) {
                   </small>
                 </div>
                 <div>
-                  <label htmlFor="email">Email Address</label>
+                  <label htmlFor="email">{t("Email Address")}</label>
                   <input
                     type="text"
                     name="email"
@@ -465,7 +473,7 @@ function Signup(props) {
                   <small className={`text-danger`}>{errors.emailError}</small>
                 </div>
                 <div>
-                  <label htmlFor="phone">Phone Number</label>
+                  <label htmlFor="phone">{t("Phone Number")}</label>
 
                   <section
                     className={` ${
@@ -476,12 +484,12 @@ function Signup(props) {
                   >
                     <>
                       <Select
-                        className="basic-select-phone-code"
+                        className={`basic-select-phone-code ${locale == 'ar'?SignupStyles['country-select-ar']:''}`}
                         classNamePrefix="select"
                         unstyled
                         defaultValue={countriesArr[0]}
+                        isSearchable={false}
                         isRtl={isRtl}
-                        isSearchable={isSearchable}
                         name="dialCode"
                         id="dialCode"
                         styles={customSelectPhoneCodeStyles}
@@ -504,6 +512,7 @@ function Signup(props) {
                       type="number"
                       name="phone"
                       id="phone"
+                      className={SignupStyles['phone']}
                       value={userData.phone}
                       onBlur={handleUserData}
                       onChange={handleUserData}
@@ -512,7 +521,7 @@ function Signup(props) {
                   <small className={`text-danger`}>{errors.phoneError}</small>
                 </div>
                 <div className={SignupStyles["pass-section"]}>
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password">{t("Password")}</label>
                   <div
                     ref={passwordRef}
                     onFocus={focus}
@@ -570,7 +579,7 @@ function Signup(props) {
                   </small>
                 </div>
                 <div className={SignupStyles["pass-section"]}>
-                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <label htmlFor="confirmPassword">{t("Confirm Password")}</label>
                   <div
                     ref={confirmPasswordRef}
                     onFocus={focus}
@@ -631,7 +640,7 @@ function Signup(props) {
             ) : (
               <div className={SignupStyles["account-details"]}>
                 <div>
-                  <label htmlFor="country-select">Choose Country</label>
+                  <label htmlFor="country-select">{t("Choose Country")}</label>
                   <Select
                     className={`basic-select-countries-names ${
                       errors.countryNameError
@@ -642,7 +651,7 @@ function Signup(props) {
                     unstyled
                     defaultValue={countriesArr[0]}
                     isRtl={isRtl}
-                    isSearchable={isSearchable}
+                    isSearchable={false}
                     name="countries"
                     styles={customStyles}
                     options={countriesArr}
@@ -659,21 +668,19 @@ function Signup(props) {
                   </small>
                 </div>
                 <div>
-                  <label htmlFor="category-select">Choose Category</label>
+                  <label htmlFor="category-select">{t("Choose Category")}</label>
                   <Select
                     className={`basic-categories-select-names ${
                       errors.categoryError
                         ? SignupStyles["input-is-invalid"]
                         : ""
                     }`}
+                    isSearchable={false}
                     classNamePrefix="select"
                     id="category-select"
                     unstyled
                     defaultValue={categoryArr[0]}
-                    isDisabled={isDisabled}
-                    isLoading={isLoading}
                     isRtl={isRtl}
-                    isSearchable={isSearchable}
                     name="countries"
                     styles={customStyles}
                     options={categoryArr}
@@ -688,7 +695,7 @@ function Signup(props) {
                   <small className="text-danger">{errors.categoryError}</small>
                 </div>
                 <div>
-                  <label htmlFor="store-name-ar">Store Name in Arabic</label>
+                  <label htmlFor="store-name-ar">{t("Store Name in Arabic")}</label>
                   <input
                     type="text"
                     name="storeNameAr"
@@ -707,7 +714,7 @@ function Signup(props) {
                   </small>
                 </div>
                 <div>
-                  <label id="store-name-en">Your store name</label>
+                  <label id="store-name-en">{t("Your store name")}</label>
                   <input
                     type="text"
                     name="storeNameEn"
@@ -735,9 +742,9 @@ function Signup(props) {
                     onChange={handleTermsOfServiceStatus}
                   />
 
-                  <label htmlFor="termsOfServiceStatus">
-                    By confirming your data, you agree to{" "}
-                    <span>our terms of service</span>
+                  <label htmlFor="termsOfServiceStatus" style={{textAlign:locale == 'en'?'left':'right'}}>
+                    {t("By confirming your data, you agree to")}{" "}
+                    <span>{t("our terms of service")}</span>
                   </label>
                 </div>
               </div>
@@ -745,14 +752,14 @@ function Signup(props) {
 
             {/**/}
             <button
-              type="button"
+              type="submit"
               className={`btn ${SignupStyles["continue-btn"]}`}
-              onClick={handleSubmit}
+              
             >
-              {activeTap.personalInfoTapVisible ? "Continue" : "Sign Up"}
+              {activeTap.personalInfoTapVisible ? t("Continue") : t("Sign Up")}
             </button>
             <span>
-              Already have an account?<a href="#" onClick={navigateToSignInForm}>Sign In</a>
+              {t("Already have an account")}<a href="#" onClick={navigateToSignInForm}>{t("Sign In")}</a>
             </span>
           </form>
         </section>

@@ -4,24 +4,24 @@ import PointechsAppImg from "../assets/images/pointechs-app.webp";
 import Image from "next/image";
 import {BsApple} from "react-icons/bs";
 import {FaGooglePlay} from "react-icons/fa";
-
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 function PointechsApp() {
-  
+  const { t } = useTranslation("common");
+  const { locale } = useRouter();
   return (
     <div className={PointechsAppStyles["pointechs-app"]} >
       <main>
         <div>
           <section>
             <span></span>
-            <h1>Pointechs App</h1>
+            <h1>{t("Pointechs App")}</h1>
           </section>
           <section>
-            <p>
-              We know giving gifts and free points to exchange for cash is the
-              best feeling in the world, and we want to make it easy for you to
-              do, so download our App and start collecting points.{" "}
+            <p style={{textAlign:locale == 'en'?'left':'right'}}>
+              {t("pointechs-app-p")}{" "}
             </p>
-            <span>Download Our App:</span>
+            <span>{t("Download Our App")}</span>
           </section>
           <section>
             <a rol="button" href="https://apps.apple.com/us/app/id1504083441" target="_blank" className={`btn ${PointechsAppStyles['link-btn']}`}>

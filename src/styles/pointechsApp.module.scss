@@ -153,6 +153,9 @@
     .pointechs-app>main>div:nth-child(1){
         order: 2;
     }
+    .pointechs-app > main > div:nth-child(1) > section:nth-child(3){
+        justify-content: center;
+    }
     /*
     .pointechs-app > main{
         flex-direction: column;

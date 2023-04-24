@@ -1,3 +1,4 @@
+@use "partial/mixins";
 * {
     margin: 0;
     padding: 0;
@@ -99,7 +100,14 @@ input[type=number] {
         border-color: #00000040 !important;
     }
 }
-
+.errorMessage{
+    order: 3;
+    @include mixins.headlineAndParagraph(false,1rem,normal,#f6003c);
+}
+.input-is-invalid{
+    border:1px solid  #f6003c !important;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
 media-player {
     /* ... */
     max-height: 350px;

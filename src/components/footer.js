@@ -15,10 +15,8 @@ function Footer() {
       <main>
       <section>
         <Image src={logoImg} loading="lazy" alt="pointechs-logo" />
-        <p>
-          Build customized rewards & referrals programs to retain existing
-          customers and attract new ones. Join Pointechs today and take the
-          first step towards a thriving business.
+        <p style={{textAlign:locale == 'en'?'left':'right'}}>
+          {t("footer_p")}
         </p>
       </section>
       <section>
@@ -49,11 +47,11 @@ function Footer() {
                 <a href="#contact-us">{t("Contact us")}</a>
               </li>
               <li>
-              <Link href={"/FAQs"}>{t("FAQs")}</Link>
+              <Link href={`FAQs`} locale={locale}>{t("FAQs")}</Link>
                 {/*<a href="#">FAQs</a>*/}
               </li>
               <li>
-                <Link href={"/terms-and-conditions"}>{t("Terms and Conditions")}</Link>
+                <Link href={"/terms-and-conditions"} locale={locale}>{t("Terms and Conditions")}</Link>
               {/*  <a href="#"></a>*/}
               </li>
               <li>
@@ -74,6 +72,7 @@ function Footer() {
           <li>
             <Image src={pinIcon} loading="lazy" alt="pin" />
             <a
+            style={{textAlign:locale == 'en'?'left':'right'}}
               href="https://www.google.com/maps/place/651+N+Broad+St+%23+201,+Middletown,+DE+19709,+USA/@39.4558755,-75.7174523,17z/data=!3m1!4b1!4m6!3m5!1s0x89c7a079b74b8557:0x6ce80b96a55fea8b!8m2!3d39.4558755!4d-75.7174523!16s%2Fg%2F11nyp4zzfq"
               target="_black"
             >

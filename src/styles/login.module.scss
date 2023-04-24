@@ -118,10 +118,21 @@
 }
 .login-form > div:nth-child(2) > div{
     display: flex;
+    flex-direction: column ;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    gap: 10px;
+
+
+}
+
+.login-form > div:nth-child(2) > div > div{
+    width: 100%;
+    display:flex ;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    width: 100%;
     background: #FCFCFC;
     border: 1px solid #5E5E5E1A;
     border-radius: 5px;
@@ -129,9 +140,8 @@
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
-
 }
-.login-form > div:nth-child(2) > div > input{
+.login-form > div:nth-child(2) >div >  div > input{
     @include formInput();
     border: none;
     width: 91%;
