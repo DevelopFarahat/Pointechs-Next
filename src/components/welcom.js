@@ -33,7 +33,7 @@ function Welcome() {
           ref={mediaRef}
           className={WelcomeStyles["media"]}
         >
-          <MediaPlayButton className={WelcomeStyles["media-play-btn"]}>
+          <MediaPlayButton className={WelcomeStyles["media-play-btn"]} style={{direction:locale == 'en'?'inherit':'rtl'}}>
             {isCustomePlayVideoVisible ? (
               <Image
                 src="play.svg"

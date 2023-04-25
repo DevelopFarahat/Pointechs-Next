@@ -119,9 +119,9 @@ function Header() {
                 className={` btn ${NavbarStyles["btn-lang"]} `}
                
                 whileTap={{scale:.95}}
-                
+                onClick={toogleLang}
               >
-                <span onClick={toogleLang}>{lang == 'en'?"العربية":'En'}</span>
+                <span >{lang == 'en'?"العربية":'En'}</span>
               </motion.button>
               <motion.button
                 type="button"
