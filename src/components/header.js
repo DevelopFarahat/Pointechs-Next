@@ -147,7 +147,7 @@ function Header() {
         </Container>
       </Navbar>
       <DynamicSignup show={signupModalShow} setLoginModalShow={setLoginModalShow} onHide={()=>setSignupModalShow(false)}/>
-    <DynamicLogin show={loginModalShow} setLoginModalShow={setSignupModalShow} onHide={()=>setLoginModalShow(false)}/>
+    <DynamicLogin show={loginModalShow} setSignupModalShow={setSignupModalShow}  onHide={()=>setLoginModalShow(false)}/>
     </>
   );
 }

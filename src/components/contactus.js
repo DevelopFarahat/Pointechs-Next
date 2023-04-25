@@ -88,7 +88,7 @@ function Contactus() {
             </div>
             <div>
          
-              <input type="text" name="email" id="email" value={contactusInfo.email} className={`${errors.emailError?ContactusStyles['input-is-invalid']:''}`} onBlur={handleUserData} onChange={handleUserData}/>
+              <input type="text" name="email" id="contactus-email" value={contactusInfo.email} className={`${errors.emailError?ContactusStyles['input-is-invalid']:''}`} onBlur={handleUserData} onChange={handleUserData}/>
               <label htmlFor="email">{t("Email Address")}</label>
               <small className={`text-danger errorMessage`}>{errors.emailError}</small>
             </div>
