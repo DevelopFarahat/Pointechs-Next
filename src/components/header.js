@@ -57,7 +57,7 @@ function Header() {
     console.log(x)
   }
   const toogleLang = (event)=>{
-    event.stopPropagation();
+    //event.stopPropagation();
     if(lang == "en"){
       setLang("ar");
         locale = 'en';
