@@ -57,8 +57,8 @@
 
 .media-play-btn {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 48%;
+    left: 47%;
     transform: translate(-50%, -50%);
     z-index: 5;
 }
@@ -113,8 +113,22 @@
         -ms-border-radius: 5px;
         -o-border-radius: 5px;
 }
+
+}
+
+@media screen  and (max-width:768px){
+    /*
+    .media-play-btn {
+        top: 45%;
+        left: 42%;
+    }
+    */
+}
+@media screen  and (max-width:433px){
+    
     .media-play-btn {
         top: 48%;
-        left: 41%;
+        left: 40%;
     }
+    
 }

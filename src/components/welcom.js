@@ -24,8 +24,8 @@ function Welcome() {
   }
   return (
     <div className={WelcomeStyles["pointechs-welcome"]} id="about-us">
+      <div style={{direction:locale == 'en'?'rtl':'ltr'}}>
       <div>
-      <div style={{order:locale == 'en'?1:2}}>
         <MediaPlayer
           src="/videos/Pointechs.mp4"
           poster="/video-poster.png"
@@ -48,7 +48,7 @@ function Welcome() {
           <MediaOutlet />
         </MediaPlayer>
       </div>
-      <div className={WelcomeStyles['welcom-pointechs']} style={{order:locale == 'en'?2:1}}>
+      <div className={WelcomeStyles['welcom-pointechs']} style={{direction:locale == 'en'?'ltr':'rtl'}}>
         <section>
             <span></span>
             <h1>{t("Welcome to Pointechs")}</h1>
