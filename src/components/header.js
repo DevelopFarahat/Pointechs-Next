@@ -11,7 +11,6 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import { motion } from "framer-motion";
 function Header() {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -66,6 +65,7 @@ function Header() {
   const handleOnToogleStyles = (isNavbarExpanded) => {
     if (isNavbarExpanded) {
       navbarRef.current.classList.add(NavbarStyles["drop-shadow"]);
+      
     } else {
       navbarRef.current.classList.remove(NavbarStyles["drop-shadow"]);
     }
@@ -84,18 +84,19 @@ function Header() {
     handleToggle();
   };
   const handleToggle = () => {
-    if(document.querySelector(".collapsed") == null)
+    if(window.innerWidth <=1200)
     setIsExpanded(!isExpanded); // toggle the state variable
   };
 
   const handleModalVisibility = (event)=>{
     if(event.target.id == 'login-btn'){
       setLoginModalShow(true);
-      handleToggle();
+      
     }else{
       setSignupModalShow(true);
-      handleToggle();
+      
     }
+    handleToggle();
   }
   return (
     <>

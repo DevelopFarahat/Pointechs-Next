@@ -51,7 +51,7 @@
 
 .pointechs-footer>main>section:nth-child(2) {
     flex: 0 0 35%;
-    width: 100%;
+    
 }
 
 .footer-link-pages-section-2 {
@@ -80,6 +80,7 @@
 */
     @include mixins.headlineAndParagraph(true, 1rem, normal, #5E5E5E);
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .pointechs-footer>main>section:nth-child(1)>p {
