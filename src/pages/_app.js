@@ -6,6 +6,7 @@ import JoinPointechs from "@/components/joinPointechs";
 import Contactus from "@/components/contactus";
 import 'bootstrap/scss/bootstrap.scss'
 import { appWithTranslation } from 'next-i18next'
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const   App = ({ Component, pageProps })=> {
   return (
@@ -19,5 +20,5 @@ const   App = ({ Component, pageProps })=> {
     </>
   );
 }
-
+serviceWorkerRegistration.register();
 export default appWithTranslation(App)

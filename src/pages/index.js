@@ -9,7 +9,7 @@ import PointechsApp from '@/components/pointechsApp'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
 export default function Home() {
   const { t } = useTranslation('common');
   let {locale} = useRouter();
@@ -35,8 +35,9 @@ export default function Home() {
 
     </>
   )
+
 }
-serviceWorkerRegistration.register();
+
 export async function getServerSideProps({ locale }) {
   return {
     props: {
