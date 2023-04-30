@@ -4,13 +4,14 @@
 
 .why-pointechs {
     width: 100%;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
-.why-pointechs > main{
+
+.why-pointechs>main {
     width: 91.8%;
     display: flex;
     flex-direction: column;
@@ -18,24 +19,26 @@
     align-items: flex-start;
     gap: 10px;
     padding: 10px;
- 
+    height: 500px;
+
 }
-.why-pointechs > main>section:nth-child(1) {
+
+.why-pointechs>main>section:nth-child(1) {
     width: 95.9%;
-    
+
     position: relative;
 
     z-index: 1;
-    
+
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: flex-start;
-    
+
 }
 
-.why-pointechs > main>section:nth-child(1)>div:nth-child(1) {
+.why-pointechs>main>section:nth-child(1)>div:nth-child(1) {
     flex: 0 0 50%;
     display: flex;
     flex-direction: column;
@@ -45,7 +48,7 @@
     gap: 10px;
 }
 
-.why-pointechs > main>section:nth-child(1)>div:nth-child(1)>main {
+.why-pointechs>main>section:nth-child(1)>div:nth-child(1)>main {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -55,7 +58,7 @@
     gap: 10px;
 }
 
-.why-pointechs > main>section:nth-child(1)>div:nth-child(1)>main>span {
+.why-pointechs>main>section:nth-child(1)>div:nth-child(1)>main>span {
     /*
     width: 8px;
     height: 52px;
@@ -93,12 +96,13 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    flex:  0 0 45%;
 }
 
 .why-pointechs>main>section:nth-child(1)>div:nth-child(2)>img {
     object-fit: cover;
-    width: 85%;
-    height: 85%;
+    width: 96%;
+    height: 100%;
     aspect-ratio: 1;
 }
 
@@ -108,16 +112,16 @@
 
 }
 
-.why-pointechs>main+section{
+.why-pointechs>main+section {
     width: 100%;
     background-color: variables.$color1;
     z-index: 0;
     max-height: 275px;
     padding: 20px;
-    margin-top: -80px;
+
 }
 
-.why-pointechs>main + section>main {
+.why-pointechs>main+section>main {
     width: 93%;
     margin: auto;
     display: flex;
@@ -155,12 +159,19 @@
     */
     @include mixins.button(#FFFFFF, variables.$color2, baseline, 1rem);
 }
+
 @media screen and (max-width:1400px) {
     .why-pointechs>main+section {
         margin-top: 0;
     }
 }
+
 @media screen and (max-width:1199px) {
+    .why-pointechs>main {
+        height: auto;
+
+    }
+
     .why-pointechs>main>section:nth-child(1) {
         flex-wrap: wrap;
     }
@@ -170,11 +181,13 @@
     .why-pointechs>main>section:nth-child(1)>div:nth-child(1) {
         flex: 0 0 100%;
     }
-    .why-pointechs>main+section>main>p{
+
+    .why-pointechs>main+section>main>p {
         width: 100%;
         text-align: center;
     }
-    .why-pointechs>main+section>main > button{
+
+    .why-pointechs>main+section>main>button {
         margin: auto;
     }
 }

@@ -90,7 +90,7 @@
 }
 
 .link-btn {
-    @include mixins.button(#FFFFFF,variables.$color2,'center',1rem);
+    @include mixins.button(#FFFFFF,#082E3A,'center',1rem);
     border-radius: 46px;
     -webkit-border-radius: 46px;
     -moz-border-radius: 46px;
@@ -143,6 +143,7 @@
     height: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
+  
 }
 
 @media screen and (max-width:500px){

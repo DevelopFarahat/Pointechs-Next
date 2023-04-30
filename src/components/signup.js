@@ -386,10 +386,10 @@ function Signup(props) {
         </section>
         <section className={SignupStyles["signup-form-container"]} style={{direction:locale == 'en'?'ltr':'rtl'}}>
           <div style={{justifyContent:locale == 'en'?'flex-end':'flex-start'}}>
-            <span>
+            <span onClick={handleOnHide}>
               <GrFormClose
                 style={{ color: "#27323C" }}
-                onClick={handleOnHide}
+                
               />
             </span>
           </div>
@@ -512,7 +512,7 @@ function Signup(props) {
                       type="number"
                       name="phone"
                       id="phone"
-                      className={SignupStyles['phone']}
+                      className={`${locale == 'en'?SignupStyles['phone']:SignupStyles['phone-ar']}`}
                       value={userData.phone}
                       onBlur={handleUserData}
                       onChange={handleUserData}

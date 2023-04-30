@@ -1,8 +1,6 @@
 import React,{useState} from "react";
 import PointchsHomeStyles from "../styles/pointchsHome.module.scss";
 import Image from "next/image";
-import PointchsEnImage from "../assets/images/BG-en-img.webp";
-import PointchsArImage from "../assets/images/BG-ar-img.png";
 import { RiArrowDropRightLine } from "react-icons/ri";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -41,17 +39,15 @@ function PointchsHome() {
             </p>
           )}
           <div className={PointchsHomeStyles['get-started-btn-container']} style={{direction:locale == 'en'?'ltr':'rtl'}}>
-          <motion.button
+          <button
             type="button"
             className={`btn ${PointchsHomeStyles["btn-get-started-now"]}`}
-            whileHover={{ scale: 1.1, textShadow: "0px 0px 8px #27323C" }}
-            transition={{ type: "spring", stiffness: 300 }}
             style={{direction:locale == 'en'?'ltr':'ltr'}}
             onClick={ ()=>setSignupModalShow(true)}
           >
             {t("Get Started Now")}{" "}
             <RiArrowDropRightLine style={{ verticalAlign:locale == 'en'?"text-bottom":"text-top" }} />
-          </motion.button>
+          </button>
           </div>
         </div>
       </div>

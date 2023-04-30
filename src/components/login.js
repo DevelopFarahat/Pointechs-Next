@@ -106,10 +106,10 @@ function Login(props) {
         </section>
         <section className={LoginStyles["login-form-container"]} style={{direction:locale == 'en'?'ltr':'rtl'}}>
           <div style={{justifyContent:locale == 'en'?'flex-end':'flex-start'}}>
-            <span >
+            <span onClick={handleHideLoginForm}>
               <GrFormClose
                 style={{ color: "#27323C" }}
-                onClick={handleHideLoginForm}
+                
               />
             </span>
           </div>

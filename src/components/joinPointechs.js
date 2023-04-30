@@ -19,9 +19,7 @@ function JoinPointechs() {
         <p >
           {t("join_p2")}
         </p>
-        <motion.button type="button" className={"btn"}
-         whileHover={{scale:1.1,textShadow:'0px 0px 8px #27323C'}} 
-         transition={{type:'spring',stiffness:300}}
+        <button type="button" className={"btn"}
          style={{direction:locale == 'en'?'ltr':'ltr'}}
          onClick={ ()=>setSignupModalShow(true)}
 
@@ -29,7 +27,7 @@ function JoinPointechs() {
          
           {t("Get Started Now")}{" "}
           <RiArrowDropRightLine style={{ verticalAlign:locale == 'en'?"text-bottom":"text-top" }} />
-        </motion.button>
+        </button>
       </div>
     </div>
         <DynamicSignup show={signupModalShow} setLoginModalShow={setLoginModalShow} onHide={()=>setSignupModalShow(false)}/>

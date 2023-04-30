@@ -99,20 +99,18 @@ function Contactus() {
               <small className={`text-danger errorMessage`}>{errors.messageError}</small>
             </div>
             <div>
-            <motion.button type="submit" className={'btn'}
-              whileHover={{scale:1.1,textShadow:'0px 0px 8px #27323C'}} 
-              transition={{type:'spring',stiffness:300}}
+            <button type="submit" className={'btn'}
               style={{direction:locale == 'en'?'ltr':'ltr'}}
               
               >
               {t("Send Message")}{" "}
               <RiArrowDropRightLine style={{ verticalAlign:locale == 'en'?"text-bottom":"text-top" }} />
-            </motion.button>
+            </button>
             </div>
         
           </form>
         </section>
-        <section>
+        <section style={{left:locale == 'en'?'50%':'0'}}>
           <Image src={ContactusImg} loading="lazy" alt="contact-us"/>
         </section>
       </main>

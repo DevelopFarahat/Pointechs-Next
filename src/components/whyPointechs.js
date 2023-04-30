@@ -45,10 +45,10 @@ function WhyPointechs() {
         <p style={{textAlign:locale == 'en'?'left':'right'}}>
           {t("join_p1")}
         </p>
-        <motion.button type="button" className={`btn`} whileHover={{scale:1.1,textShadow:'0 0 8px #FEB247'}} transition={{type:'spring',stiffness:300}} style={{direction:locale == 'en'?'ltr':'ltr'}}  onClick={ ()=>setSignupModalShow(true)}>
+        <button type="button" className={`btn`}  style={{direction:locale == 'en'?'ltr':'ltr'}}  onClick={ ()=>setSignupModalShow(true)}>
         {t("Get Started Now")} {" "}
           <RiArrowDropRightLine style={{ verticalAlign:locale == 'en'?"text-bottom":"text-top" }} />
-        </motion.button>
+        </button>
         </main>
       </section>
     </div>

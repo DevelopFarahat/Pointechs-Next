@@ -2,12 +2,11 @@ import React from "react";
 import HowPointechsStyles from "../styles/howPointehcsWorks.module.scss";
 import Image from "next/image";
 import HowPointechsWorksImg from "../assets/images/how-pointechs-works.webp";
-import {BsPersonGear} from "react-icons/bs";
-import {MdAddLocationAlt} from "react-icons/md";
-import {MdPhoneIphone} from "react-icons/md";
-import {BsUpcScan} from "react-icons/bs";
-import {ImStatsBars} from "react-icons/im";
-import {motion} from "framer-motion";
+import HowitWorksSVG_1 from "../assets/images/how-01.svg";
+import HowitWorksSVG_2 from "../assets/images/how-02.svg";
+import HowitWorksSVG_3 from "../assets/images/how-03.svg";
+import HowitWorksSVG_4 from "../assets/images/how-04.svg";
+import HowitWorksSVG_5 from "../assets/images/how-05.svg";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 function HowPointechsWorks() {
@@ -16,27 +15,27 @@ function HowPointechsWorks() {
   const howPointechsWorksStepsArr = [
     {
       id: 0,
-      icon: <BsPersonGear/>,
+      icon: HowitWorksSVG_1,
       step: t("how-pointechs-works-p1"),
     },
     {
       id: 1,
-      icon: <MdAddLocationAlt/>,
+      icon: HowitWorksSVG_2,
       step: t("how-pointechs-works-p2"),
     },
     {
       id: 2,
-      icon: <MdPhoneIphone/>,
+      icon: HowitWorksSVG_3,
       step: t("how-pointechs-works-p3"),
     },
     {
       id: 3,
-      icon: <BsUpcScan/>,
+      icon: HowitWorksSVG_4,
       step: t("how-pointechs-works-p4"),
     },
     {
       id: 4,
-      icon: <ImStatsBars/>,
+      icon: HowitWorksSVG_5,
       step: t("how-pointechs-works-p5"),
     },
   ];
@@ -53,10 +52,12 @@ function HowPointechsWorks() {
           </section>
           <section>
             {howPointechsWorksStepsArr.map((step)=>(
-                <motion.div key={step.id} whileHover={{color:'#FFFFFF'}} >
-                    <div>{step.icon}</div>
+                <div key={step.id}>
+                    <div>
+                      <Image src={step.icon} loading="lazy" alt={step.icon.src.substr(step.icon.src.lastIndexOf("/")+1).split(".")[0]}/>
+                      </div>
                     <p style={{textAlign:locale == 'en'?'left':'right'}}>{step.step}</p>
-                </motion.div>
+                </div>
             ))}
           </section>
         </div>

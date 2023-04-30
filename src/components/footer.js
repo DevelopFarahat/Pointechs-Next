@@ -2,8 +2,8 @@ import React from "react";
 import FooterStyles from "../styles/footer.module.scss";
 import Image from "next/image";
 import logoImg from "../assets/images/logo.webp";
-import MailIcon from "../assets/images/mail.webp";
-import pinIcon from "../assets/images/pin.webp";
+import MailIcon from "../assets/images/mail.svg";
+import pinIcon from "../assets/images/pin.svg";
 import Link from "next/link";
 import { useTranslation } from 'next-i18next'
 import { useRouter } from "next/router";
