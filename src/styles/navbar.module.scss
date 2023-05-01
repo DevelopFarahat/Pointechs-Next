@@ -26,7 +26,7 @@
     justify-content: space-evenly;
 
     >a {
-       
+
         text-align: center !important;
         font-family: Poppins;
         font-size: 1rem;
@@ -101,23 +101,13 @@
     ~ {
         button {
             @include mixins.button(#FFFFFF, variables.$color2, center, 1rem);
-            width: 150px;
-            height: 50px;
-            /*
-            background: #27323C;
-            border-radius: 46px;
-            text-align: center;
-            font-family: Poppins !important;
-            font-size: 1rem !important;
-            line-height: 1.5 !important;
-            color: #FFFFFF;
-            */
-
+            min-width: 150px;
+            min-height: 50px;
 
             &:nth-of-type(2) {
                 @include mixins.button(variables.$color2, variables.$color1, center, 1rem);
-                width: 150px;
-                height: 50px;
+                min-width: 150px;
+                min-height: 50px;
             }
 
 
@@ -190,9 +180,10 @@
 
     .btn-container>button {
         align-self: flex-start !important;
-       
+
     }
-    .btn-container > button:nth-child(1){
-        margin:0 30px 0 30px;
+
+    .btn-container>button:nth-child(1) {
+        margin: 0 30px 0 30px;
     }
 }

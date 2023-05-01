@@ -25,11 +25,8 @@
 
 .why-pointechs>main>section:nth-child(1) {
     width: 95.9%;
-
     position: relative;
-
     z-index: 1;
-
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -46,7 +43,8 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: 10px;
-   
+    width: 100%;
+
 }
 
 .why-pointechs>main>section:nth-child(1)>div:nth-child(1)>main {
@@ -60,58 +58,33 @@
 }
 
 .why-pointechs>main>section:nth-child(1)>div:nth-child(1)>main>span {
-    /*
-    width: 8px;
-    height: 52px;
-    background: transparent linear-gradient(9deg, variables.$color1 0%, variables.$color1 51%, #E23D43 100%) 0% 0% no-repeat padding-box;
-    border-radius: 8px;
-    */
     @extend %headerSide;
 }
 
 .why-pointechs>main>section:nth-child(1)>div:nth-child(1)>main>h1 {
-    /*
-    text-align: left;
-    font-family: Poppins;
-    font-family: 600px;
-    line-height: 1.5;
-    letter-spacing: 0px;
-    color: variables.$color2;
-    */
     @include mixins.headlineAndParagraph(false, 1rem, 600, variables.$color2);
 }
 
 .why-pointechs>main>section:nth-child(1)>div:nth-child(1)>p {
-    /*
-    text-align: left;
-    font-size: 20px;
-    font-family: Poppins;
-    color: #5E5E5E;
-    */
     @include mixins.headlineAndParagraph(true, 20px, normal, #5E5E5E);
 }
 
 .why-pointechs>main>section:nth-child(1)>div:nth-child(2) {
+    width: 50%;
+    flex: 0 0 45%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    flex:  0 0 45%;
-    width: 50%;
 }
 
 .why-pointechs>main>section:nth-child(1)>div:nth-child(2)>img {
     object-fit: cover;
-    width: 96%;
-    height: 100%;
-    aspect-ratio: 1;
-}
-
-.placeholder-section {
     width: 100%;
-    height: 235px;
-
+    height: 100%;
+    aspect-ratio: 1/1;
+    object-position: 50% 50%;
 }
 
 .why-pointechs>main+section {
@@ -120,7 +93,6 @@
     z-index: 0;
     max-height: 275px;
     padding: 20px;
-
 }
 
 .why-pointechs>main+section>main {
@@ -134,39 +106,15 @@
 }
 
 .why-pointechs>main+section>main>p {
-    /*
-    text-align: left;
-    font-family: Poppins;
-    font-weight: 600px;
-    line-height: 1.5;
-    color: #FFFFFF;
-    font-size: 36px;
- 
-    */
     width: 42%;
     @include mixins.headlineAndParagraph(true, 30px, 600, #FFFFFF);
 }
 
 .why-pointechs>main+section>main>button {
-    /*
-    width: 165px;
-    height: 48px;
-    background: variables.$color2;
-    border-radius: 30px;
-    text-align: left;
-    font-family: Poppins;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #FFFFFF;
-    */
     @include mixins.button(#FFFFFF, variables.$color2, baseline, 1rem);
 }
 
-@media screen and (max-width:1400px) {
-    .why-pointechs>main+section {
-        margin-top: 0;
-    }
-}
+
 
 @media screen and (max-width:1199px) {
     .why-pointechs>main {
@@ -175,22 +123,30 @@
     }
 
     .why-pointechs>main>section:nth-child(1) {
-       flex-direction: column;
-       align-items: center;
+        flex-direction: column;
+        align-items: center;
     }
 
+}
 
-
-    .why-pointechs>main>section:nth-child(1)>div:nth-child(1) {
-        flex: 0 0 100%;
+@media screen and (max-width:769px) {
+    .why-pointechs>main>section>div:nth-child(2) {
+        width: 90% !important;
     }
 
     .why-pointechs>main+section>main>p {
         width: 100%;
-        text-align: center;
+        text-align: center !important;
     }
 
     .why-pointechs>main+section>main>button {
         margin: auto;
+    }
+
+}
+
+@media screen and (max-width:600px) {
+    .why-pointechs>main>section>div:nth-child(2) {
+        display: none !important;
     }
 }

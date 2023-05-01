@@ -8,14 +8,8 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-
-    // display: grid;
-    //   grid-template-columns: repeat(auto-fit,minmax(min(100%,729px),1fr));
-    ///  grid-template-columns: minmax(min(100%,789.975px),1fr) minmax(min(100%,729.225px),1fr);
     height: 650px;
-
     background: url("../assets//images/BG-en-img.webp");
-
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -33,13 +27,11 @@
 }
 
 .pointchs-home>div:nth-child(1) {
-    /*  flex: 0 0 100%;*/
     width: 91.8%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    /* position: absolute;*/
     height: 100%;
     padding: 10px;
     margin: auto;
@@ -47,16 +39,9 @@
 
 }
 
-/*
-.pointechs-home-ar>div:nth-child(1) {
-    padding: 0 85px 0 0;
-}
-*/
+
 .pointchs-home>div:nth-child(1)>div {
-    /*
-    width: 43%;
-    height: 50%;
-    */
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -104,17 +89,7 @@
 }
 
 .btn-get-started-now {
-    /*
-    width: 180px;
-    height: 59px;
-    background: variables.$color1;
-    border-radius: 30px;
-    align-self: baseline;
-    text-align: left;
-    font-family: Poppins;
-    font-size: 18px;
-    color: variables.$color2;
-    */
+
     @include mixins.button(variables.$color2, variables.$color1, baseline, 18px)
 }
 

@@ -82,7 +82,7 @@ function Welcome(props) {
           </div>
           <div
             className={WelcomeStyles["welcom-pointechs"]}
-            style={{ direction: locale == "en" ? "ltr" : "rtl" }}
+            style={{ direction: locale == "en" ? "ltr" : "rtl"}}
           >
             <section>
               <span></span>

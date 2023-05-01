@@ -1,6 +1,7 @@
 @use "partial/variables";
 @use "partial/mixins";
 @use "partial/classes" as *;
+
 .pointechs-contactus {
     width: 100%;
     background-color: #FFFFFF !important;
@@ -8,27 +9,23 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-   
+
 }
 
 .pointechs-contactus>main {
-    width: 95.3%;   
+    width: 95.3%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     position: relative;
-   /* padding: 10px;*/
 
-  
-   
-   
 }
 
 .pointechs-contactus>main>section {
     flex: 0 0 45%;
-    width:50%;
+    width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -37,15 +34,17 @@
     align-items: flex-start;
     gap: 10px;
     position: absolute;
-    top:0;
-    left:50%;
+    top: 0;
+    left: 50%;
 }
-.pointechs-contactus>main>section:nth-child(1){
+
+.pointechs-contactus>main>section:nth-child(1) {
     position: relative;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     margin: 45px 0 45px 0;
 }
+
 .contact-us-header {
     width: 100%;
     display: flex;
@@ -65,35 +64,17 @@
 }
 
 .contact-us-header>section>span {
-    /*
-    width: 8px;
-    height: 52px;
-    background: transparent linear-gradient(9deg, variables.$color1 0%, variables.$color1 51%, #E23D43 100%) 0% 0% no-repeat padding-box;
-    border-radius: 8px;
-    */
+
     @extend %headerSide;
 }
 
 .contact-us-header>section>h1 {
-    /*
-    text-align: left;
-    line-height: 1.5;
-    font-family: Poppins;
-    font-weight: 600;
-    color: variables.$color2;
-    */
-    @include mixins.headlineAndParagraph(false,1rem,600,variables.$color2);
+    @include mixins.headlineAndParagraph(false, 1rem, 600, variables.$color2);
 }
 
 .contact-us-header>section>p {
-    /*
-    text-align: left;
-    font-family: Poppins;
-    line-height: 1.5;
-    font-size: 20px;
-    color: #5E5E5E;
-    */
-    @include mixins.headlineAndParagraph(true,20px,normal,#5E5E5E);
+
+    @include mixins.headlineAndParagraph(true, 20px, normal, #5E5E5E);
 }
 
 .contactus-form {
@@ -115,53 +96,38 @@
     align-items: flex-start;
     gap: 10px;
 }
-.contactus-form > div:last-of-type{
+
+.contactus-form>div:last-of-type {
     margin-top: 10px
 }
+
 .contactus-form>div>label {
-    /*
-    text-align: left;
-    font-family: Poppins;
-    font-size: 1rem;
-    color: #5E5E5E80;
-    */
-    @include mixins.headlineAndParagraph(true,1rem,normal,#5E5E5E80);
+
+    @include mixins.headlineAndParagraph(true, 1rem, normal, #5E5E5E80);
     order: 1;
 }
 
-.contactus-form>div>input ,.contactus-form>div>textarea  {
+.contactus-form>div>input,
+.contactus-form>div>textarea {
     width: 90%;
     padding: 5px;
     outline: none;
     border: none;
     border-bottom: 1px solid #5E5E5E80;
     order: 2;
-    &:focus{
+
+    &:focus {
         border-bottom: 1px solid variables.$color1;
     }
-    &:focus + label{
+
+    &:focus+label {
         color: variables.$color1;
     }
 }
 
 
 .contactus-form>div:last-of-type>button {
-    /*
-    width: 165px;
-    height: 48px;
-    background: variables.$color1;
-    border-radius: 30px;
-    text-align: left;
-    font-family: Poppins;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #FFFFFF;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
-    */
-    @include mixins.button(#FFFFFF,variables.$color1,baseline,1rem);
+    @include mixins.button(#FFFFFF, variables.$color1, baseline, 1rem);
 }
 
 .pointechs-contactus>main>section:nth-child(2) {
@@ -176,27 +142,31 @@
     object-fit: cover;
     object-position: 50% 50%;
 }
-.input-is-invalid{
-    border-bottom:1px solid  #f6003c !important;
-   
+
+.input-is-invalid {
+    border-bottom: 1px solid #f6003c !important;
+
 }
-@media screen  and (max-width:1199px){
-    
-    .pointechs-contactus > main{
+
+@media screen and (max-width:1199px) {
+
+    .pointechs-contactus>main {
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
-        /*padding-top: 20px;*/
     }
-    .pointechs-contactus > main{
+
+    .pointechs-contactus>main {
         width: 93%;
         gap: 20px;
     }
-    .pointechs-contactus > main > section{
+
+    .pointechs-contactus>main>section {
         width: 100%;
     }
-    .pointechs-contactus > main > section:nth-child(2){
+
+    .pointechs-contactus>main>section:nth-child(2) {
         display: none;
     }
-    
+
 }

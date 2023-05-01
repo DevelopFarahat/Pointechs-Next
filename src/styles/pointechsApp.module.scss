@@ -1,19 +1,19 @@
 @use "partial/variables";
 @use "partial/classes" as *;
-@use "partial/mixins" ;
+@use "partial/mixins";
+
 .pointechs-app {
     width: 100%;
-  /*  padding: 20px;*/
     background-color: #F9F6F6;
-    margin-top: -50px;
+    margin-top: -49px;
 }
 
 .pointechs-app>main {
     width: 91.8%;
-    margin: auto;
+    margin: 30px auto 30px auto;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
     padding: 10px;
@@ -21,22 +21,26 @@
 
 }
 
-.pointechs-app>main>div {
+.pointechs-app>main>section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+.pointechs-app>main>section>div {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
     flex: 1 0 50%;
-    
 }
 
-.pointechs-app>main>div:nth-child(1) {
-    flex: 1 0 42%;
-    gap: 20px;
-}
-
-.pointechs-app>main>div:nth-child(1)>section {
+.pointechs-app>main>section>div:nth-child(1)>section {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -46,51 +50,50 @@
     gap: 20px;
 }
 
-.pointechs-app>main>div:nth-child(1)>section:nth-child(1)>span {
-    /*
-    width: 8px;
-    height: 52px;
-    background: transparent linear-gradient(9deg, variables.$color1 0%, variables.$color1 51%, #E23D43 100%) 0% 0% no-repeat padding-box;
-    border-radius: 8px;
-    */
+.pointechs-app>main>section>div:nth-child(1)>section:nth-child(1)>span {
+
     @extend %headerSide;
 }
 
-.pointechs-app>main>div:nth-child(1)>section:nth-child(1)>h1 {
-    /*
-    text-align: left;
-    font-family: Poppins;
-    font-weight: 600;
-    letter-spacing: 0px;
-    color: variables.$color2;
-    */
-    @include mixins.headlineAndParagraph(false,1rem,600,variables.$color2);
+.pointechs-app>main>section>div:nth-child(1)>section:nth-child(1)>h1 {
+
+    @include mixins.headlineAndParagraph(false, 1rem, 600, variables.$color2);
 }
 
-.pointechs-app>main>div:nth-child(1)>section:nth-child(2) {
+.pointechs-app>main>section>div:nth-child(1)>section:nth-child(2) {
     flex-direction: column;
     gap: 0;
 }
 
-.pointechs-app>main>div:nth-child(1)>section:nth-child(2)>p,
-.pointechs-app>main>div:nth-child(1)>section:nth-child(2)>span {
-    /*
-    text-align: left;
-    font-family: Poppins;
-    line-height: 1.5;
-    color: #5E5E5E;
-    font-size: 20px;
-    */
-    @include mixins.headlineAndParagraph(true,20px,normal,#5E5E5E);
+.pointechs-app>main>section>div:nth-child(1)>section:nth-child(2)>p {
+    @include mixins.headlineAndParagraph(true, 20px, normal, #5E5E5E);
 }
 
-.pointechs-app>main>div:nth-child(1)>section:nth-child(3) {
-    justify-content: flex-start;
+.pointechs-app>main>section+div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     gap: 30px;
 }
 
+.pointechs-app>main>section+div>span {
+    @include mixins.headlineAndParagraph(true, 20px, normal, #5E5E5E);
+    padding-left: 5px;
+}
+
+.pointechs-app>main>section+div>section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 25px
+}
+
 .link-btn {
-    @include mixins.button(#FFFFFF,#082E3A,'center',1rem);
+    @include mixins.button(#FFFFFF, #082E3A, 'center', 1rem);
     border-radius: 46px;
     -webkit-border-radius: 46px;
     -moz-border-radius: 46px;
@@ -100,22 +103,24 @@
     justify-content: flex-start;
     align-items: center;
     gap: 5px;
-    width: 216px;
+    
+    min-width: 216px;
     height: 65px;
-    &:hover{
-        background: none !important;
-        border:1px solid variables.$color2 !important;
+    
+    
+    &:hover {
+        border: 1px solid variables.$color2 !important;
         color: variables.$color2 !important;
         transition: all .3s ease-in-out;
         -webkit-transition: all .3s ease-in-out;
         -moz-transition: all .3s ease-in-out;
         -ms-transition: all .3s ease-in-out;
         -o-transition: all .3s ease-in-out;
-}
+    }
 
 }
-
-.link-btn >div {
+/*
+.link-btn>div {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -123,50 +128,63 @@
     width: 65%;
 }
 
-.link-btn >div>span {
-    
+.link-btn>div>span {
+
     text-align: left;
     font-size: 1rem;
     line-height: 1.5;
     font-family: Poppins;
-    
-    
+
+
 }
 
-.link-btn >div>span:nth-of-type(2) {
+.link-btn>div>span:nth-of-type(2) {
     font-size: 1.2rem;
     font-weight: 600;
 }
-
-.pointechs-app>main>div:nth-child(2)>img {
+*/
+.link-btn > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    aspect-ratio: 1/1;
+}
+.pointechs-app>main>section>div:nth-child(2)>img {
     width: 60%;
     height: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
-  
+
 }
 
-@media screen and (max-width:500px){
-    .pointechs-app>main>div{
+@media screen and (max-width:769px) {
+
+    /*
+    .pointechs-app>main>div {
         order: 1;
         align-items: center;
     }
-    .pointechs-app>main>div:nth-child(1){
+
+    .pointechs-app>main>div:nth-child(1) {
         order: 2;
     }
-    .pointechs-app > main > div:nth-child(1) > section:nth-child(3){
-        justify-content: center;
+*/
+    .pointechs-app>main>section>div:nth-child(2)>img {
+        width: 100%;
     }
-    /*
-    .pointechs-app > main{
+}
+
+
+@media screen and (max-width:660px) {
+    .pointechs-app>main>section>div:nth-child(2)>img {
+        width: 60%;
+    }
+    .pointechs-app > main > section{
         flex-direction: column;
     }
-    /*
-    .pointechs-app > main > div:nth-child(1){
-        order:2;
+    .pointechs-app>main>section+div>section{
+     flex-direction: column;
+     align-items: flex-start;
     }
-    .pointechs-app > main > div:nth-child(2){
-        order:1;
-    }
-    */
 }
