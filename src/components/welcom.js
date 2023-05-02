@@ -1,18 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState,useContext } from "react";
 import WelcomeStyles from "../styles/welocme.module.scss";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import VideoPosterImg from "../assets/images/video-poster.webp";
 import PlayvideoSvgIcon from "../assets/images/play.svg";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { GrFormClose } from "react-icons/gr";
+import UserContext from "../context/context";
+import Head from "next/head";
 
 function Welcome(props) {
   const { locale,push,query,pathname,asPath}  = useRouter();
   const { t } = useTranslation("common");
   const [modalShow, setModalShow] = useState(false);
+  const [selectedLink,setSelectedLink] = useContext(UserContext);
  const  handleplayVideo = ()=>{
   push(`/?pointechs_video=Pointechs For Business`,undefined,{shallow:true});
   setModalShow(true);
@@ -29,9 +31,23 @@ function Welcome(props) {
         setModalShow(true);
       }
     }
+    const {section} = query;
+    if(section == 'about-us'){
+      document
+      .getElementById("about-us")
+      .scrollIntoView({
+        block: "center",
+        inline: "center",
+        behavior: "smooth",
+      });
+      setSelectedLink(1);
+    }
   },[]);
   return (
     <>
+     <Head>
+    <title>{t("Pointechs")} </title>
+    </Head>
       <div className={WelcomeStyles["pointechs-welcome"]} id="about-us">
         <div style={{ direction: locale == "en" ? "ltr" : "ltr" }}>
           <div className={WelcomeStyles["pointechs-video-poster"]}>

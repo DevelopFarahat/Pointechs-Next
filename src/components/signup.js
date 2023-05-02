@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import SignupStyles from "../styles/signup.module.scss";
 import Button from "react-bootstrap/Button";
+import Head from "next/head";
 import Modal from "react-bootstrap/Modal";
 import Image from "next/image";
 import signupImg from "../assets/images/person.webp";
@@ -14,7 +15,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 function Signup(props) {
   const { t } = useTranslation("common");
-  const { locale } = useRouter();
+  const { locale,pathname,asPath,query,push } = useRouter();
   const [activeTap, setActiveTap] = useState({
     personalInfoTapVisible: true,
     accountDetailsTapVisible: false,
@@ -91,7 +92,13 @@ function Signup(props) {
         setIsRtl(false);
         else setIsRtl(true);
     })();
+    const { status } = query;
+    if (status == "signup-popup") {
+      const { setSignupModalShow } = props;
+      if (setSignupModalShow != undefined) setSignupModalShow(true);
+    }
     return () => featch = false;
+
   }, [locale]);
   const focus = (element) => {
     if (element.target.id == "password") {
@@ -270,6 +277,10 @@ function Signup(props) {
     }
   };
   const handleOnHide = () => {
+    push(`/${locale}${pathname}`, undefined, {
+      locale,
+      scroll: false,
+    }); // Use template literals to interpolate variables
     setUserData({
       fullname: "",
       email: "",
@@ -368,9 +379,56 @@ function Signup(props) {
  }),
  
   };
-
+  const navigateToTermsAndConditions = ()=>{
+    event.preventDefault();
+    push("/terms-and-conditions",undefined,{locale});
+    props.onHide(true);
+  }
   return (
-    <Modal
+<>
+<Head>
+        <title>{t("Pointechs")} </title>
+        <meta name="description" content={t("meta_description_one")} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="Mohamed Farahat " />
+        <meta name="audience" content="all" />
+        {/* <!-- Search Engine --> */}
+        <meta name="description" content={t("meta_description_one")} />
+        <meta property="og:url" content="https://pointechs.com" />
+        <meta name="image" content="android-chrome-192x192.png" />
+        {/*<!-- Schema.org for Google --> */}
+        <meta itemprop="description" content={t("meta_description_one")} />
+
+        <meta itemprop="image" content="android-chrome-192x192.png" />
+        <meta property="og:url" content="Pointechs | بوينتكس " />
+        {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
+        <meta property="og:title" content="Pointechs | بوينتكس " />
+        <meta property="og:description" content={t("meta_description_one")} />
+        <meta property="og:image" content="android-chrome-192x192.png" />
+        <meta property="og:image:width" content="300px" />
+        <meta property="og:image:height" content="300px" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Pointechs | بوينتكس " />
+        <meta property="og:url" content="Pointechs | بوينتكس " />
+        {/*<!----Twitter--> */}
+        <meta name="twitter:title" content="Pointechs | بوينتكس " />
+        <meta name="twitter:description" content={t("meta_description_one")} />
+        <meta name="twitter:image" content="android-chrome-192x192.png" />
+        <meta name="twitter:url" content="Pointechs | بوينتكس " />
+
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content={t("meta_description_one")} />
+        <meta
+          name="keywords"
+          content="pointechs, loyalty cards, digital loyalty cards,points,stamps,discount,coupons,Promotional Offers,Tiers program,Customer analytics,Business information,Customer Feedback,revenue ,merchants ,customers,business,sales,merchant,benefits,rewards,بوينتكس,نقاط,مكافات,ادارة الولاء,عملاء,تجار,ارباح,فوائد,تتبع النقاط,بطاقات الولاء الرقمية,;,كوبونات الخصم,العروض الترويجية,تحليلات العملاء"
+        />
+        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+      </Head>
+<Modal
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
@@ -744,7 +802,7 @@ function Signup(props) {
 
                   <label htmlFor="termsOfServiceStatus" style={{textAlign:locale == 'en'?'left':'right'}}>
                     {t("By confirming your data, you agree to")}{" "}
-                    <span>{t("our terms of service")}</span>
+                    <Link onClick={navigateToTermsAndConditions} href={"#"}>{t("our terms of service")}</Link>
                   </label>
                 </div>
               </div>
@@ -765,6 +823,7 @@ function Signup(props) {
         </section>
       </Modal.Body>
     </Modal>
+</>
   );
 }
 

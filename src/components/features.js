@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
+import Head from "next/head";
 import FeaturesStyles from "../styles/features.module.scss";
 import Image from "next/image";
 import { TiUser } from "react-icons/ti";
@@ -6,14 +7,15 @@ import { motion } from "framer-motion";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Modal from "react-bootstrap/Modal";
-import { GrFormClose } from "react-icons/gr";
-import { FaDotCircle } from "react-icons/fa";
 import FeatureSVG from "../assets/images/feature.svg";
+import UserContext from "../context/context";
+import dynamic from "next/dynamic";
+import Feature from "../components/feature";
 function Features() {
   const { t } = useTranslation("common");
   const router = useRouter();
   const { locale, query, push, pathname, asPath } = router;
+  const [selectedLink,setSelectedLink]  = useContext(UserContext);
   const [modalShow, setModalShow] = useState(false);
   const [featureModalReadmoreData, setFeatureModalReadmoreData] = useState({});
   const featuresArr = [
@@ -99,15 +101,61 @@ function Features() {
   useEffect(() => {
     //const {feature} = query;
 
-    if (Object.keys(query).length) {
-      if (Object.keys(query)[0] == "feature") {
-        setModalShow(true);
-        const { id } = query;
-        setFeatureModalReadmoreData(featuresArr[Number(id)]);
-      }
+
+    const { section } = query;
+    if (section == "our-features") {
+      document.getElementById("our-features").scrollIntoView({
+        block: "center",
+        inline: "center",
+        behavior: "smooth",
+      });
+      setSelectedLink(2)
     }
   }, []);
   return (
+ <>
+       <Head>
+        <title>{t("Pointechs")} </title>
+        <meta name="description" content={t("meta_description_one")} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="Mohamed Farahat " />
+        <meta name="audience" content="all" />
+        {/* <!-- Search Engine --> */}
+        <meta name="description" content={t("meta_description_one")} />
+        <meta property="og:url" content="https://pointechs.com" />
+        <meta name="image" content="android-chrome-192x192.png" />
+        {/*<!-- Schema.org for Google --> */}
+        <meta itemprop="description" content={t("meta_description_one")} />
+
+        <meta itemprop="image" content="android-chrome-192x192.png" />
+        <meta property="og:url" content="Pointechs | بوينتكس " />
+        {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
+        <meta property="og:title" content="Pointechs | بوينتكس " />
+        <meta property="og:description" content={t("meta_description_one")} />
+        <meta property="og:image" content="android-chrome-192x192.png" />
+        <meta property="og:image:width" content="300px" />
+        <meta property="og:image:height" content="300px" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Pointechs | بوينتكس " />
+        <meta property="og:url" content="Pointechs | بوينتكس " />
+        {/*<!----Twitter--> */}
+        <meta name="twitter:title" content="Pointechs | بوينتكس " />
+        <meta name="twitter:description" content={t("meta_description_one")} />
+        <meta name="twitter:image" content="android-chrome-192x192.png" />
+        <meta name="twitter:url" content="Pointechs | بوينتكس " />
+
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content={t("meta_description_one")} />
+        <meta
+          name="keywords"
+          content="pointechs, loyalty cards, digital loyalty cards,points,stamps,discount,coupons,Promotional Offers,Tiers program,Customer analytics,Business information,Customer Feedback,revenue ,merchants ,customers,business,sales,merchant,benefits,rewards,بوينتكس,نقاط,مكافات,ادارة الولاء,عملاء,تجار,ارباح,فوائد,تتبع النقاط,بطاقات الولاء الرقمية,;,كوبونات الخصم,العروض الترويجية,تحليلات العملاء"
+        />
+        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+      </Head>
     <div className={FeaturesStyles["features"]} id="our-features">
       <div>
         <section>
@@ -150,41 +198,9 @@ function Features() {
           ))}
         </section>
       </div>
-      <Modal
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        show={modalShow}
-        onHide={handleCloseReadmoreModal}
-        style={{direction:locale == 'en'?'ltr':'rtl'}}
-      >
-        <Modal.Body className={FeaturesStyles["feature-readmore-modal"]}>
-          <section className={FeaturesStyles["feature-modal-header"]} style={{direction:'ltr'}}>
-            <span onClick={handleCloseReadmoreModal}>
-              <GrFormClose style={{ color: "#27323C", fontSize: "25px" }} />
-            </span>
-          </section>
-
-          <section>
-            <div>
-              <div className={FeaturesStyles["feature-icon-container"]}>
-                <Image src={FeatureSVG} alt="feature" />
-              </div>
-              <h2>{featureModalReadmoreData.title}</h2>
-            </div>
-
-            <ul>
-              {featureModalReadmoreData.moreDetails?.map((details, index) => (
-                <li key={index}>
-                  <FaDotCircle style={{flex:'0 0 5%'}} size={"25"}/>
-                  <p style={{textAlign:locale == 'en'?'left':'right'}}>{details}</p>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </Modal.Body>
-      </Modal>
+     <Feature modalShow={modalShow} setModalShow={setModalShow} featuresArr={featuresArr} setFeatureModalReadmoreData={setFeatureModalReadmoreData} handleCloseReadmoreModal={handleCloseReadmoreModal} featureModalReadmoreData={featureModalReadmoreData}/>
     </div>
+ </>
   );
 }
 

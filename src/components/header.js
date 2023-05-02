@@ -1,22 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Image from "next/image";
 import Logo from "../assets/images/logo.webp";
 import NavbarStyles from "../styles/navbar.module.scss";
-const DynamicSignup = dynamic(() => import("./signup"), { ssr: false });
-const DynamicLogin = dynamic(() => import("./login"), { ssr: false });
 import dynamic from "next/dynamic";
+const DynamicSignup = dynamic(() => import("./signup"), { ssr: true });
+const DynamicLogin = dynamic(() => import("./login"), { ssr: true });
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
+import UserContext from "../context/context";
 function Header() {
   const { t } = useTranslation("common");
   const router = useRouter();
   let { locale, locales, push, query, asPath, pathname } = router;
   const [lang, setLang] = useState("en");
-  const [selectedLink, setSelectedLink] = useState(0);
+  const [selectedLink, setSelectedLink] = useContext(UserContext);
   const [signupModalShow, setSignupModalShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false); // initial state is expanded
@@ -42,36 +43,58 @@ function Header() {
     { id: 5, href: "#contact-us", data: t("Contact us") },
   ];
   const handleSelectLink = (event) => {
-    
     event.preventDefault();
     setSelectedLink(event.currentTarget.id);
-    if(pathname == "/"){
-      document
-      .getElementById(event.currentTarget.getAttribute("href").substring(1))
-      .scrollIntoView({
-        block: "center",
-        inline: "center",
-        behavior: "smooth",
-      });
-    push(
-      `/?section=${event.currentTarget.getAttribute("href").substring(1)}`,
-      undefined,
-      { shallow: true }
-    );
-    }
+    if(pathname == "/" ){
+      push(
+        `/?section=${event.currentTarget.getAttribute("href").substring(1)}`,
+        undefined,
+        { shallow: true }
     
+      );
+    }else{
+      if(event.currentTarget.id == 5){
+        push(
+          `${pathname}/?section=${event.currentTarget.getAttribute("href").substring(1)}`,
+          undefined,
+          { shallow: true }
+      
+        );
+      }else{
+        push(
+          `/?section=${event.currentTarget.getAttribute("href").substring(1)}`,
+          undefined,
+          { shallow: true }
+      
+        );
+      }
+   
+    }
 
+    if (
+      document.getElementById(
+        event.currentTarget.getAttribute("href").substring(1)
+      ) != null
+    ) {
+      document
+        .getElementById(event.currentTarget.getAttribute("href").substring(1))
+        .scrollIntoView({
+          block: "center",
+          inline: "center",
+          behavior: "smooth",
+        });
+    }
+
+    // }
   };
+
   const handleOnToogleStyles = (isNavbarExpanded) => {
     if (isNavbarExpanded) {
       navbarRef.current.classList.add(NavbarStyles["drop-shadow"]);
-      
     } else {
       navbarRef.current.classList.remove(NavbarStyles["drop-shadow"]);
     }
-   
   };
- 
 
   const toggleLang = (event) => {
     //event.stopPropagation();
@@ -84,20 +107,27 @@ function Header() {
     handleToggle();
   };
   const handleToggle = () => {
-    if(window.innerWidth <=1200)
-    setIsExpanded(!isExpanded); // toggle the state variable
+    if (window.innerWidth <= 1200) setIsExpanded(!isExpanded); // toggle the state variable
   };
 
-  const handleModalVisibility = (event)=>{
-    if(event.target.id == 'login-btn'){
+  const handleModalVisibility = (event) => {
+    if (event.target.id == "login-btn") {
       setLoginModalShow(true);
-      
-    }else{
+      router.push({ pathname, query: { status: "login-popup" } }, undefined, {
+        locale,
+        scroll: false,
+        shallow: true,
+      });
+    } else {
       setSignupModalShow(true);
-      
+      router.push({ pathname, query: { status: "signup-popup" } }, undefined, {
+        locale,
+        scroll: false,
+        shallow: true,
+      });
     }
     handleToggle();
-  }
+  };
   return (
     <>
       <Navbar
@@ -148,7 +178,6 @@ function Header() {
               <button
                 type="button"
                 className={` btn ${NavbarStyles["btn-lang"]} `}
-           
                 onClick={toggleLang}
               >
                 <span>{lang == "en" ? "العربية" : "En"}</span>
@@ -175,11 +204,13 @@ function Header() {
       </Navbar>
       <DynamicSignup
         show={signupModalShow}
+        setSignupModalShow={setSignupModalShow}
         setLoginModalShow={setLoginModalShow}
         onHide={() => setSignupModalShow(false)}
       />
       <DynamicLogin
         show={loginModalShow}
+        setLoginModalShow={setLoginModalShow}
         setSignupModalShow={setSignupModalShow}
         onHide={() => setLoginModalShow(false)}
       />

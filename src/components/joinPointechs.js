@@ -9,9 +9,20 @@ const DynamicLogin = dynamic(()=>import("./login"),{ssr:false});
 import dynamic from "next/dynamic";
 function JoinPointechs() {
   const {t} = useTranslation('common');
-  const {locale} = useRouter();
+  const {locale,query,pathname,push} = useRouter();
   const [signupModalShow, setSignupModalShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
+  const handleModalVisibility = (event) => {
+
+    setSignupModalShow(true);
+    push({ pathname, query: { status: "signup-popup" } }, undefined, {
+      locale,
+      scroll: false,
+      shallow: true,
+    });
+  
+
+};
   return (
       <>
           <div className={JoinPointechsStyles["join-section"]} style={{direction:locale=='en'?'ltr':'rtl'}}>
@@ -21,12 +32,12 @@ function JoinPointechs() {
         </p>
         <button type="button" className={"btn"}
          style={{direction:locale == 'en'?'ltr':'ltr'}}
-         onClick={ ()=>setSignupModalShow(true)}
+         onClick={handleModalVisibility}
 
          >
          
           {t("Get Started Now")}{" "}
-          <RiArrowDropRightLine style={{ verticalAlign:locale == 'en'?"text-bottom":"text-top" }} />
+          <RiArrowDropRightLine style={{ verticalAlign:"text-bottom" }} />
         </button>
       </div>
     </div>

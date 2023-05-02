@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext,useEffect} from "react";
 import HowPointechsStyles from "../styles/howPointehcsWorks.module.scss";
 import Image from "next/image";
 import HowPointechsWorksImg from "../assets/images/how-pointechs-works.webp";
@@ -9,9 +9,11 @@ import HowitWorksSVG_4 from "../assets/images/how-04.svg";
 import HowitWorksSVG_5 from "../assets/images/how-05.svg";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import UserContext from "../context/context";
 function HowPointechsWorks() {
   const { t } = useTranslation("common");
-  const { locale } = useRouter();
+  const { locale,query } = useRouter();
+  const [selectedLink,setSelectedLink] = useContext(UserContext);
   const howPointechsWorksStepsArr = [
     {
       id: 0,
@@ -39,6 +41,19 @@ function HowPointechsWorks() {
       step: t("how-pointechs-works-p5"),
     },
   ];
+  useEffect(()=>{
+    const {section} = query;
+    if(section == 'how-it-works'){
+      document
+      .getElementById("how-it-works")
+      .scrollIntoView({
+        block: "center",
+        inline: "center",
+        behavior: "smooth",
+      });
+      setSelectedLink(4);
+    }
+  },[])
   return (
     <div className={HowPointechsStyles["how-pointechs-works"]} id="how-it-works">
       <main>

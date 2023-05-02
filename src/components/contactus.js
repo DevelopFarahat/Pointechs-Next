@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext,useEffect } from "react";
 import ContactusStyles from "../styles/contactus.module.scss";
 import Image from "next/image";
 import ContactusImg from "../assets/images/contact-us.webp";
@@ -6,9 +6,12 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 import { useTranslation } from 'next-i18next'
 import { useRouter } from "next/router";
 import {motion} from "framer-motion";
+import UserContext from "../context/context";
+import Head from "next/head";
 function Contactus() {
   const {t} = useTranslation('common');
-  const {locale} = useRouter();
+  const {locale,query} = useRouter();
+  const [selectedLink,setSelectedLink] = useContext(UserContext);
   const [contactusInfo,setContactusInfo] = useState({
     fullname:"",
     email:"",
@@ -69,8 +72,64 @@ function Contactus() {
     
     console.log(contactusInfo)
   }
+  useEffect(()=>{
+    const {section} = query;
+    if(section == 'contact-us'){
+      document
+      .getElementById("contact-us")
+      .scrollIntoView({
+        block: "center",
+        inline: "center",
+        behavior: "smooth",
+      });
+      setSelectedLink(5);
+    }
+  },[])
   return (
-    <div className={ContactusStyles["pointechs-contactus"]} id="contact-us" style={{direction:locale=='en'?'ltr':'rtl'}}>
+    <>
+          <Head>
+        <title>{t("Pointechs")}</title>
+        <meta name="description" content={t("meta_description_one")} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="Mohamed Farahat " />
+        <meta name="audience" content="all" />
+        {/* <!-- Search Engine --> */}
+        <meta name="description" content={t("meta_description_one")} />
+        <meta property="og:url" content="https://pointechs.com" />
+        <meta name="image" content="android-chrome-192x192.png" />
+        {/*<!-- Schema.org for Google --> */}
+        <meta itemprop="description" content={t("meta_description_one")} />
+
+        <meta itemprop="image" content="android-chrome-192x192.png" />
+        <meta property="og:url" content="Pointechs | بوينتكس " />
+        {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
+        <meta property="og:title" content="Pointechs | بوينتكس " />
+        <meta property="og:description" content={t("meta_description_one")} />
+        <meta property="og:image" content="android-chrome-192x192.png" />
+        <meta property="og:image:width" content="300px" />
+        <meta property="og:image:height" content="300px" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Pointechs | بوينتكس " />
+        <meta property="og:url" content="Pointechs | بوينتكس " />
+        {/*<!----Twitter--> */}
+        <meta name="twitter:title" content="Pointechs | بوينتكس " />
+        <meta name="twitter:description" content={t("meta_description_one")} />
+        <meta name="twitter:image" content="android-chrome-192x192.png" />
+        <meta name="twitter:url" content="Pointechs | بوينتكس " />
+
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content={t("meta_description_one")} />
+        <meta
+          name="keywords"
+          content="pointechs, loyalty cards, digital loyalty cards,points,stamps,discount,coupons,Promotional Offers,Tiers program,Customer analytics,Business information,Customer Feedback,revenue ,merchants ,customers,business,sales,merchant,benefits,rewards,بوينتكس,نقاط,مكافات,ادارة الولاء,عملاء,تجار,ارباح,فوائد,تتبع النقاط,بطاقات الولاء الرقمية,;,كوبونات الخصم,العروض الترويجية,تحليلات العملاء"
+        />
+        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+      </Head>
+      <div className={ContactusStyles["pointechs-contactus"]} id="contact-us" style={{direction:locale=='en'?'ltr':'rtl'}}>
       <main >
         <section>
           <div className={ContactusStyles['contact-us-header']}>
@@ -104,7 +163,7 @@ function Contactus() {
               
               >
               {t("Send Message")}{" "}
-              <RiArrowDropRightLine style={{ verticalAlign:locale == 'en'?"text-bottom":"text-top" }} />
+              <RiArrowDropRightLine  style={{ verticalAlign:"text-bottom" }}/>
             </button>
             </div>
         
@@ -115,6 +174,8 @@ function Contactus() {
         </section>
       </main>
     </div>
+    </>
+
   );
 }
 

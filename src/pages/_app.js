@@ -7,16 +7,19 @@ import Contactus from "@/components/contactus";
 import 'bootstrap/scss/bootstrap.scss'
 import { appWithTranslation } from 'next-i18next'
 import * as serviceWorkerRegistration from '../serviceWorkerRegistration';
+import {ContextProvider} from "@/context/context";
 
 const   App = ({ Component, pageProps })=> {
   return (
     <>
-      <Header />
+     <ContextProvider>
+     <Header />
       <Component {...pageProps} />
       <JoinPointechs />
       <Contactus />
       <Footer />
       <FooterTwo />
+     </ContextProvider>
     </>
   );
  

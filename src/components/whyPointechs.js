@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useContext,useEffect} from "react";
 import whyPointehsStyles from "../styles/whyPointechs.module.scss";
 import Image from "next/image";
 import whyPointechsImg from "../assets/images/why-pointechs.webp";
@@ -9,11 +9,37 @@ import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 const DynamicSignup = dynamic(()=>import('./signup'),{ssr:false});
 const DynamicLogin = dynamic(()=>import("./login"),{ssr:false});
+import UserContext from "../context/context";
 function WhyPointechs() {
   const {t} = useTranslation('common');
-  const { locale } = useRouter();
+  const { locale,query,push,pathname} = useRouter();
   const [signupModalShow, setSignupModalShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
+  const [selectedLink,setSelectedLink] = useContext(UserContext);
+  useEffect(()=>{
+    const {section} = query;
+    if(section == 'why-us'){
+      document
+      .getElementById("why-us")
+      .scrollIntoView({
+        block: "center",
+        inline: "center",
+        behavior: "smooth",
+      });
+      setSelectedLink(3);
+    }
+  },[])
+  const handleModalVisibility = (event) => {
+
+    setSignupModalShow(true);
+    push({ pathname, query: { status: "signup-popup" } }, undefined, {
+      locale,
+      scroll: false,
+      shallow: true,
+    });
+  
+
+};
   return (
     <>
     <div className={whyPointehsStyles["why-pointechs"]} id="why-us">
@@ -45,9 +71,9 @@ function WhyPointechs() {
         <p style={{textAlign:locale == 'en'?'left':'right'}}>
           {t("join_p1")}
         </p>
-        <button type="button" className={`btn`}  style={{direction:locale == 'en'?'ltr':'ltr'}}  onClick={ ()=>setSignupModalShow(true)}>
+        <button type="button" className={`btn`}  style={{direction:locale == 'en'?'ltr':'ltr'}}  onClick={handleModalVisibility}>
         {t("Get Started Now")} {" "}
-          <RiArrowDropRightLine style={{ verticalAlign:locale == 'en'?"text-bottom":"text-top" }} />
+          <RiArrowDropRightLine  style={{ verticalAlign:"text-bottom" }}/>
         </button>
         </main>
       </section>

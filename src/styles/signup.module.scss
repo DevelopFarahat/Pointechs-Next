@@ -185,7 +185,7 @@
     flex: 0 0 90%;
     @include headlineAndParagraph(true,12px,normal,#5E5E5E80);
 }
-.account-details > div:last-of-type > label > span{
+.account-details > div:last-of-type > label > a{
     @include headlineAndParagraph(true,12px,normal,#27323C);
 }
 .pass-section > div{

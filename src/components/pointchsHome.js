@@ -1,6 +1,7 @@
-import React,{useState} from "react";
+import React,{useContext, useEffect, useState} from "react";
 import PointchsHomeStyles from "../styles/pointchsHome.module.scss";
 import Image from "next/image";
+
 import { RiArrowDropRightLine } from "react-icons/ri";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -8,13 +9,44 @@ import { motion } from "framer-motion";
 const DynamicSignup = dynamic(()=>import('./signup'),{ssr:false});
 const DynamicLogin = dynamic(()=>import("./login"),{ssr:false});
 import dynamic from "next/dynamic";
+import UserContext from "../context/context";
+import Head from "next/head";
 function PointchsHome() {
   const { t } = useTranslation("common");
-  const { locale } = useRouter();
+  const { locale,query,push,pathname } = useRouter();
   const [signupModalShow, setSignupModalShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
+  const [selectedLink,setSelectedLink] = useContext(UserContext);
+
+  useEffect(()=>{
+    const {section} = query;
+    if(section == 'home'){
+      document
+      .getElementById("home")
+      .scrollIntoView({
+        block: "center",
+        inline: "center",
+        behavior: "smooth",
+      });
+      setSelectedLink(0);
+    }
+  },[])
+  const handleModalVisibility = (event) => {
+
+      setSignupModalShow(true);
+      push({ pathname, query: { status: "signup-popup" } }, undefined, {
+        locale,
+        scroll: false,
+        shallow: true,
+      });
+    
+
+  };
   return (
     <>
+    <Head>
+    <title>{t("Pointechs")} </title>
+    </Head>
         <div
       className={`${PointchsHomeStyles["pointchs-home"]} ${
         locale == "ar" ? PointchsHomeStyles["pointechs-home-ar"] : ""
@@ -43,10 +75,10 @@ function PointchsHome() {
             type="button"
             className={`btn ${PointchsHomeStyles["btn-get-started-now"]}`}
             style={{direction:locale == 'en'?'ltr':'ltr'}}
-            onClick={ ()=>setSignupModalShow(true)}
+            onClick={handleModalVisibility}
           >
             {t("Get Started Now")}{" "}
-            <RiArrowDropRightLine style={{ verticalAlign:locale == 'en'?"text-bottom":"text-top" }} />
+            <RiArrowDropRightLine  style={{ verticalAlign:"text-bottom" }}/>
           </button>
           </div>
         </div>
