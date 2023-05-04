@@ -44,9 +44,6 @@ function PointchsHome() {
   };
   return (
     <>
-    <Head>
-    <title>{t("Pointechs")} </title>
-    </Head>
         <div
       className={`${PointchsHomeStyles["pointchs-home"]} ${
         locale == "ar" ? PointchsHomeStyles["pointechs-home-ar"] : ""

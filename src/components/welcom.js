@@ -45,9 +45,6 @@ function Welcome(props) {
   },[]);
   return (
     <>
-     <Head>
-    <title>{t("Pointechs")} </title>
-    </Head>
       <div className={WelcomeStyles["pointechs-welcome"]} id="about-us">
         <div style={{ direction: locale == "en" ? "ltr" : "ltr" }}>
           <div className={WelcomeStyles["pointechs-video-poster"]}>

@@ -20,10 +20,10 @@ function TermsAndConditions() {
   return (
     <>
       <Head>
-        <NextSeo title={`${t("Pointechs")}`}/>
+        <title>{t("Pointechs")} | {t("Terms and Conditions")}</title>
         <meta name="description" content={t("meta_description_one")} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="favicon.ico" />
+        <link rel="icon" href="favicon.ico"/>
         <link rel="manifest" href="/manifest.json" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="Mohamed Farahat " />
@@ -36,7 +36,7 @@ function TermsAndConditions() {
         <meta itemprop="description" content={t("meta_description_one")} />
 
         <meta itemprop="image" content="android-chrome-192x192.png" />
-        <meta property="og:url" content="Pointechs | بوينتكس " />
+        <meta property="og:url" content="https://pointechs.com" />
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
         <meta property="og:title" content="Pointechs | بوينتكس " />
         <meta property="og:description" content={t("meta_description_one")} />
@@ -46,12 +46,12 @@ function TermsAndConditions() {
 
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Pointechs | بوينتكس " />
-        <meta property="og:url" content="Pointechs | بوينتكس " />
+        <meta property="og:url" content="https://pointechs.com" />
         {/*<!----Twitter--> */}
         <meta name="twitter:title" content="Pointechs | بوينتكس " />
         <meta name="twitter:description" content={t("meta_description_one")} />
         <meta name="twitter:image" content="android-chrome-192x192.png" />
-        <meta name="twitter:url" content="Pointechs | بوينتكس " />
+        <meta name="twitter:url" content="https://pointechs.com" />
 
         <meta name="theme-color" content="#000000" />
         <meta name="description" content={t("meta_description_one")} />
