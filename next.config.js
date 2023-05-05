@@ -9,10 +9,12 @@ const nextConfig = {
   i18n,
   outputFileTracing: true,
   pwa: {
-    dest: "public",
-    register: true,
-    skipWaiting: true,
-  },
+		dest: "public",
+		register: true,
+		skipWaiting: true,
+		runtimeCaching,
+		buildExcludes: [/middleware-manifest.json$/]
+	}
 
 }
 
