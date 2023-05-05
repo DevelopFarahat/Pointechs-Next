@@ -11,7 +11,8 @@ const nextConfig = {
     dest:'public',
     register:true,
     skipWaiting:true,
-    scope:"/",
+    runtimeCaching,
+		buildExcludes: [/middleware-manifest.json$/],
     disable: process.env.NODE_ENV === 'development',
   }
 
