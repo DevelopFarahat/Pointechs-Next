@@ -16,7 +16,9 @@ export default function Home() {
 
   return (
     <>
-
+    <Head>
+    <title>{t("Pointechs")}</title>
+    </Head>
       <div
         className="app"
         style={{ direction: locale == "en" ? "ltr" : "rtl" }}
