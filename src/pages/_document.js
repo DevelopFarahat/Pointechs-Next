@@ -11,6 +11,7 @@ export default function Document() {
           <link rel="apple-touch-icon" href="/favicon-16x16.png"/>
           <meta name="theme-color" content="#fff" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="apple-touch-icon" href="apple-touch-icon.png" />
       </Head>
       <body>
         <Main />
