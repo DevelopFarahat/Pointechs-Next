@@ -8,7 +8,8 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import FeatureSVG from "../assets/images/feature.svg";
-import UserContext from "../context/context";
+import {UserContext} from "../context/context";
+import { MetaContext } from "../context/context";
 import dynamic from "next/dynamic";
 import Feature from "../components/feature";
 function Features() {
@@ -16,6 +17,7 @@ function Features() {
   const router = useRouter();
   const { locale, query, push, pathname, asPath } = router;
   const [selectedLink,setSelectedLink]  = useContext(UserContext);
+  const [metaObji,setMetaObji] = useContext(MetaContext);
   const [modalShow, setModalShow] = useState(false);
   const [featureModalReadmoreData, setFeatureModalReadmoreData] = useState({});
   const featuresArr = [
@@ -109,12 +111,18 @@ function Features() {
         inline: "center",
         behavior: "smooth",
       });
-      setSelectedLink(2)
+      setSelectedLink(2);
+      setMetaObji((prev)=>({
+        ...prev,
+        title:"Pointechs | our-features"
+      }))
     }
   }, []);
   return (
  <>
-
+    <Head>
+      <title>{t(metaObji.title)}</title>
+    </Head>
     <div className={FeaturesStyles["features"]} id="our-features">
       <div>
         <section>

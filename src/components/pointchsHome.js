@@ -9,7 +9,8 @@ import { motion } from "framer-motion";
 const DynamicSignup = dynamic(()=>import('./signup'),{ssr:false});
 const DynamicLogin = dynamic(()=>import("./login"),{ssr:false});
 import dynamic from "next/dynamic";
-import UserContext from "../context/context";
+import {UserContext} from "../context/context";
+import { MetaContext } from "../context/context";
 import Head from "next/head";
 function PointchsHome() {
   const { t } = useTranslation("common");
@@ -17,6 +18,7 @@ function PointchsHome() {
   const [signupModalShow, setSignupModalShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
   const [selectedLink,setSelectedLink] = useContext(UserContext);
+  const [metaObji,setMetaObji] = useContext(MetaContext);
 
   useEffect(()=>{
     const {section} = query;
@@ -29,6 +31,10 @@ function PointchsHome() {
         behavior: "smooth",
       });
       setSelectedLink(0);
+      setMetaObji((prev)=>({
+        ...prev,
+        title:"Pointechs | home"
+      }))
     }
   },[])
   const handleModalVisibility = (event) => {
@@ -44,6 +50,9 @@ function PointchsHome() {
   };
   return (
     <>
+    <Head>
+      <title>{t(metaObji.title)}</title>
+    </Head>
         <div
       className={`${PointchsHomeStyles["pointchs-home"]} ${
         locale == "ar" ? PointchsHomeStyles["pointechs-home-ar"] : ""

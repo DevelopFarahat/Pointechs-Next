@@ -6,12 +6,14 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 import { useTranslation } from 'next-i18next'
 import { useRouter } from "next/router";
 import {motion} from "framer-motion";
-import UserContext from "../context/context";
+import {UserContext} from "../context/context";
+import { MetaContext } from "../context/context";
 import Head from "next/head";
 function Contactus() {
   const {t} = useTranslation('common');
   const {locale,query} = useRouter();
   const [selectedLink,setSelectedLink] = useContext(UserContext);
+  const [metaObji,setMetaObji] = useContext(MetaContext);
   const [contactusInfo,setContactusInfo] = useState({
     fullname:"",
     email:"",
@@ -83,10 +85,17 @@ function Contactus() {
         behavior: "smooth",
       });
       setSelectedLink(5);
+      setMetaObji((prev)=>({
+        ...prev,
+        title:"Pointechs | contact-us"
+      }))
     }
   },[])
   return (
     <>
+    <Head>
+    <title>{t(metaObji.title)}</title>
+    </Head>
       <div className={ContactusStyles["pointechs-contactus"]} id="contact-us" style={{direction:locale=='en'?'ltr':'rtl'}}>
       <main >
         <section>

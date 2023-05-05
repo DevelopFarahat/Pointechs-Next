@@ -7,7 +7,8 @@ import VideoPosterImg from "../assets/images/video-poster.webp";
 import PlayvideoSvgIcon from "../assets/images/play.svg";
 import Modal from "react-bootstrap/Modal";
 import { GrFormClose } from "react-icons/gr";
-import UserContext from "../context/context";
+import {UserContext} from "../context/context";
+import { MetaContext } from "../context/context";
 import Head from "next/head";
 
 function Welcome(props) {
@@ -15,6 +16,7 @@ function Welcome(props) {
   const { t } = useTranslation("common");
   const [modalShow, setModalShow] = useState(false);
   const [selectedLink,setSelectedLink] = useContext(UserContext);
+  const [metaObji,setMetaObji] = useContext(MetaContext);
  const  handleplayVideo = ()=>{
   push(`/?pointechs_video=Pointechs For Business`,undefined,{shallow:true});
   setModalShow(true);
@@ -41,10 +43,20 @@ function Welcome(props) {
         behavior: "smooth",
       });
       setSelectedLink(1);
+      setMetaObji((previous)=>({
+        ...previous,
+        title:"Pointechs | about-us"
+  
+      }))
+     
     }
   },[]);
+
   return (
     <>
+    <Head>
+      <title>{t(metaObji.title)}</title>
+    </Head>
       <div className={WelcomeStyles["pointechs-welcome"]} id="about-us">
         <div style={{ direction: locale == "en" ? "ltr" : "ltr" }}>
           <div className={WelcomeStyles["pointechs-video-poster"]}>

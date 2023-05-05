@@ -9,11 +9,14 @@ import HowitWorksSVG_4 from "../assets/images/how-04.svg";
 import HowitWorksSVG_5 from "../assets/images/how-05.svg";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import UserContext from "../context/context";
+import {UserContext} from "../context/context";
+import { MetaContext } from "../context/context";
+import Head from "next/head";
 function HowPointechsWorks() {
   const { t } = useTranslation("common");
   const { locale,query } = useRouter();
   const [selectedLink,setSelectedLink] = useContext(UserContext);
+  const [metaObji,setMetaObji] = useContext(MetaContext);
   const howPointechsWorksStepsArr = [
     {
       id: 0,
@@ -52,10 +55,18 @@ function HowPointechsWorks() {
         behavior: "smooth",
       });
       setSelectedLink(4);
+      setMetaObji((prev)=>({
+        ...prev,
+        title:"Pointechs | how-it-works"
+      }))
     }
   },[])
   return (
-    <div className={HowPointechsStyles["how-pointechs-works"]} id="how-it-works">
+    <>
+    <Head>
+      <title>{t(metaObji.title)}</title>
+    </Head>
+        <div className={HowPointechsStyles["how-pointechs-works"]} id="how-it-works">
       <main>
         <div style={{order:locale == 'en'?2:2}}>
           <Image src={HowPointechsWorksImg} loading="lazy" alt="how-pointechs-works" />
@@ -78,6 +89,8 @@ function HowPointechsWorks() {
         </div>
       </main>
     </div>
+    </>
+
   );
 }
 

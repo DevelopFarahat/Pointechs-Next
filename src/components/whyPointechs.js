@@ -9,13 +9,16 @@ import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 const DynamicSignup = dynamic(()=>import('./signup'),{ssr:false});
 const DynamicLogin = dynamic(()=>import("./login"),{ssr:false});
-import UserContext from "../context/context";
+import {UserContext} from "../context/context";
+import { MetaContext } from "../context/context";
+import Head from "next/head";
 function WhyPointechs() {
   const {t} = useTranslation('common');
   const { locale,query,push,pathname} = useRouter();
   const [signupModalShow, setSignupModalShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
   const [selectedLink,setSelectedLink] = useContext(UserContext);
+  const [metaObji,setMetaObji] = useContext(MetaContext);
   useEffect(()=>{
     const {section} = query;
     if(section == 'why-us'){
@@ -27,6 +30,10 @@ function WhyPointechs() {
         behavior: "smooth",
       });
       setSelectedLink(3);
+      setMetaObji((prev)=>({
+        ...prev,
+        title:"Pointechs | why-us"
+      }))
     }
   },[])
   const handleModalVisibility = (event) => {
@@ -42,6 +49,9 @@ function WhyPointechs() {
 };
   return (
     <>
+    <Head>
+      <title>{t(metaObji.title)}</title>
+    </Head>
     <div className={whyPointehsStyles["why-pointechs"]} id="why-us">
       <main>
       <section>

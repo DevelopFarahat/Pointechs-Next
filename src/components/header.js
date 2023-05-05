@@ -11,13 +11,15 @@ const DynamicLogin = dynamic(() => import("./login"), { ssr: true });
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import UserContext from "../context/context";
+import {UserContext} from "../context/context";
+import { MetaContext } from "../context/context";
 function Header() {
   const { t } = useTranslation("common");
   const router = useRouter();
   let { locale, locales, push, query, asPath, pathname } = router;
   const [lang, setLang] = useState("en");
   const [selectedLink, setSelectedLink] = useContext(UserContext);
+  const [metaObji,setMetaObji] = useContext(MetaContext);
   const [signupModalShow, setSignupModalShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false); // initial state is expanded
@@ -45,6 +47,7 @@ function Header() {
   const handleSelectLink = (event) => {
     event.preventDefault();
     setSelectedLink(event.currentTarget.id);
+    const LinkHref = event.currentTarget.getAttribute("href").substring(1);
     if(pathname == "/" ){
       push(
         `/?section=${event.currentTarget.getAttribute("href").substring(1)}`,
@@ -71,21 +74,24 @@ function Header() {
    
     }
 
-    if (
-      document.getElementById(
-        event.currentTarget.getAttribute("href").substring(1)
-      ) != null
-    ) {
+    if ( LinkHref != null){
+      
+      setMetaObji((prev)=>({
+        ...prev,
+        title: "Pointechs" + " " +"|"+" "+  LinkHref 
+      }));
+      
       document
-        .getElementById(event.currentTarget.getAttribute("href").substring(1))
+        .getElementById(LinkHref)
         .scrollIntoView({
           block: "center",
           inline: "center",
           behavior: "smooth",
         });
+      
     }
 
-    // }
+    
   };
 
   const handleOnToogleStyles = (isNavbarExpanded) => {
