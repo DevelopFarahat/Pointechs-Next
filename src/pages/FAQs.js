@@ -63,7 +63,7 @@ function FAQS() {
           name="keywords"
           content="pointechs, loyalty cards, digital loyalty cards,points,stamps,discount,coupons,Promotional Offers,Tiers program,Customer analytics,Business information,Customer Feedback,revenue ,merchants ,customers,business,sales,merchant,benefits,rewards,بوينتكس,نقاط,مكافات,ادارة الولاء,عملاء,تجار,ارباح,فوائد,تتبع النقاط,بطاقات الولاء الرقمية,;,كوبونات الخصم,العروض الترويجية,تحليلات العملاء"
         />
-        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    
       </Head>
       <div className={FAQsStyles['faqs-img']} style={{direction:locale == 'en'?'ltr':'rtl'}}></div>
       <div>
