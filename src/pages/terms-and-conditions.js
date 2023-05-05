@@ -29,16 +29,16 @@ function TermsAndConditions() {
         {/* <!-- Search Engine --> */}
         <meta name="description" content={t("meta_description_one")} />
         <meta property="og:url" content="https://pointechs.com" />
-        <meta name="image" content="apple-icon-144x144.png" />
+        <meta name="image" content="android-chrome-512x512.png" />
         {/*<!-- Schema.org for Google --> */}
         <meta itemprop="description" content={t("meta_description_one")} />
 
-        <meta itemprop="image" content="apple-icon-144x144.png" />
+        <meta itemprop="image" content="android-chrome-512x512.png" />
         <meta property="og:url" content="https://pointechs.com" />
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
         <meta property="og:title" content="Pointechs | بوينتكس " />
         <meta property="og:description" content={t("meta_description_one")} />
-        <meta property="og:image" content="apple-icon-144x144.png" />
+        <meta property="og:image" content="android-chrome-512x512.png" />
 
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Pointechs | بوينتكس " />
@@ -47,7 +47,7 @@ function TermsAndConditions() {
         <meta name="twitter:card" content="photo" />
         <meta name="twitter:title" content="Pointechs | بوينتكس " />
         <meta name="twitter:description" content={t("meta_description_one")} />
-        <meta name="twitter:image:src" content="apple-icon-144x144.png" />
+        <meta name="twitter:image" content="android-chrome-512x512.png" />
         <meta name="twitter:url" content="https://pointechs.com" />
 
         <meta name="theme-color" content="#000000" />
