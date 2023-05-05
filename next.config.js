@@ -5,7 +5,6 @@ const withPWA = require('next-pwa')({
   dest: 'public',
   skipWaiting: true,
   runtimeCaching,
-  buildExcludes: [/middleware-manifest.json$/],
   disable: process.env.NODE_ENV === 'development',
    register: true,
 })
