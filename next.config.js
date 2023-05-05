@@ -8,13 +8,11 @@ const nextConfig = {
   reactStrictMode: false,
   i18n,
   outputFileTracing: true,
-  pwa:{
+  pwa: {
     dest: "public",
-		register: true,
-		skipWaiting: true,
-		runtimeCaching,
-		buildExcludes: [/middleware-manifest.json$/]
-  }
+    register: true,
+    skipWaiting: true,
+  },
 
 }
 
