@@ -7,6 +7,7 @@ import { FaDotCircle } from "react-icons/fa";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Head from 'next/head';
 function Feature({featureModalReadmoreData,modalShow,handleCloseReadmoreModal,setModalShow,setFeatureModalReadmoreData,featuresArr}) {
     const { t } = useTranslation("common");
     const router = useRouter();
@@ -22,7 +23,12 @@ function Feature({featureModalReadmoreData,modalShow,handleCloseReadmoreModal,se
           
     },[])
   return (
-    <Modal
+    <>
+    
+
+
+    
+        <Modal
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -61,6 +67,8 @@ function Feature({featureModalReadmoreData,modalShow,handleCloseReadmoreModal,se
           </section>
         </Modal.Body>
       </Modal>
+    </>
+
   )
 }
 

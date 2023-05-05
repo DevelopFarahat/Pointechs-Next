@@ -30,7 +30,7 @@ function FAQS() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="Mohamed Farahat " />
         <meta name="audience" content="all" />
         {/* <!-- Search Engine --> */}

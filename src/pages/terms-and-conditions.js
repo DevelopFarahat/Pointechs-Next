@@ -6,7 +6,6 @@ import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { NextSeo } from "next-seo";
 function TermsAndConditions() {
   const { t } = useTranslation("common");
   const { locale,asPath } = useRouter();
@@ -25,7 +24,7 @@ function TermsAndConditions() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="favicon.ico"/>
         <link rel="manifest" href="/manifest.json" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="Mohamed Farahat " />
         <meta name="audience" content="all" />
         {/* <!-- Search Engine --> */}
