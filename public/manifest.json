@@ -4,6 +4,12 @@
     "description": "Pointechs is a cutting-edge technology company that offers a unique and innovative loyalty program for merchants. Our mission is to help businesses increase their revenue and grow their customer base through personalized engagement",
     "icons": [
         {
+            "src": "maskable.png",
+            "sizes": "310x310",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
             "src": "/android-icon-36x36.png",
             "sizes": "36x36",
             "type": "image/png",
@@ -40,6 +46,11 @@
             "density": "4.0"
         },
         {
+            "src": "favicon.ico",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        },
+        {
             "src": "/android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png",
@@ -49,6 +60,6 @@
     "theme_color": "#f69435",
     "background_color": "#f69435",
     "display": "standalone",
-    "start_url": "index.js?form=homescreen",
+    "start_url": ".",
     "orientation": "portrait"
 }
