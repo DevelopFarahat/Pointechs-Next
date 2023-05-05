@@ -4,6 +4,7 @@
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
+    "orientation": "portrait",
     "name": "pointechs | \u0628\u0648\u064a\u0646\u062a\u0643\u0633",
     "short_name": "pointechs",
     "description": "Pointechs is a cutting-edge technology company that offers a unique and innovative loyalty program for merchants. Our mission is to help businesses increase their revenue and grow their customer base through personalized engagement",
