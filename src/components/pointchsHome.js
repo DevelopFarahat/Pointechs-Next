@@ -61,7 +61,7 @@ function PointchsHome({metaTitle}) {
     <>
     <Head>
       {metaTitle == "Pointechs | home"?<title>{metaTitle}</title>:false}
-      <meta property="og:title" content={t(metaTitle)} key="title"/>
+      
       
 
      

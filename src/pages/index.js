@@ -37,7 +37,7 @@ export default function Home({metaTitle}) {
         <meta itemprop="image" content="android-chrome-512x512.png" />
         <meta property="og:url" content="https://pointechs.com" />
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
-        <meta property="og:title" content={t(metaTitle)} key="title"/>
+        <meta property="og:title" content={t(metaTitle)} />
         <meta property="og:description" content={t("meta_description_one")} />
         <meta property="og:image" content="android-chrome-512x512.png" />
 
@@ -46,7 +46,7 @@ export default function Home({metaTitle}) {
         <meta property="og:url" content="https://pointechs.com" />
         {/*<!----Twitter--> */}
         <meta name="twitter:card" content="photo" />
-        <meta name="twitter:title" content={t(metaObji.title)} />
+        <meta name="twitter:title" content={t(metaTitle)} />
         <meta name="twitter:description" content={t("meta_description_one")} />
         <meta name="twitter:image:src" content="android-chrome-512x512.png" />
         <meta name="twitter:url" content="https://pointechs.com" />
