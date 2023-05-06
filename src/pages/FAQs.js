@@ -81,10 +81,8 @@ function FAQS() {
   return (
     <>
       <Head>
-        <title>
-          {t(metaObji.title)}
-        </title>
-        <meta name="description" content={t("meta_description_one")} />
+      <title>{t(metaObji.title)}</title>
+      <meta name="description" content={t("meta_description_one")} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="favicon.ico" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />

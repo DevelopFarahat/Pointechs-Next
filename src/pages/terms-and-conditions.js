@@ -7,9 +7,9 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MetaContext } from "../context/context";
-function TermsAndConditions() {
+function TermsAndConditions({metaTitle}) {
   const { t } = useTranslation("common");
-  const { locale,asPath } = useRouter();
+  const { locale,asPath,pathname } = useRouter();
   const [metaObji,setMetaObji] = useContext(MetaContext);
   const highlightTermsArr = [
     {id:0,highlightTerm:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
@@ -24,11 +24,12 @@ function TermsAndConditions() {
       title:"Pointechs | Terms and Conditions"
     }))
   },[]);
+
   return (
     <>
       <Head>
-        <title>{t(metaObji.title)}</title>
-        <meta name="description" content={t("meta_description_one")} />
+      <title>{t(metaTitle)}</title>
+      <meta name="description" content={t("meta_description_one")} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="favicon.ico" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -44,7 +45,7 @@ function TermsAndConditions() {
         <meta itemprop="image" content="android-chrome-512x512.png" />
         <meta property="og:url" content="https://pointechs.com" />
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
-        <meta property="og:title" content={t(metaObji.title)} />
+        <meta property="og:title" content={t(metaTitle)} />
         <meta property="og:description" content={t("meta_description_one")} />
         <meta property="og:image" content="android-chrome-512x512.png" />
 
@@ -53,7 +54,7 @@ function TermsAndConditions() {
         <meta property="og:url" content="https://pointechs.com" />
         {/*<!----Twitter--> */}
         <meta name="twitter:card" content="photo" />
-        <meta name="twitter:title" content={t(metaObji.title)} />
+        <meta name="twitter:title" content={t(metaTitle)} />
         <meta name="twitter:description" content={t("meta_description_one")} />
         <meta name="twitter:image:src" content="android-chrome-512x512.png" />
         <meta name="twitter:url" content="https://pointechs.com" />
@@ -100,13 +101,25 @@ function TermsAndConditions() {
     </>
   );
 }
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps({ locale,resolvedUrl  }) {
+  if(resolvedUrl == "/terms-and-conditions"){
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'common',
+        ])),
+        // Will be passed to the page component as props
+        metaTitle:"Pointechs | Terms and Conditions"
+      },
+    }
+  }
   return {
     props: {
       ...(await serverSideTranslations(locale, [
         'common',
       ])),
       // Will be passed to the page component as props
+
     },
   }
 }
