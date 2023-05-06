@@ -67,8 +67,7 @@ function HowPointechsWorks() {
     <>
     <Head>
      
-      <meta property="og:title" content={t(metaObji.title)} />
-      <meta name="twitter:title" content={t(metaObji.title)} />
+
     </Head>
         <div className={HowPointechsStyles["how-pointechs-works"]} id="how-it-works">
       <main>

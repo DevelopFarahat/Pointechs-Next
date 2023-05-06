@@ -97,8 +97,7 @@ function Contactus() {
     <>
     <Head>
     
-    <meta property="og:title" content={t(metaObji.title)} />
-      <meta name="twitter:title" content={t(metaObji.title)} />
+
     </Head>
       <div className={ContactusStyles["pointechs-contactus"]} id="contact-us" style={{direction:locale=='en'?'ltr':'rtl'}}>
       <main >

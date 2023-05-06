@@ -53,8 +53,7 @@ function WhyPointechs() {
     <>
     <Head>
       
-      <meta property="og:title" content={t(metaObji.title)} />
-      <meta name="twitter:title" content={t(metaObji.title)} />
+    
     </Head>
     <div className={whyPointehsStyles["why-pointechs"]} id="why-us">
       <main>
