@@ -31,11 +31,14 @@ function PointchsHome({metaTitle}) {
         behavior: "smooth",
       });
       setSelectedLink(0);
+      /*
       setMetaObji((prev)=>({
         ...prev,
         title:"Pointechs | home"
       }))
+      */
     }
+    
   },[])
   const handleModalVisibility = (event) => {
 
@@ -48,12 +51,13 @@ function PointchsHome({metaTitle}) {
     
 
   };
+  console.log(metaTitle)
   return (
     <>
     <Head>
-      <title>{t(metaTitle)}</title>
-      <meta property="og:title" content={t(metaTitle)} />
-      <meta name="twitter:title" content={t(metaTitle)} />
+      <title>{metaTitle != undefined? t(metaTitle):'hello'}</title>
+      <meta property="og:title" content={metaTitle != undefined? t(metaTitle):'hello'} />
+      <meta name="twitter:title" content={metaTitle != undefined? t(metaTitle):'hello'} />
     </Head>
         <div
       className={`${PointchsHomeStyles["pointchs-home"]} ${
