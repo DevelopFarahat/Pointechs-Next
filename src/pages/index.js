@@ -1,5 +1,5 @@
 import Head from "next/head";
-
+import React,{useContext} from "react";
 import PointchsHome from "../components/pointchsHome";
 import Welcome from "../components/welcom";
 import Features from "../components/features";
@@ -9,10 +9,12 @@ import PointechsApp from "../components/pointechsApp";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import UserContext from "../context/context";
+import {UserContext} from "../context/context";
+import { MetaContext } from "../context/context";
 export default function Home() {
   const { t } = useTranslation("common");
   let { locale } = useRouter();
+  const [metaObji,setMetaObji] = useContext(MetaContext);
   
   return (
     <>
@@ -34,7 +36,7 @@ export default function Home() {
         <meta itemprop="image" content="android-chrome-512x512.png" />
         <meta property="og:url" content="https://pointechs.com" />
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
-        <meta property="og:title" content="Pointechs | بوينتكس " />
+        <meta property="og:title" content={t(metaObji.title)} />
         <meta property="og:description" content={t("meta_description_one")} />
         <meta property="og:image" content="android-chrome-512x512.png" />
 
@@ -43,7 +45,7 @@ export default function Home() {
         <meta property="og:url" content="https://pointechs.com" />
         {/*<!----Twitter--> */}
         <meta name="twitter:card" content="photo" />
-        <meta name="twitter:title" content="Pointechs | بوينتكس " />
+        <meta name="twitter:title" content={t(metaObji.title)} />
         <meta name="twitter:description" content={t("meta_description_one")} />
         <meta name="twitter:image:src" content="android-chrome-512x512.png" />
         <meta name="twitter:url" content="https://pointechs.com" />
