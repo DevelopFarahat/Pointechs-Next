@@ -55,16 +55,12 @@ function PointchsHome({metaTitle}) {
     
 
   };
-  {console.log(metaTitle)}
+
 
   return (
     <>
     <Head>
-      {metaTitle == "Pointechs | home"?<title>{metaTitle}</title>:false}
-      
-      
-
-     
+      {metaTitle == "Pointechs | home"?<title>{t(metaTitle)}</title>:false}
     </Head>
         <div
       className={`${PointchsHomeStyles["pointchs-home"]} ${

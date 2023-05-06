@@ -19,7 +19,7 @@ export default function Home({metaTitle}) {
   return (
     <>
    
-    <Head>
+   <Head>
     <title>{t(metaObji.title)}</title>
     <meta name="description" content={t("meta_description_one")} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -64,9 +64,9 @@ export default function Home({metaTitle}) {
       >
         <PointchsHome metaTitle={metaTitle}/>
         <Welcome metaTitle={metaTitle}/>
-        <Features />
-        <WhyPointechs />
-        <HowPointechsWorks />
+        <Features metaTitle={metaTitle}/>
+        <WhyPointechs metaTitle={metaTitle}/>
+        <HowPointechsWorks metaTitle={metaTitle}/>
         <PointechsApp />
       </div>
     </>
@@ -84,7 +84,8 @@ export async function getServerSideProps({ locale,resolvedUrl,query  }) {
           'common',
         ])),
         // Will be passed to the page component as props
-        metaTitle:"Pointechs"
+        metaTitle:"Pointechs",
+        metaDescription:"meta_description_one"
       },
     }
   }
@@ -96,7 +97,8 @@ export async function getServerSideProps({ locale,resolvedUrl,query  }) {
           'common',
         ])),
         // Will be passed to the page component as props
-        metaTitle:"Pointechs | home"
+        metaTitle:"Pointechs | home",
+        metaDescription:"meta_description_one"
       },
     }
   }else if (section == 'about-us'){
@@ -106,7 +108,52 @@ export async function getServerSideProps({ locale,resolvedUrl,query  }) {
           'common',
         ])),
         // Will be passed to the page component as props
-        metaTitle:"Pointechs | about-us"
+        metaTitle:"Pointechs | about-us",
+        metaDescription:"meta_description_one"
+      },
+    }
+  }else if (section == 'our-features'){
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'common',
+        ])),
+        // Will be passed to the page component as props
+        metaTitle:"Pointechs | our-features",
+        metaDescription:"meta_description_one"
+      },
+    }
+  }else if (section == 'why-us'){
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'common',
+        ])),
+        // Will be passed to the page component as props
+        metaTitle:"Pointechs | why-us",
+        metaDescription:"meta_description_one"
+      },
+    }
+  }else if (section == 'how-it-works'){
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'common',
+        ])),
+        // Will be passed to the page component as props
+        metaTitle:"Pointechs | how-it-works",
+        metaDescription:"meta_description_one"
+      },
+    }
+  }else if (section == 'contact-us'){
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'common',
+        ])),
+        // Will be passed to the page component as props
+        metaTitle:"Pointechs | contact-us",
+        metaDescription:"meta_description_one"
       },
     }
   }else{

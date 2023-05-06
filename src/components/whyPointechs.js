@@ -12,7 +12,7 @@ const DynamicLogin = dynamic(()=>import("./login"),{ssr:false});
 import {UserContext} from "../context/context";
 import { MetaContext } from "../context/context";
 import Head from "next/head";
-function WhyPointechs() {
+function WhyPointechs({metaTitle}) {
   const {t} = useTranslation('common');
   const { locale,query,push,pathname} = useRouter();
   const [signupModalShow, setSignupModalShow] = useState(false);
@@ -53,7 +53,7 @@ function WhyPointechs() {
     <>
     <Head>
       
-    
+    {metaTitle == "Pointechs | why-us"?<title>{t(metaTitle)}</title>:false}
     </Head>
     <div className={whyPointehsStyles["why-pointechs"]} id="why-us">
       <main>

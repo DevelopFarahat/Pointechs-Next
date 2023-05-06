@@ -12,7 +12,7 @@ import {UserContext} from "../context/context";
 import { MetaContext } from "../context/context";
 import dynamic from "next/dynamic";
 import Feature from "../components/feature";
-function Features() {
+function Features({metaTitle}) {
   const { t } = useTranslation("common");
   const router = useRouter();
   const { locale, query, push, pathname, asPath } = router;
@@ -124,7 +124,7 @@ function Features() {
  <>
     <Head>
     
-     
+    {metaTitle == "Pointechs | our-features"?<title>{t(metaTitle)}</title>:false}
     </Head>
     <div className={FeaturesStyles["features"]} id="our-features">
       <div>

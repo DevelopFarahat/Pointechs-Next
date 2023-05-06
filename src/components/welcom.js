@@ -56,7 +56,7 @@ function Welcome({metaTitle}) {
   return (
     <>
     <Head>
-
+    {metaTitle == "Pointechs | about-us"?<title>{t(metaTitle)}</title>:false}
     </Head>
       <div className={WelcomeStyles["pointechs-welcome"]} id="about-us">
         <div style={{ direction: locale == "en" ? "ltr" : "ltr" }}>
