@@ -50,7 +50,7 @@ function Header() {
     const LinkHref = event.currentTarget.getAttribute("href").substring(1);
     if(pathname == "/" ){
       push(
-        `/?section=${event.currentTarget.getAttribute("href").substring(1)}`,
+        `/?section=${LinkHref}`,
         undefined,
         { shallow: true }
     
@@ -58,14 +58,14 @@ function Header() {
     }else{
       if(event.currentTarget.id == 5){
         push(
-          `${pathname}/?section=${event.currentTarget.getAttribute("href").substring(1)}`,
+          `${pathname}/?section=${LinkHref}`,
           undefined,
           { shallow: true }
       
         );
       }else{
         push(
-          `/?section=${event.currentTarget.getAttribute("href").substring(1)}`,
+          `/?section=${LinkHref}`,
           undefined,
           { shallow: true }
       

@@ -81,7 +81,7 @@ function FAQS({metaTitle}) {
   return (
     <>
       <Head>
-      <title>{t(metaTitle)}</title>
+      <title>{t(metaObji.title)}</title>
       <meta name="description" content={t("meta_description_one")} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="favicon.ico" />
@@ -148,8 +148,9 @@ function FAQS({metaTitle}) {
     </>
   );
 }
-export async function getServerSideProps({ locale,resolvedUrl }) {
-  if(resolvedUrl == "/FAQs"){
+export async function getServerSideProps({ locale,resolvedUrl,query }) {
+  const {section} = query
+  if(resolvedUrl == "/FAQs" && section == null){
     return {
       props: {
         ...(await serverSideTranslations(locale, [
@@ -157,6 +158,16 @@ export async function getServerSideProps({ locale,resolvedUrl }) {
         ])),
         // Will be passed to the page component as props
         metaTitle:"Pointechs | FAQs"
+      },
+    }
+  }else if (section == "contact-us"){
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'common',
+        ])),
+        // Will be passed to the page component as props
+        metaTitle:"Pointechs | contact-us"
       },
     }
   }

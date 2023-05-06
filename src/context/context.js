@@ -9,6 +9,9 @@ export  function ContextProvider({ children }) {
     title:"Pointechs",
     description:`Pointechs is a cutting-edge technology company that offers a unique and innovative loyalty program for merchants. Our mission is to help businesses increase their revenue and grow their customer base through personalized engagement`
   })
+  const [contactUsMeta,setContactUsMeta] = useState({
+    title:""
+  })
   return (
     <MetaContext.Provider value={[metaObji,setMetaObji]}>
      <UserContext.Provider value={[selectedLink, setSelectedLink]}>

@@ -95,10 +95,7 @@ function Contactus() {
   },[])
   return (
     <>
-    <Head>
     
-
-    </Head>
       <div className={ContactusStyles["pointechs-contactus"]} id="contact-us" style={{direction:locale=='en'?'ltr':'rtl'}}>
       <main >
         <section>

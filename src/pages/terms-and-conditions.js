@@ -28,7 +28,7 @@ function TermsAndConditions({metaTitle}) {
   return (
     <>
       <Head>
-      <title>{t(metaTitle)}</title>
+      <title>{t(metaObji.title)}</title>
       <meta name="description" content={t("meta_description_one")} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="favicon.ico" />
@@ -101,8 +101,9 @@ function TermsAndConditions({metaTitle}) {
     </>
   );
 }
-export async function getServerSideProps({ locale,resolvedUrl  }) {
-  if(resolvedUrl == "/terms-and-conditions"){
+export async function getServerSideProps({ locale,resolvedUrl,query  }) {
+  const {section} = query
+  if(resolvedUrl == "/terms-and-conditions" && section == null){
     return {
       props: {
         ...(await serverSideTranslations(locale, [
@@ -110,6 +111,16 @@ export async function getServerSideProps({ locale,resolvedUrl  }) {
         ])),
         // Will be passed to the page component as props
         metaTitle:"Pointechs | Terms and Conditions"
+      },
+    }
+  }else if (section == 'contact-us'){
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'common',
+        ])),
+        // Will be passed to the page component as props
+        metaTitle:"Pointechs | contact-us"
       },
     }
   }
