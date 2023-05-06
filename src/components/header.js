@@ -75,10 +75,7 @@ function Header() {
     }
 
     if ( LinkHref != null){
-      const refreshData = () => {
-        router.replace(router.asPath);
-      }
-      refreshData();
+   
       setMetaObji((prev)=>({
         ...prev,
         title: "Pointechs" + " " +"|"+" "+  LinkHref 
