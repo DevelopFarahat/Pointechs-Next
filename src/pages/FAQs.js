@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { MetaContext } from "../context/context";
 import Head from "next/head";
-function FAQS() {
+function FAQS({metaTitle}) {
   const { t } = useTranslation("common");
   const { locale, asPath } = useRouter();
   const [metaObji,setMetaObji] = useContext(MetaContext);
@@ -81,7 +81,7 @@ function FAQS() {
   return (
     <>
       <Head>
-      <title>{t(metaObji.title)}</title>
+      <title>{t(metaTitle)}</title>
       <meta name="description" content={t("meta_description_one")} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="favicon.ico" />
@@ -98,7 +98,7 @@ function FAQS() {
         <meta itemprop="image" content="android-chrome-512x512.png" />
         <meta property="og:url" content="https://pointechs.com" />
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
-        <meta property="og:title" content={t(metaObji.title)} />
+        <meta property="og:title" content={t(metaTitle)} />
         <meta property="og:description" content={t("meta_description_one")} />
         <meta property="og:image" content="android-chrome-512x512.png" />
 
@@ -107,7 +107,7 @@ function FAQS() {
         <meta property="og:url" content="https://pointechs.com" />
         {/*<!----Twitter--> */}
         <meta name="twitter:card" content="photo" />
-        <meta name="twitter:title" content={t(metaObji.title)} />
+        <meta name="twitter:title" content={t(metaTitle)} />
         <meta name="twitter:description" content={t("meta_description_one")} />
         <meta name="twitter:image:src" content="android-chrome-512x512.png" />
         <meta name="twitter:url" content="https://pointechs.com" />
@@ -148,7 +148,18 @@ function FAQS() {
     </>
   );
 }
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps({ locale,resolvedUrl }) {
+  if(resolvedUrl == "/FAQs"){
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'common',
+        ])),
+        // Will be passed to the page component as props
+        metaTitle:"Pointechs | FAQs"
+      },
+    }
+  }
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"])),

@@ -12,7 +12,7 @@ import dynamic from "next/dynamic";
 import {UserContext} from "../context/context";
 import { MetaContext } from "../context/context";
 import Head from "next/head";
-function PointchsHome() {
+function PointchsHome({metaTitle}) {
   const { t } = useTranslation("common");
   const { locale,query,push,pathname } = useRouter();
   const [signupModalShow, setSignupModalShow] = useState(false);
@@ -51,9 +51,9 @@ function PointchsHome() {
   return (
     <>
     <Head>
-      <title>{t(metaObji.title)}</title>
-      <meta property="og:title" content={t(metaObji.title)} />
-      <meta name="twitter:title" content={t(metaObji.title)} />
+      <title>{t(metaTitle)}</title>
+      <meta property="og:title" content={t(metaTitle)} />
+      <meta name="twitter:title" content={t(metaTitle)} />
     </Head>
         <div
       className={`${PointchsHomeStyles["pointchs-home"]} ${

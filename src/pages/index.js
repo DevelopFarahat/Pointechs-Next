@@ -11,11 +11,11 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import {UserContext} from "../context/context";
 import { MetaContext } from "../context/context";
-export default function Home() {
+export default function Home({metaTitle}) {
   const { t } = useTranslation("common");
   let { locale } = useRouter();
   const [metaObji,setMetaObji] = useContext(MetaContext);
-  
+
   return (
     <>
     <Head>
@@ -61,7 +61,7 @@ export default function Home() {
         className="app"
         style={{ direction: locale == "en" ? "ltr" : "rtl" }}
       >
-        <PointchsHome />
+        <PointchsHome metaTitle={metaTitle}/>
         <Welcome />
         <Features />
         <WhyPointechs />
@@ -72,7 +72,20 @@ export default function Home() {
   );
 }
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps({ locale,resolvedUrl,query  }) {
+  const {section} = query
+  if(section !== "home"){
+   
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'common',
+        ])),
+        // Will be passed to the page component as props
+        metaTitle:"Pointechs | home"
+      },
+    }
+  }
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"])),
