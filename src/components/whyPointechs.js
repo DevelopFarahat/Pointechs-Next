@@ -30,10 +30,12 @@ function WhyPointechs() {
         behavior: "smooth",
       });
       setSelectedLink(3);
+      /*
       setMetaObji((prev)=>({
         ...prev,
         title:"Pointechs | why-us"
       }))
+      */
     }
   },[])
   const handleModalVisibility = (event) => {
@@ -50,7 +52,7 @@ function WhyPointechs() {
   return (
     <>
     <Head>
-      <title>{t(metaObji.title)}</title>
+      
       <meta property="og:title" content={t(metaObji.title)} />
       <meta name="twitter:title" content={t(metaObji.title)} />
     </Head>

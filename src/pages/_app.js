@@ -7,6 +7,7 @@ import Contactus from "../components/contactus";
 import 'bootstrap/scss/bootstrap.scss'
 import { appWithTranslation } from 'next-i18next'
 import {ContextProvider} from "../context/context";
+import Head from "next/head";
 
 const   App = ({ Component, pageProps })=> {
   return (

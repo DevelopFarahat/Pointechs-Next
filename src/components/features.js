@@ -112,16 +112,18 @@ function Features() {
         behavior: "smooth",
       });
       setSelectedLink(2);
+      /*
       setMetaObji((prev)=>({
         ...prev,
         title:"Pointechs | our-features"
       }))
+      */
     }
   }, []);
   return (
  <>
     <Head>
-      <title>{t(metaObji.title)}</title>
+    
       <meta property="og:title" content={t(metaObji.title)} />
       <meta name="twitter:title" content={t(metaObji.title)} />
     </Head>

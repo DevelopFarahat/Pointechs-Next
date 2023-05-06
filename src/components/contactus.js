@@ -85,16 +85,18 @@ function Contactus() {
         behavior: "smooth",
       });
       setSelectedLink(5);
+      /*
       setMetaObji((prev)=>({
         ...prev,
         title:"Pointechs | contact-us"
       }))
+      */
     }
   },[])
   return (
     <>
     <Head>
-    <title>{t(metaObji.title)}</title>
+    
     <meta property="og:title" content={t(metaObji.title)} />
       <meta name="twitter:title" content={t(metaObji.title)} />
     </Head>

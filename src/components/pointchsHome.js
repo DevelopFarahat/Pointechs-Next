@@ -32,10 +32,14 @@ function PointchsHome({metaTitle}) {
       });
       setSelectedLink(0);
       /*
-      setMetaObji((prev)=>({
-        ...prev,
-        title:"Pointechs | home"
-      }))
+      if(metaTitle == undefined){
+        setMetaObji((prev)=>({
+          ...prev,
+          title:"Pointechs | home"
+        }))
+      }
+      /*
+
       */
     }
     
@@ -51,13 +55,14 @@ function PointchsHome({metaTitle}) {
     
 
   };
-  console.log(metaTitle)
+  {console.log(metaTitle)}
+
   return (
     <>
     <Head>
-      <title>{metaTitle != undefined? t(metaTitle):'hello'}</title>
-      <meta property="og:title" content={metaTitle != undefined? t(metaTitle):'hello'} />
-      <meta name="twitter:title" content={metaTitle != undefined? t(metaTitle):'hello'} />
+      {metaTitle == "Pointechs | home"?<title>{metaTitle}</title>:false}
+    
+     
     </Head>
         <div
       className={`${PointchsHomeStyles["pointchs-home"]} ${

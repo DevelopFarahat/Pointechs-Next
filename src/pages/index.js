@@ -18,8 +18,9 @@ export default function Home({metaTitle}) {
 
   return (
     <>
+   
     <Head>
-    <title>{t("Pointechs")}</title>
+    <title>{t(metaObji.title)}</title>
     <meta name="description" content={t("meta_description_one")} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="favicon.ico" />
@@ -62,7 +63,7 @@ export default function Home({metaTitle}) {
         style={{ direction: locale == "en" ? "ltr" : "rtl" }}
       >
         <PointchsHome metaTitle={metaTitle}/>
-        <Welcome />
+        <Welcome metaTitle={metaTitle}/>
         <Features />
         <WhyPointechs />
         <HowPointechsWorks />
@@ -74,8 +75,21 @@ export default function Home({metaTitle}) {
 
 export async function getServerSideProps({ locale,resolvedUrl,query  }) {
   const {section} = query
-  if(section !== "home"){
-   
+  
+  if(section == null || section == undefined){
+    
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'common',
+        ])),
+        // Will be passed to the page component as props
+        metaTitle:"Pointechs"
+      },
+    }
+  }
+  
+ else  if(section == "home"){
     return {
       props: {
         ...(await serverSideTranslations(locale, [
@@ -85,11 +99,23 @@ export async function getServerSideProps({ locale,resolvedUrl,query  }) {
         metaTitle:"Pointechs | home"
       },
     }
+  }else if (section == 'about-us'){
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          'common',
+        ])),
+        // Will be passed to the page component as props
+        metaTitle:"Pointechs | about-us"
+      },
+    }
+  }else{
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, ["common"])),
+        // Will be passed to the page component as props
+      },
+    };
   }
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["common"])),
-      // Will be passed to the page component as props
-    },
-  };
+
 }

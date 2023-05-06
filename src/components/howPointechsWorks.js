@@ -55,16 +55,18 @@ function HowPointechsWorks() {
         behavior: "smooth",
       });
       setSelectedLink(4);
+      /*
       setMetaObji((prev)=>({
         ...prev,
         title:"Pointechs | how-it-works"
       }))
+      */
     }
   },[])
   return (
     <>
     <Head>
-      <title>{t(metaObji.title)}</title>
+     
       <meta property="og:title" content={t(metaObji.title)} />
       <meta name="twitter:title" content={t(metaObji.title)} />
     </Head>
