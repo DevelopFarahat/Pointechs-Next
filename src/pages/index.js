@@ -45,7 +45,7 @@ export default function Home() {
         <meta name="twitter:card" content="photo" />
         <meta name="twitter:title" content="Pointechs | بوينتكس " />
         <meta name="twitter:description" content={t("meta_description_one")} />
-        <meta name="twitter:image" content="android-chrome-512x512.png" />
+        <meta name="twitter:image:src" content="android-chrome-512x512.png" />
         <meta name="twitter:url" content="https://pointechs.com" />
 
         <meta name="theme-color" content="#000000" />

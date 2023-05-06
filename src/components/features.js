@@ -122,6 +122,8 @@ function Features() {
  <>
     <Head>
       <title>{t(metaObji.title)}</title>
+      <meta property="og:title" content={t(metaObji.title)} />
+      <meta name="twitter:title" content={t(metaObji.title)} />
     </Head>
     <div className={FeaturesStyles["features"]} id="our-features">
       <div>

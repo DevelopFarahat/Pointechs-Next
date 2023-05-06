@@ -1,14 +1,16 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect,useContext } from "react";
 import TermsAndConditionsImg from "../assets/images/terms-and-conditions.webp";
 import TermsStyles from "../styles/terms-and-conditions.module.scss";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { MetaContext } from "../context/context";
 function TermsAndConditions() {
   const { t } = useTranslation("common");
   const { locale,asPath } = useRouter();
+  const [metaObji,setMetaObji] = useContext(MetaContext);
   const highlightTermsArr = [
     {id:0,highlightTerm:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
     {id:1,highlightTerm:'Libero justo laoreet sit amet.'},
@@ -16,10 +18,16 @@ function TermsAndConditions() {
     {id:3,highlightTerm:'Auctor neque vitae tempus quam pellentesque nec.'},
     {id:4,highlightTerm:'Cras adipiscing enim eu turpis egestas pretium aenean.'}
   ]
+  useEffect(()=>{
+    setMetaObji((prev)=>({
+      ...prev,
+      title:"Pointechs | Terms and Conditions"
+    }))
+  },[]);
   return (
     <>
       <Head>
-        <title>{t("Pointechs")} | {t("Terms and Conditions")}</title>
+        <title>{t(metaObji.title)}</title>
         <meta name="description" content={t("meta_description_one")} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="favicon.ico" />
@@ -36,7 +44,7 @@ function TermsAndConditions() {
         <meta itemprop="image" content="android-chrome-512x512.png" />
         <meta property="og:url" content="https://pointechs.com" />
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
-        <meta property="og:title" content="Pointechs | بوينتكس " />
+        <meta property="og:title" content={t(metaObji.title)} />
         <meta property="og:description" content={t("meta_description_one")} />
         <meta property="og:image" content="android-chrome-512x512.png" />
 
@@ -45,9 +53,9 @@ function TermsAndConditions() {
         <meta property="og:url" content="https://pointechs.com" />
         {/*<!----Twitter--> */}
         <meta name="twitter:card" content="photo" />
-        <meta name="twitter:title" content="Pointechs | بوينتكس " />
+        <meta name="twitter:title" content={t(metaObji.title)} />
         <meta name="twitter:description" content={t("meta_description_one")} />
-        <meta name="twitter:image" content="android-chrome-512x512.png" />
+        <meta name="twitter:image:src" content="android-chrome-512x512.png" />
         <meta name="twitter:url" content="https://pointechs.com" />
 
         <meta name="theme-color" content="#000000" />

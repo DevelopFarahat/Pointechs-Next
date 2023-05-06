@@ -56,6 +56,8 @@ function Welcome(props) {
     <>
     <Head>
       <title>{t(metaObji.title)}</title>
+      <meta property="og:title" content={t(metaObji.title)} />
+      <meta name="twitter:title" content={t(metaObji.title)} />
     </Head>
       <div className={WelcomeStyles["pointechs-welcome"]} id="about-us">
         <div style={{ direction: locale == "en" ? "ltr" : "ltr" }}>

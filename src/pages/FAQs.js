@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect,useContext } from "react";
 import FAQsStyles from "../styles/FAQs.module.scss";
 import Accordion from "react-bootstrap/Accordion";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { MetaContext } from "../context/context";
 import Head from "next/head";
 function FAQS() {
   const { t } = useTranslation("common");
   const { locale, asPath } = useRouter();
+  const [metaObji,setMetaObji] = useContext(MetaContext);
   const FAQsArr = [
     {
       id: 0,
@@ -70,11 +72,17 @@ function FAQS() {
       a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque ornare aenean euismod elementum. Quis blandit turpis cursus in hac habitasse. Libero volutpat sed cras ornare arcu dui vivamus. Porttitor lacus luctus accumsan tortor posuere. Sit amet justo donec enim. Enim facilisis gravida neque convallis. Fames ac turpis egestas sed tempus urna et. Consequat semper viverra nam libero justo laoreet sit amet. Quis varius quam quisque id diam vel. Quis enim lobortis scelerisque fermentum dui faucibus in ornare. Porttitor rhoncus dolor purus non enim praesent elementum facilisis leo.",
     },
   ];
+  useEffect(()=>{
+    setMetaObji((prev)=>({
+      ...prev,
+      title:"Pointechs | FAQs"
+    }))
+  },[]);
   return (
     <>
       <Head>
         <title>
-          {t("Pointechs")} | {t("FAQs")}
+          {t(metaObji.title)}
         </title>
         <meta name="description" content={t("meta_description_one")} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -92,7 +100,7 @@ function FAQS() {
         <meta itemprop="image" content="android-chrome-512x512.png" />
         <meta property="og:url" content="https://pointechs.com" />
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
-        <meta property="og:title" content="Pointechs | بوينتكس " />
+        <meta property="og:title" content={t(metaObji.title)} />
         <meta property="og:description" content={t("meta_description_one")} />
         <meta property="og:image" content="android-chrome-512x512.png" />
 
@@ -101,9 +109,9 @@ function FAQS() {
         <meta property="og:url" content="https://pointechs.com" />
         {/*<!----Twitter--> */}
         <meta name="twitter:card" content="photo" />
-        <meta name="twitter:title" content="Pointechs | بوينتكس " />
+        <meta name="twitter:title" content={t(metaObji.title)} />
         <meta name="twitter:description" content={t("meta_description_one")} />
-        <meta name="twitter:image" content="android-chrome-512x512.png" />
+        <meta name="twitter:image:src" content="android-chrome-512x512.png" />
         <meta name="twitter:url" content="https://pointechs.com" />
 
         <meta name="theme-color" content="#000000" />
