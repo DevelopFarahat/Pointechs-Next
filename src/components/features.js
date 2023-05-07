@@ -20,6 +20,37 @@ const Features = forwardRef(({metaTitle,onHeaderLinkClick},ref)=> {
   const [metaObji,setMetaObji] = useContext(MetaContext);
   const [modalShow, setModalShow] = useState(false);
   const [featureModalReadmoreData, setFeatureModalReadmoreData] = useState({});
+
+  const handlePopupReadMoreFeature = (event, featureObji) => {
+    event.preventDefault();
+    push(`/?feature=${featureObji.title}&id=${featureObji.id}`, undefined, {
+      shallow: true,
+    });
+    //push({pathname:'/',query:{'feature':`${featureObji.title}`}},undefined,{shallow:true})
+    setModalShow(true);
+    setFeatureModalReadmoreData(featureObji);
+  };
+
+  const handleCloseReadmoreModal = () => {
+    setModalShow(false);
+    push(`/${locale}${pathname}`, undefined, { locale, scroll: false });
+  };
+  useEffect(() => {
+    //const {feature} = query;
+
+
+    const { section } = query;
+    if (section == "our-features") {
+      onHeaderLinkClick("our-features");
+      setSelectedLink(2);
+      
+      setMetaObji((prev)=>({
+        ...prev,
+        title:"Pointechs | our-features"
+      }))
+      
+    }
+  }, []);
   const featuresArr = [
     {
       id: 0,
@@ -86,36 +117,6 @@ const Features = forwardRef(({metaTitle,onHeaderLinkClick},ref)=> {
       moreDetails: [t("feature_8"), t("feature_8_details_2")],
     },
   ];
-  const handlePopupReadMoreFeature = (event, featureObji) => {
-    event.preventDefault();
-    push(`/?feature=${featureObji.title}&id=${featureObji.id}`, undefined, {
-      shallow: true,
-    });
-    //push({pathname:'/',query:{'feature':`${featureObji.title}`}},undefined,{shallow:true})
-    setModalShow(true);
-    setFeatureModalReadmoreData(featureObji);
-  };
-
-  const handleCloseReadmoreModal = () => {
-    setModalShow(false);
-    push(`/${locale}${pathname}`, undefined, { locale, scroll: false });
-  };
-  useEffect(() => {
-    //const {feature} = query;
-
-
-    const { section } = query;
-    if (section == "our-features") {
-      onHeaderLinkClick("our-features");
-      setSelectedLink(2);
-      
-      setMetaObji((prev)=>({
-        ...prev,
-        title:"Pointechs | our-features"
-      }))
-      
-    }
-  }, []);
   return (
  <>
     <Head>
