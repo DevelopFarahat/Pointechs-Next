@@ -101,7 +101,7 @@ function FAQS({metaTitle,metaDescription}) {
         <meta property="og:title" content={t(metaTitle)} />
         <meta property="og:description" content={t(metaDescription)} />
         <meta property="og:image" content="android-chrome-512x512.png" />
-        <meta property="og:image" content="https://www.pointechs.com/android-chrome-512x512.png"/>
+        <meta property="og:image:type" content="image/png" /> 
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Pointechs | بوينتكس " />
         <meta property="og:url" content="https://pointechs.com" />
