@@ -61,6 +61,7 @@ export default function Home({ metaTitle, metaDescription }) {
 
         <meta name="theme-color" content="#000000" />
         <meta name="description" content={t(metaDescription)} />
+        <meta property="og:video" content="https://www.youtube.com/v/khEAmUlvNJs" />
         <meta
           name="keywords"
           content="pointechs, loyalty cards, digital loyalty cards,points,stamps,discount,coupons,Promotional Offers,Tiers program,Customer analytics,Business information,Customer Feedback,revenue ,merchants ,customers,business,sales,merchant,benefits,rewards,بوينتكس,نقاط,مكافات,ادارة الولاء,عملاء,تجار,ارباح,فوائد,تتبع النقاط,بطاقات الولاء الرقمية,;,كوبونات الخصم,العروض الترويجية,تحليلات العملاء"

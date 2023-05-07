@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState,useContext } from "react";
 import Modal from "react-bootstrap/Modal";
 import Head from "next/head";
 import LoginStyles from "../styles/login.module.scss";
@@ -8,10 +8,12 @@ import { GrFormClose } from "react-icons/gr";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import { MetaContext } from "../context/context";
 function Login(props) {
   const { t } = useTranslation("common");
   const { locale, pathname, asPath, query, push } = useRouter();
   const [tooglePassword, setTooglePassword] = useState("password");
+  const [metaObji, setMetaObji] = useContext(MetaContext);
   const passwordRef = useRef();
   const [userData, setUserData] = useState({
     email: "",
@@ -71,10 +73,21 @@ function Login(props) {
   const blur = () => {
     passwordRef.current.style.cssText = "outline:none";
   };
-  const navigateToSignupForm = () => {
+  const navigateToSignupForm = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     props.onHide();
 
     props.setSignupModalShow(true);
+    push({ pathname, query: { status: "signup-popup" } }, undefined, {
+      locale,
+      scroll: false,
+      shallow: true,
+    });
+    setMetaObji((prev)=>({
+      ...prev,
+      title:"Sign Up title"
+    }))
   };
   const handleHideLoginForm = () => {
     push(`/${locale}${pathname}`, undefined, {
@@ -90,6 +103,10 @@ function Login(props) {
       passwordError: "",
     });
     props.onHide();
+    setMetaObji((prev)=>({
+      ...prev,
+      title:"Pointechs"
+    }))
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -113,6 +130,9 @@ function Login(props) {
 
   return (
     <>
+    <Head>
+      <title>{t(metaObji.title)}</title>
+    </Head>
       <Modal
         {...props}
         size="lg"

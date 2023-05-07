@@ -98,6 +98,10 @@ function Header() {
         scroll: false,
         shallow: true,
       });
+      setMetaObji((prev)=>({
+        ...prev,
+        title:"Sign In"
+      }))
     } else {
       setSignupModalShow(true);
       router.push({ pathname, query: { status: "signup-popup" } }, undefined, {
@@ -105,6 +109,10 @@ function Header() {
         scroll: false,
         shallow: true,
       });
+      setMetaObji((prev)=>({
+        ...prev,
+        title:"Sign Up title"
+      }))
     }
     handleToggle();
   };
