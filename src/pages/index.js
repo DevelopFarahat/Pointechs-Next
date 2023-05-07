@@ -220,7 +220,7 @@ export async function getServerSideProps({ locale, resolvedUrl, query }) {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         // Will be passed to the page component as props
-        metaTitle: featuresArr[Number(id)],
+        metaTitle: featuresArr[Number(id)].title,
         metaDescription: featuresArr[Number(id)].moreDetails[0],
       },
     };
