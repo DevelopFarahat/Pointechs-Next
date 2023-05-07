@@ -124,6 +124,7 @@ function Header() {
       ...prev,
       title:'Pointechs'
     }))
+    setSelectedLink(0);
   }
   return (
     <>
