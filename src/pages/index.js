@@ -19,6 +19,7 @@ export default function Home({ metaTitle, metaDescription }) {
   const { onHeaderLinkClick, componentRefs } = useContext(ComponentRefsContext);
   return (
     <>
+    {console.log(metaTitle)}
       <Head>
         <title>{t(metaObji.title)}</title>
         <meta name="description" content={t(metaDescription)} />
@@ -151,7 +152,7 @@ export async function getServerSideProps({ locale, resolvedUrl, query }) {
       moreDetails: ["feature_8", "feature_8_details_2"],
     },
   ];
-  if (section == null || section == undefined) {
+  if (Object.keys(query).length == 0) {
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
@@ -214,7 +215,7 @@ export async function getServerSideProps({ locale, resolvedUrl, query }) {
         metaDescription: "meta_description_one",
       },
     };
-  } else if (feature !== null) {
+  } else if (feature != undefined) {
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
