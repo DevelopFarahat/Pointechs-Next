@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState,useContext,forwardRef } from "react";
 import Head from "next/head";
 import FeaturesStyles from "../styles/features.module.scss";
 import Image from "next/image";
@@ -12,7 +12,7 @@ import {UserContext} from "../context/context";
 import { MetaContext } from "../context/context";
 import dynamic from "next/dynamic";
 import Feature from "../components/feature";
-function Features({metaTitle}) {
+const Features = forwardRef(({metaTitle,onHeaderLinkClick},ref)=> {
   const { t } = useTranslation("common");
   const router = useRouter();
   const { locale, query, push, pathname, asPath } = router;
@@ -106,27 +106,23 @@ function Features({metaTitle}) {
 
     const { section } = query;
     if (section == "our-features") {
-      document.getElementById("our-features").scrollIntoView({
-        block: "center",
-        inline: "center",
-        behavior: "smooth",
-      });
+      onHeaderLinkClick("our-features");
       setSelectedLink(2);
-      /*
+      
       setMetaObji((prev)=>({
         ...prev,
         title:"Pointechs | our-features"
       }))
-      */
+      
     }
   }, []);
   return (
  <>
     <Head>
     
-    {metaTitle == "Pointechs | our-features"?<title>{t(metaTitle)}</title>:false}
+   <title>{t(metaObji.title)}</title>
     </Head>
-    <div className={FeaturesStyles["features"]} id="our-features">
+    <div className={FeaturesStyles["features"]} id="our-features" ref={ref}>
       <div>
         <section>
           <span></span>
@@ -172,6 +168,6 @@ function Features({metaTitle}) {
     </div>
  </>
   );
-}
+});
 
 export default Features;

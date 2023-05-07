@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React,{useContext} from "react";
+import React,{useContext, useRef} from "react";
 import PointchsHome from "../components/pointchsHome";
 import Welcome from "../components/welcom";
 import Features from "../components/features";
@@ -11,34 +11,47 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import {UserContext} from "../context/context";
 import { MetaContext } from "../context/context";
-export default function Home({metaTitle}) {
+import {ComponentRefsContext} from "../context/context";
+export default function Home({metaTitle,metaDescription}) {
   const { t } = useTranslation("common");
   let { locale } = useRouter();
   const [metaObji,setMetaObji] = useContext(MetaContext);
+  const {onHeaderLinkClick,componentRefs} = useContext(ComponentRefsContext);
+  /*
+  const componentRefs = useRef({
+    "home":null,
+    "about-us":null,
+    "our-features":null,
+    "why-us":null,
+    "how-it-works":null,
+    "contact-us":null
+  })
+  */
 
   return (
     <>
    
    <Head>
     <title>{t(metaObji.title)}</title>
-    <meta name="description" content={t("meta_description_one")} />
+    <meta name="description" content={t(metaDescription)} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="favicon.ico" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="Mohamed Farahat " />
         <meta name="audience" content="all" />
         {/* <!-- Search Engine --> */}
-        <meta name="description" content={t("meta_description_one")} />
+        <meta name="description" content={t(metaDescription)} />
         <meta property="og:url" content="https://pointechs.com" />
         <meta name="image" content="android-chrome-512x512.png" />
         {/*<!-- Schema.org for Google --> */}
-        <meta itemprop="description" content={t("meta_description_one")} />
+        <meta itemProp="description" content={t(metaDescription)} />
 
-        <meta itemprop="image" content="android-chrome-512x512.png" />
+        <meta itemProp="image" content="android-chrome-512x512.png" />
+        <meta property="og:image" content="https://www.pointechs.com/android-chrome-512x512.png"/>
         <meta property="og:url" content="https://pointechs.com" />
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
         <meta property="og:title" content={t(metaTitle)} />
-        <meta property="og:description" content={t("meta_description_one")} />
+        <meta property="og:description" content={t(metaDescription)} />
         <meta property="og:image" content="android-chrome-512x512.png" />
 
         <meta property="og:type" content="website" />
@@ -47,12 +60,12 @@ export default function Home({metaTitle}) {
         {/*<!----Twitter--> */}
         <meta name="twitter:card" content="photo" />
         <meta name="twitter:title" content={t(metaTitle)} />
-        <meta name="twitter:description" content={t("meta_description_one")} />
-        <meta name="twitter:image:src" content="android-chrome-512x512.png" />
+        <meta name="twitter:description" content={t(metaDescription)} />
+        <meta name="twitter:image:src" content="https://www.pointechs.com/android-chrome-512x512.png" />
         <meta name="twitter:url" content="https://pointechs.com" />
 
         <meta name="theme-color" content="#000000" />
-        <meta name="description" content={t("meta_description_one")} />
+        <meta name="description" content={t(metaDescription)} />
         <meta
           name="keywords"
           content="pointechs, loyalty cards, digital loyalty cards,points,stamps,discount,coupons,Promotional Offers,Tiers program,Customer analytics,Business information,Customer Feedback,revenue ,merchants ,customers,business,sales,merchant,benefits,rewards,بوينتكس,نقاط,مكافات,ادارة الولاء,عملاء,تجار,ارباح,فوائد,تتبع النقاط,بطاقات الولاء الرقمية,;,كوبونات الخصم,العروض الترويجية,تحليلات العملاء"
@@ -62,11 +75,21 @@ export default function Home({metaTitle}) {
         className="app"
         style={{ direction: locale == "en" ? "ltr" : "rtl" }}
       >
-        <PointchsHome metaTitle={metaTitle}/>
-        <Welcome metaTitle={metaTitle}/>
-        <Features metaTitle={metaTitle}/>
-        <WhyPointechs metaTitle={metaTitle}/>
-        <HowPointechsWorks metaTitle={metaTitle}/>
+        <PointchsHome metaTitle={metaTitle}  ref={(el) => {
+          componentRefs.current['home'] = el;
+        }}onHeaderLinkClick={onHeaderLinkClick}/>
+        <Welcome metaTitle={metaTitle} ref={(el) => {
+          componentRefs.current['about-us'] = el;
+        }}onHeaderLinkClick={onHeaderLinkClick}/>
+        <Features metaTitle={metaTitle} ref={(el) => {
+          componentRefs.current['our-features'] = el;
+        }}onHeaderLinkClick={onHeaderLinkClick}/>
+        <WhyPointechs metaTitle={metaTitle} ref={(el) => {
+          componentRefs.current['why-us'] = el;
+        }}onHeaderLinkClick={onHeaderLinkClick}/>
+        <HowPointechsWorks metaTitle={metaTitle} ref={(el) => {
+          componentRefs.current['how-it-works'] = el;
+        }}onHeaderLinkClick={onHeaderLinkClick}/>
         <PointechsApp />
       </div>
     </>

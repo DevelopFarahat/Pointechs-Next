@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState,useContext } from "react";
+import React, { useEffect, useRef, useState, useContext,forwardRef } from "react";
 import WelcomeStyles from "../styles/welocme.module.scss";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
@@ -7,58 +7,54 @@ import VideoPosterImg from "../assets/images/video-poster.webp";
 import PlayvideoSvgIcon from "../assets/images/play.svg";
 import Modal from "react-bootstrap/Modal";
 import { GrFormClose } from "react-icons/gr";
-import {UserContext} from "../context/context";
+import { UserContext } from "../context/context";
 import { MetaContext } from "../context/context";
 import Head from "next/head";
 
-function Welcome({metaTitle}) {
-  const { locale,push,query,pathname,asPath}  = useRouter();
+const  Welcome = forwardRef(({ metaTitle,onHeaderLinkClick },ref)=> {
+  const { locale, push, query, pathname, asPath } = useRouter();
   const { t } = useTranslation("common");
   const [modalShow, setModalShow] = useState(false);
-  const [selectedLink,setSelectedLink] = useContext(UserContext);
-  const [metaObji,setMetaObji] = useContext(MetaContext);
- const  handleplayVideo = ()=>{
-  push(`/?pointechs_video=Pointechs For Business`,undefined,{shallow:true});
-  setModalShow(true);
-  }
-  const handleCloseVideoModal = ()=>{
-    setModalShow(false)
-    push(`/${locale}${pathname}`, undefined, { locale,scroll:false });
-  }
-  useEffect(()=>{
+  const [selectedLink, setSelectedLink] = useContext(UserContext);
+  const [metaObji, setMetaObji] = useContext(MetaContext);
+  const handleplayVideo = () => {
+    push(`/?pointechs_video=Pointechs For Business`, undefined, {
+      shallow: true,
+    });
+    setModalShow(true);
+  };
+  const handleCloseVideoModal = () => {
+    setModalShow(false);
+    push(`/${locale}${pathname}`, undefined, { locale, scroll: false });
+  };
+  useEffect(() => {
     const queries = Object.keys(query);
-    if(queries.length){
-      const {pointechs_video} = query;
-      if(pointechs_video){
+    if (queries.length) {
+      const { pointechs_video } = query;
+      if (pointechs_video) {
         setModalShow(true);
       }
     }
-    const {section} = query;
-    if(section == 'about-us'){
-      document
-      .getElementById("about-us")
-      .scrollIntoView({
-        block: "center",
-        inline: "center",
-        behavior: "smooth",
-      });
+    const { section } = query;
+    if (section == "about-us") {
+      onHeaderLinkClick("about-us");
       setSelectedLink(1);
-      /*
+      
       setMetaObji((previous)=>({
         ...previous,
         title:"Pointechs | about-us"
   
       }))
-     */
+     
     }
-  },[]);
+  }, []);
 
   return (
     <>
-    <Head>
-    {metaTitle == "Pointechs | about-us"?<title>{t(metaTitle)}</title>:false}
-    </Head>
-      <div className={WelcomeStyles["pointechs-welcome"]} id="about-us">
+      <Head>
+        <title>{t(metaObji.title)}</title>
+      </Head>
+      <div className={WelcomeStyles["pointechs-welcome"]} id="about-us" ref={ref}>
         <div style={{ direction: locale == "en" ? "ltr" : "ltr" }}>
           <div className={WelcomeStyles["pointechs-video-poster"]}>
             <Image
@@ -79,36 +75,31 @@ function Welcome({metaTitle}) {
               onHide={handleCloseVideoModal}
             >
               <Modal.Body>
-                <section className={WelcomeStyles['popup-video-modal-section']}>
-                <div
-                className={WelcomeStyles['iframe-video-c-header']}
-              
-                >
-                  <span onClick={handleCloseVideoModal}>
-                    <GrFormClose
-                      style={{ color: "#27323C",fontSize:'25px' }} 
-                     
-                    />
-                  
-                  </span>
-                </div>
-                <div className={WelcomeStyles['embedded-youtube-iframe-c']}>
-                <iframe
-                  width="100%"
-                  height="447"
-                  src="https://www.youtube.com/embed/khEAmUlvNJs?autoplay=1&rel=0"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;fullscreen"
-                ></iframe>
-                </div>
+                <section className={WelcomeStyles["popup-video-modal-section"]}>
+                  <div className={WelcomeStyles["iframe-video-c-header"]}>
+                    <span onClick={handleCloseVideoModal}>
+                      <GrFormClose
+                        style={{ color: "#27323C", fontSize: "25px" }}
+                      />
+                    </span>
+                  </div>
+                  <div className={WelcomeStyles["embedded-youtube-iframe-c"]}>
+                    <iframe
+                      width="100%"
+                      height="447"
+                      src="https://www.youtube.com/embed/khEAmUlvNJs?autoplay=1&rel=0"
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;fullscreen"
+                    ></iframe>
+                  </div>
                 </section>
               </Modal.Body>
             </Modal>
           </div>
           <div
             className={WelcomeStyles["welcom-pointechs"]}
-            style={{ direction: locale == "en" ? "ltr" : "rtl"}}
+            style={{ direction: locale == "en" ? "ltr" : "rtl" }}
           >
             <section>
               <span></span>
@@ -154,6 +145,6 @@ function Welcome({metaTitle}) {
       </div>
     </>
   );
-}
+});
 
 export default Welcome;

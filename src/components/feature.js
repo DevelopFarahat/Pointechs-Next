@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 import FeatureStyles from "../styles/feature.module.scss";
 import Modal from "react-bootstrap/Modal";
 import { GrFormClose } from "react-icons/gr";
@@ -7,28 +7,31 @@ import { FaDotCircle } from "react-icons/fa";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Head from 'next/head';
-function Feature({featureModalReadmoreData,modalShow,handleCloseReadmoreModal,setModalShow,setFeatureModalReadmoreData,featuresArr}) {
-    const { t } = useTranslation("common");
-    const router = useRouter();
-    const { locale, query, push, pathname, asPath } = router;
-    useEffect(()=>{
-        if (Object.keys(query).length) {
-            if (Object.keys(query)[0] == "feature") {
-              setModalShow(true);
-              const { id } = query;
-              setFeatureModalReadmoreData(featuresArr[Number(id)]);
-            }
-          }
-          
-    },[])
+import Head from "next/head";
+function Feature({
+  featureModalReadmoreData,
+  modalShow,
+  handleCloseReadmoreModal,
+  setModalShow,
+  setFeatureModalReadmoreData,
+  featuresArr,
+}) {
+  const { t } = useTranslation("common");
+  const router = useRouter();
+  const { locale, query, push, pathname, asPath } = router;
+  useEffect(() => {
+    if (Object.keys(query).length) {
+      if (Object.keys(query)[0] == "feature") {
+        setModalShow(true);
+        const { id } = query;
+        setFeatureModalReadmoreData(featuresArr[Number(id)]);
+      }
+    }
+  }, []);
   return (
     <>
-    
-
-
-    
-        <Modal
+      <Head></Head>
+      <Modal
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -68,8 +71,7 @@ function Feature({featureModalReadmoreData,modalShow,handleCloseReadmoreModal,se
         </Modal.Body>
       </Modal>
     </>
-
-  )
+  );
 }
 
-export default Feature
+export default Feature;

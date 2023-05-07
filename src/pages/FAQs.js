@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { MetaContext } from "../context/context";
 import Head from "next/head";
-function FAQS({metaTitle}) {
+function FAQS({metaTitle,metaDescription}) {
   const { t } = useTranslation("common");
   const { locale, asPath } = useRouter();
   const [metaObji,setMetaObji] = useContext(MetaContext);
@@ -82,38 +82,38 @@ function FAQS({metaTitle}) {
     <>
       <Head>
       <title>{t(metaObji.title)}</title>
-      <meta name="description" content={t("meta_description_one")} />
+      <meta name="description" content={t(metaDescription)} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="favicon.ico" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="Mohamed Farahat " />
         <meta name="audience" content="all" />
         {/* <!-- Search Engine --> */}
-        <meta name="description" content={t("meta_description_one")} />
+        <meta name="description" content={t(metaDescription)} />
         <meta property="og:url" content="https://pointechs.com" />
         <meta name="image" content="android-chrome-512x512.png" />
         {/*<!-- Schema.org for Google --> */}
-        <meta itemprop="description" content={t("meta_description_one")} />
+        <meta itemProp="description" content={t(metaDescription)} />
 
-        <meta itemprop="image" content="android-chrome-512x512.png" />
+        <meta itemProp="image" content="android-chrome-512x512.png" />
         <meta property="og:url" content="https://pointechs.com" />
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
         <meta property="og:title" content={t(metaTitle)} />
-        <meta property="og:description" content={t("meta_description_one")} />
+        <meta property="og:description" content={t(metaDescription)} />
         <meta property="og:image" content="android-chrome-512x512.png" />
-
+        <meta property="og:image" content="https://www.pointechs.com/android-chrome-512x512.png"/>
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Pointechs | بوينتكس " />
         <meta property="og:url" content="https://pointechs.com" />
         {/*<!----Twitter--> */}
         <meta name="twitter:card" content="photo" />
         <meta name="twitter:title" content={t(metaTitle)} />
-        <meta name="twitter:description" content={t("meta_description_one")} />
-        <meta name="twitter:image:src" content="android-chrome-512x512.png" />
+        <meta name="twitter:description" content={t(metaDescription)} />
+        <meta name="twitter:image:src" content="https://www.pointechs.com/android-chrome-512x512.png" />
         <meta name="twitter:url" content="https://pointechs.com" />
 
         <meta name="theme-color" content="#000000" />
-        <meta name="description" content={t("meta_description_one")} />
+        <meta name="description" content={t(metaDescription)} />
         <meta
           name="keywords"
           content="pointechs, loyalty cards, digital loyalty cards,points,stamps,discount,coupons,Promotional Offers,Tiers program,Customer analytics,Business information,Customer Feedback,revenue ,merchants ,customers,business,sales,merchant,benefits,rewards,بوينتكس,نقاط,مكافات,ادارة الولاء,عملاء,تجار,ارباح,فوائد,تتبع النقاط,بطاقات الولاء الرقمية,;,كوبونات الخصم,العروض الترويجية,تحليلات العملاء"
@@ -157,7 +157,8 @@ export async function getServerSideProps({ locale,resolvedUrl,query }) {
           'common',
         ])),
         // Will be passed to the page component as props
-        metaTitle:"Pointechs | FAQs"
+        metaTitle:"Pointechs | FAQs",
+        metaDescription:"meta_description_one"
       },
     }
   }else if (section == "contact-us"){
@@ -167,7 +168,8 @@ export async function getServerSideProps({ locale,resolvedUrl,query }) {
           'common',
         ])),
         // Will be passed to the page component as props
-        metaTitle:"Pointechs | contact-us"
+        metaTitle:"Pointechs | contact-us",
+        metaDescription:"meta_description_one"
       },
     }
   }

@@ -11,18 +11,20 @@ const DynamicLogin = dynamic(() => import("./login"), { ssr: true });
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import {UserContext} from "../context/context";
+import { UserContext } from "../context/context";
 import { MetaContext } from "../context/context";
+import { ComponentRefsContext } from "../context/context";
 function Header() {
   const { t } = useTranslation("common");
   const router = useRouter();
   let { locale, locales, push, query, asPath, pathname } = router;
   const [lang, setLang] = useState("en");
   const [selectedLink, setSelectedLink] = useContext(UserContext);
-  const [metaObji,setMetaObji] = useContext(MetaContext);
+  const [metaObji, setMetaObji] = useContext(MetaContext);
   const [signupModalShow, setSignupModalShow] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false); // initial state is expanded
+  const {onHeaderLinkClick, componentRefs } = useContext(ComponentRefsContext);
   const navbarRef = useRef();
   useEffect(() => {
     function handleScroll() {
@@ -48,52 +50,24 @@ function Header() {
     event.preventDefault();
     setSelectedLink(event.currentTarget.id);
     const LinkHref = event.currentTarget.getAttribute("href").substring(1);
-    if(pathname == "/" ){
-      push(
-        `/?section=${LinkHref}`,
-        undefined,
-        { shallow: true }
-    
-      );
-    }else{
-      if(event.currentTarget.id == 5){
-        push(
-          `${pathname}/?section=${LinkHref}`,
-          undefined,
-          { shallow: true }
-      
-        );
-      }else{
-        push(
-          `/?section=${LinkHref}`,
-          undefined,
-          { shallow: true }
-      
-        );
+    if (pathname == "/") {
+      push(`/?section=${LinkHref}`, undefined, { shallow: true });
+    } else {
+      if (event.currentTarget.id == 5) {
+        push(`${pathname}/?section=${LinkHref}`, undefined, { shallow: true });
+      } else {
+        push(`/?section=${LinkHref}`, undefined, { shallow: true });
       }
-   
     }
 
-    if ( LinkHref != null){
-   
-      setMetaObji((prev)=>({
+    if (LinkHref != null) {
+      setMetaObji((prev) => ({
         ...prev,
-        title: "Pointechs" + " " +"|"+" "+  LinkHref 
+        title: "Pointechs" + " " + "|" + " " + LinkHref,
       }));
-      
-      document
-        .getElementById(LinkHref)
-        .scrollIntoView({
-          block: "center",
-          inline: "center",
-          behavior: "smooth",
-        });
-      
+      onHeaderLinkClick(LinkHref);
     }
-
-    
   };
-
   const handleOnToogleStyles = (isNavbarExpanded) => {
     if (isNavbarExpanded) {
       navbarRef.current.classList.add(NavbarStyles["drop-shadow"]);
@@ -134,6 +108,15 @@ function Header() {
     }
     handleToggle();
   };
+  const handleNavigationToTheRoot = (event)=>{
+    event.preventDefault();
+    event.stopPropagation();
+    push("/");
+    setMetaObji((prev)=>({
+      ...prev,
+      title:'Pointechs'
+    }))
+  }
   return (
     <>
       <Navbar
@@ -147,7 +130,7 @@ function Header() {
       >
         <Container className={NavbarStyles["navbar-container"]}>
           <Navbar.Brand>
-            <Link href={"/"} locale={locale}>
+            <Link href={"#"} onClick={handleNavigationToTheRoot} locale={locale}>
               <Image
                 src={Logo}
                 className={NavbarStyles.logo}
