@@ -31,20 +31,20 @@ export default function Home({ metaTitle, metaDescription }) {
         {/* <!-- Search Engine --> */}
         <meta name="description" content={t(metaDescription)} />
         <meta property="og:url" content="https://pointechs.com" />
-        <meta name="image" content="android-chrome-512x512.png" />
+        <meta name="image" content="apple-icon-120x120.png" />
         {/*<!-- Schema.org for Google --> */}
         <meta itemProp="description" content={t(metaDescription)} />
 
-        <meta itemProp="image" content="android-chrome-512x512.png" />
+        <meta itemProp="image" content="apple-icon-120x120.png" />
         <meta
           property="og:image"
-          content="https://www.pointechs.com/android-chrome-512x512.png"
+          content="https://www.pointechs.com/apple-icon-120x120.png"
         />
         <meta property="og:url" content="https://pointechs.com" />
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
         <meta property="og:title" content={t(metaTitle)} />
         <meta property="og:description" content={t(metaDescription)} />
-        <meta property="og:image" content="android-chrome-512x512.png" />
+        <meta property="og:image" content="apple-icon-120x120.png" />
 
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Pointechs | بوينتكس " />
@@ -55,7 +55,7 @@ export default function Home({ metaTitle, metaDescription }) {
         <meta name="twitter:description" content={t(metaDescription)} />
         <meta
           name="twitter:image:src"
-          content="https://www.pointechs.com/android-chrome-512x512.png"
+          content="https://www.pointechs.com/apple-icon-120x120.png"
         />
         <meta name="twitter:url" content="https://pointechs.com" />
 
