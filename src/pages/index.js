@@ -109,7 +109,7 @@ export default function Home({ metaTitle, metaDescription }) {
 }
 
 export async function getServerSideProps({ locale, resolvedUrl, query }) {
-  const { section, feature, id } = query;
+  const { section, feature, id,status } = query;
   const featuresArr = [
     {
       id: 0,
@@ -221,6 +221,27 @@ export async function getServerSideProps({ locale, resolvedUrl, query }) {
         metaDescription: featuresArr[Number(id)].moreDetails[0],
       },
     };
+  }else if (status != undefined) {
+    if(status == "signup-popup"){
+      return {
+        props: {
+          ...(await serverSideTranslations(locale, ["common"])),
+          // Will be passed to the page component as props
+          metaTitle: "Sign Up title",
+          metaDescription: "meta_description_one",
+        },
+      };
+    }else{
+      return {
+        props: {
+          ...(await serverSideTranslations(locale, ["common"])),
+          // Will be passed to the page component as props
+          metaTitle: "Sign In",
+          metaDescription: "meta_description_one",
+        },
+      };
+    }
+    
   } else {
     return {
       props: {
